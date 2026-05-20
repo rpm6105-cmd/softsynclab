@@ -118,12 +118,14 @@ window.updateUI = () => {
     const proposalEditor = document.getElementById('proposal-editor');
     const letterEditor = document.getElementById('letter-editor');
     const moaEditor = document.getElementById('moa-editor');
+    const handoverEditor = document.getElementById('handover-editor');
     const subjectField = document.getElementById('subject-field-group');
 
     itemsEditor.style.display = 'none';
     proposalEditor.style.display = 'none';
     letterEditor.style.display = 'none';
     moaEditor.style.display = 'none';
+    handoverEditor.style.display = 'none';
     subjectField.style.display = 'none';
 
     if (mode === 'letterhead') {
@@ -141,6 +143,10 @@ window.updateUI = () => {
         preview.className = 'a4-page theme-indigo';
     } else if (mode === 'moa') {
         moaEditor.style.display = 'block';
+        preview.className = 'a4-page theme-indigo';
+    } else if (mode === 'handover') {
+        handoverEditor.style.display = 'block';
+        subjectField.style.display = 'block';
         preview.className = 'a4-page theme-indigo';
     }
     renderLive();
@@ -549,6 +555,142 @@ window.renderLive = () => {
             
             <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
+    } else if (mode === 'handover') {
+        const projectName     = document.getElementById('ho-project').value       || '[Project Name]';
+        const deliverablesRaw = document.getElementById('ho-deliverables').value  || '';
+        const liveUrl         = document.getElementById('ho-url').value           || '';
+        const credentials     = document.getElementById('ho-credentials').value   || '';
+        const supportTerms    = document.getElementById('ho-support').value       || '';
+        const notes           = document.getElementById('ho-notes').value         || '';
+        const hoNum           = `HO-${year}-${month}-${rand}`;
+
+        const deliverableLines = deliverablesRaw.split('\n').filter(l => l.trim());
+        const checklistHTML = deliverableLines.length
+            ? deliverableLines.map(line => {
+                const text = line.replace(/^[\*\-•]\s*/, '').trim();
+                return `<div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid ${C.border};">
+                    <div style="flex-shrink:0;margin-top:2px;width:18px;height:18px;background:linear-gradient(135deg,#16a34a,#15803d);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span style="font-size:0.85rem;color:${C.textDark};line-height:1.5;">${text}</span>
+                </div>`;
+            }).join('')
+            : `<div style="font-size:0.85rem;color:${C.textLight};font-style:italic;padding:8px 0;">No deliverables listed</div>`;
+
+        document.getElementById('document-preview').innerHTML = `
+        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+
+            <!-- HEADER -->
+            <div style="position:relative;background:${C.navyDark};padding:12mm 18mm 10mm;overflow:hidden;">
+                <div style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:${C.violet};opacity:0.08;"></div>
+                <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
+                    <div style="display:flex;align-items:center;gap:15px;">
+                        <div style="width:60px;height:60px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                            <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
+                        </div>
+                        <div>
+                            <h1 style="font-size:1.5rem;font-weight:800;color:${C.white};margin:0;">${company.name}</h1>
+                            <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin:3px 0 0;">SaaS Development Agency</p>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:1.8rem;font-weight:900;color:${C.white};letter-spacing:-0.02em;line-height:1;">PROJECT</div>
+                        <div style="font-size:1.8rem;font-weight:900;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em;line-height:1;">HANDOVER</div>
+                        <div style="margin-top:8px;font-size:0.72rem;color:rgba(255,255,255,0.5);">Ref: <span style="color:${C.white};font-weight:700;">${hoNum}</span></div>
+                        <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);">Date: <span style="color:${C.white};font-weight:600;">${dateStr}</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARTY STRIP -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
+                <div style="padding:8mm 18mm;border-right:1px solid ${C.border};">
+                    <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:6px;">Handed Over By</div>
+                    <div style="font-size:1rem;font-weight:800;color:${C.textDark};">${company.name}</div>
+                    <div style="font-size:0.78rem;color:${C.textMid};margin-top:2px;">${company.email}</div>
+                    <div style="font-size:0.78rem;color:${C.textMid};">${company.phone}</div>
+                </div>
+                <div style="padding:8mm 18mm;">
+                    <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:6px;">Handed Over To</div>
+                    <div style="font-size:1rem;font-weight:800;color:${C.textDark};">${client}</div>
+                    ${addr ? `<div style="font-size:0.78rem;color:${C.textMid};margin-top:2px;">${addr}</div>` : ''}
+                    ${phone ? `<div style="font-size:0.78rem;color:${C.textMid};">${phone}</div>` : ''}
+                </div>
+            </div>
+
+            <!-- PROJECT SUMMARY -->
+            <div style="padding:8mm 18mm 6mm;background:${C.white};border-bottom:1px solid ${C.border};">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:3mm;">
+                    <div style="width:4px;height:22px;background:${GRADIENT};border-radius:3px;"></div>
+                    <h2 style="font-size:1rem;font-weight:800;color:${C.navyDark};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Project Summary</h2>
+                </div>
+                <div style="padding-left:16px;">
+                    <div style="font-size:1.2rem;font-weight:800;color:${C.navyDark};margin-bottom:4px;">${projectName}</div>
+                    ${liveUrl ? `<div style="font-size:0.8rem;color:${C.blue};font-weight:600;">Live URL: ${liveUrl}</div>` : ''}
+                </div>
+            </div>
+
+            <!-- DELIVERABLES -->
+            <div style="padding:8mm 18mm 6mm;background:${C.white};border-bottom:1px solid ${C.border};">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:4mm;">
+                    <div style="width:4px;height:22px;background:${GRADIENT};border-radius:3px;"></div>
+                    <h2 style="font-size:1rem;font-weight:800;color:${C.navyDark};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Deliverables Checklist</h2>
+                </div>
+                <div style="padding-left:16px;">${checklistHTML}</div>
+            </div>
+
+            <!-- ACCESS & SUPPORT -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.white};border-bottom:1px solid ${C.border};">
+                <div style="padding:8mm 18mm;border-right:1px solid ${C.border};">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:3mm;">
+                        <div style="width:4px;height:18px;background:${GRADIENT};border-radius:3px;"></div>
+                        <h3 style="font-size:0.85rem;font-weight:800;color:${C.navyDark};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Access &amp; Credentials</h3>
+                    </div>
+                    <div style="font-size:0.82rem;color:${C.textMid};line-height:1.7;padding-left:14px;white-space:pre-wrap;">${credentials || 'Login credentials will be shared securely at handover.'}</div>
+                </div>
+                <div style="padding:8mm 18mm;">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:3mm;">
+                        <div style="width:4px;height:18px;background:${GRADIENT};border-radius:3px;"></div>
+                        <h3 style="font-size:0.85rem;font-weight:800;color:${C.navyDark};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Support Terms</h3>
+                    </div>
+                    <div style="font-size:0.82rem;color:${C.textMid};line-height:1.7;padding-left:14px;white-space:pre-wrap;">${supportTerms}</div>
+                </div>
+            </div>
+
+            ${notes ? `
+            <div style="padding:6mm 18mm;background:${C.violetLight};border-bottom:1px solid ${C.violetMid};">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:2mm;">
+                    <div style="width:4px;height:18px;background:${GRADIENT};border-radius:3px;"></div>
+                    <h3 style="font-size:0.85rem;font-weight:800;color:${C.violet};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Notes &amp; Pending Items</h3>
+                </div>
+                <div style="font-size:0.82rem;color:${C.textMid};line-height:1.7;padding-left:14px;white-space:pre-wrap;">${notes}</div>
+            </div>` : ''}
+
+            <!-- ACCEPTANCE -->
+            <div style="padding:8mm 18mm;background:${C.white};">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:5mm;">
+                    <div style="width:4px;height:18px;background:${GRADIENT};border-radius:3px;"></div>
+                    <h3 style="font-size:0.85rem;font-weight:800;color:${C.navyDark};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Acceptance &amp; Sign-off</h3>
+                </div>
+                <div style="background:${C.offWhite};border:1px solid ${C.border};border-radius:12px;padding:6mm;font-size:0.8rem;color:${C.textMid};line-height:1.7;margin-bottom:8mm;">
+                    I/We, the undersigned, hereby confirm that the project "<strong style="color:${C.textDark};">${projectName}</strong>" has been completed and all agreed deliverables listed above have been received in satisfactory condition. The project is officially accepted as of <strong style="color:${C.textDark};">${dateStr}</strong>.
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:30mm;">
+                    <div>
+                        <div style="font-size:0.75rem;font-weight:700;color:${C.textLight};text-transform:uppercase;margin-bottom:12mm;">For ${company.name} (Service Provider)</div>
+                        ${sig}
+                    </div>
+                    <div>
+                        <div style="font-size:0.75rem;font-weight:700;color:${C.textLight};text-transform:uppercase;margin-bottom:20mm;">For ${client} (Client)</div>
+                        <div style="border-top:1px solid ${C.textLight};padding-top:5px;">
+                            <div style="font-size:0.68rem;color:${C.textLight};text-transform:uppercase;letter-spacing:0.1em;">Authorized Signatory &amp; Date</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width:100%;">${footer}</div>
+        </div>`;
     }
 
     } catch (err) {
@@ -591,9 +733,19 @@ window.saveDocument = async () => {
                 law:     document.getElementById('moa-law').value
             });
         }
+        if(mode==='handover') {
+            Object.assign(payload, {
+                project_name:  document.getElementById('ho-project').value,
+                deliverables:  document.getElementById('ho-deliverables').value,
+                live_url:      document.getElementById('ho-url').value,
+                credentials:   document.getElementById('ho-credentials').value,
+                support_terms: document.getElementById('ho-support').value,
+                notes:         document.getElementById('ho-notes').value,
+            });
+        }
         if(mode!=='invoice' && mode!=='moa') payload.price=amount;
     }
-    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes' };
+    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers' };
     const table = tableMap[mode] || 'quotes';
     const { error } = await supabase.from(table).insert([payload]);
     if (error) alert("Sync Error: "+error.message);
@@ -608,12 +760,14 @@ async function loadHistory() {
     const {data:i}=await supabase.from('invoices').select('*').order('created_at',{ascending:false}).limit(10);
     const {data:p}=await supabase.from('proposals').select('*').order('created_at',{ascending:false}).limit(10);
     const {data:m}=await supabase.from('moas').select('*').order('created_at',{ascending:false}).limit(10);
+    const {data:h}=await supabase.from('handovers').select('*').order('created_at',{ascending:false}).limit(10);
 
     _historyRecords = [
         ...(q||[]).map(x=>({...x, _type:'quotation',  _label:'Quote',    _val:x.price})),
         ...(i||[]).map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
         ...(p||[]).map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
-        ...(m||[]).map(x=>({...x, _type:'moa',        _label:'MOA',      _val:x.cost}))
+        ...(m||[]).map(x=>({...x, _type:'moa',        _label:'MOA',      _val:x.cost})),
+        ...(h||[]).map(x=>({...x, _type:'handover',   _label:'Handover', _val:0}))
     ].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
 
     const list = document.getElementById('history-list');
@@ -688,6 +842,19 @@ window.loadDocumentFromHistory = (idx) => {
     } else if (d._type === 'letterhead') {
         const lb = document.getElementById('letter-body');
         if (lb) lb.value = d.message_body || '';
+    } else if (d._type === 'handover') {
+        const fields = {
+            'ho-project':     d.project_name  || '',
+            'ho-deliverables':d.deliverables  || '',
+            'ho-url':         d.live_url      || '',
+            'ho-credentials': d.credentials   || '',
+            'ho-support':     d.support_terms || '',
+            'ho-notes':       d.notes         || '',
+        };
+        for (const [id, val] of Object.entries(fields)) {
+            const el = document.getElementById(id);
+            if (el) el.value = val;
+        }
     } else {
         // Quotation or Invoice
         activeItems.length = 0;
@@ -713,7 +880,7 @@ window.deleteDocumentFromHistory = async (idx) => {
     const d = _historyRecords[idx];
     if (!d || !confirm(`Delete ${d._label} for ${d.client_name || 'this client'}?`)) return;
 
-    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : 'quotes');
+    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : 'quotes');
     const { error } = await supabase.from(table).delete().eq('id', d.id);
 
     if (error) {
