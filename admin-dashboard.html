@@ -381,6 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <option value="invoice">New Tax Invoice</option>
                         <option value="letterhead">New Letterhead</option>
                         <option value="moa">Memorandum of Agreement</option>
+                        <option value="handover">Project Handover</option>
                     </select>
                     <button class="btn btn-ghost" onclick="saveDocument()">💾 Save & Sync</button>
                     <button class="btn btn-primary" onclick="window.print()">🖨️ Print PDF</button>
@@ -444,6 +445,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <h3>Letter Content</h3>
                         <div class="form-group" style="margin-bottom:0;">
                             <textarea id="letter-body" class="form-input" style="height:280px;" oninput="renderLive()" placeholder="Type your letter content here..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card" id="handover-editor" style="display:none;">
+                        <h3>Handover Details</h3>
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input type="text" id="ho-project" class="form-input" placeholder="e.g. HRMS Portal for Acme Corp" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Deliverables (one per line)</label>
+                            <textarea id="ho-deliverables" class="form-input" style="height:110px;" oninput="renderLive()" placeholder="* Source code repository&#10;* Admin panel access&#10;* User documentation&#10;* Database backup"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Live URL / Hosted Link</label>
+                            <input type="text" id="ho-url" class="form-input" placeholder="https://yourproject.vercel.app" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Access &amp; Credentials Note</label>
+                            <textarea id="ho-credentials" class="form-input" style="height:70px;" oninput="renderLive()" placeholder="Login credentials shared via secure email on handover date."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Support Period &amp; Terms</label>
+                            <textarea id="ho-support" class="form-input" style="height:70px;" oninput="renderLive()">30 days of free post-delivery support included.&#10;Extended support available via AMC at ₹4,000/month.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Known Issues / Notes (optional)</label>
+                            <textarea id="ho-notes" class="form-input" style="height:60px;" oninput="renderLive()" placeholder="Any items still pending or caveats to communicate..."></textarea>
                         </div>
                     </div>
 
