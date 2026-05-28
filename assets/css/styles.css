@@ -1,23 +1,23 @@
 /* Variables */
 :root {
     --primary: #4f46e5;
-    --primary-light: #7dd3fc;
-    --accent: #10b981;
-    --accent-warm: #f8d36f;
-    --bg-dark: #050816;
-    --bg-light: #0a1022;
-    --surface: #161616;
-    --surface-light: #222222;
-    --text: #f8fafc;
-    --text-dim: #a0a0a0;
+    --primary-light: #6366f1;
+    --accent: #0d9488;
+    --accent-warm: #f59e0b;
+    --bg-dark: #f8fafc;
+    --bg-light: #ffffff;
+    --surface: #ffffff;
+    --surface-light: #f1f5f9;
+    --text: #0f172a;
+    --text-dim: #475569;
     --white: #ffffff;
-    --gradient: linear-gradient(135deg, #10b981 0%, #4f46e5 52%, #f8d36f 120%);
-    --gradient-vibrant: linear-gradient(135deg, #10b981 0%, #4f46e5 46%, #c084fc 76%, #f8d36f 115%);
-    --shadow: 0 28px 90px -34px rgba(0, 0, 0, 0.85);
-    --glass: rgba(5, 8, 22, 0.72);
-    --border: #2a2a2a;
-    --halo-cyan: rgba(16, 185, 129, 0.26);
-    --halo-indigo: rgba(79, 70, 229, 0.34);
+    --gradient: linear-gradient(135deg, #0d9488 0%, #4f46e5 52%, #f59e0b 120%);
+    --gradient-vibrant: linear-gradient(135deg, #0d9488 0%, #4f46e5 46%, #c084fc 76%, #f59e0b 115%);
+    --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+    --glass: rgba(255, 255, 255, 0.75);
+    --border: rgba(15, 23, 42, 0.08);
+    --halo-cyan: rgba(13, 148, 136, 0.18);
+    --halo-indigo: rgba(79, 70, 229, 0.14);
 }
 
 /* Base Styles */
@@ -35,11 +35,11 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     background:
-        radial-gradient(circle at 16% 8%, rgba(16, 185, 129, 0.16), transparent 28rem),
-        radial-gradient(circle at 84% 2%, rgba(124, 58, 237, 0.2), transparent 32rem),
-        linear-gradient(180deg, #040714 0%, #070b1c 40%, #050816 100%);
+        radial-gradient(circle at 16% 8%, rgba(13, 148, 136, 0.06), transparent 35rem),
+        radial-gradient(circle at 84% 2%, rgba(79, 70, 229, 0.08), transparent 40rem),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #f1f5f9 100%);
     color: var(--text);
-    line-height: 1.7; /* Increased for better readability */
+    line-height: 1.7;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -52,8 +52,8 @@ body::before {
     z-index: -2;
     pointer-events: none;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        linear-gradient(rgba(15, 23, 42, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
     background-size: 72px 72px;
     -webkit-mask-image: radial-gradient(circle at 50% 0%, black, transparent 68%);
     mask-image: radial-gradient(circle at 50% 0%, black, transparent 68%);
@@ -102,20 +102,20 @@ img {
     align-items: center;
     color: var(--accent);
     text-transform: uppercase;
-    font-weight: 800; /* Bolder for hierarchy */
+    font-weight: 800;
     font-size: 0.82rem;
-    letter-spacing: 0.15em; /* Increased spacing */
+    letter-spacing: 0.15em;
     margin-bottom: 1.25rem;
     padding: 0.42rem 0.78rem;
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(13, 148, 136, 0.22);
     border-radius: 999px;
-    background: rgba(16, 185, 129, 0.07);
+    background: rgba(13, 148, 136, 0.07);
 }
 
 .bg-alt {
     background:
-        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.12), transparent 26rem),
-        linear-gradient(180deg, rgba(10, 16, 34, 0.92), rgba(5, 8, 22, 0.95));
+        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.05), transparent 26rem),
+        linear-gradient(180deg, #f1f5f9 0%, #eef2f7 100%);
 }
 
 .accent {
@@ -127,7 +127,7 @@ img {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.18));
+    filter: drop-shadow(0 0 14px rgba(13, 148, 136, 0.12));
 }
 
 .flex-between {
@@ -204,11 +204,11 @@ textarea:focus-visible {
 }
 
 .navbar.scrolled {
-    background: rgba(5, 8, 22, 0.78);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(18px) saturate(160%);
     padding: 0.9rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
 }
 
 .navbar-container {
@@ -216,12 +216,12 @@ textarea:focus-visible {
     justify-content: space-between;
     align-items: center;
     min-height: 48px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(15, 23, 42, 0.1);
     border-radius: 999px;
     padding: 0.48rem 0.72rem 0.48rem 0.92rem;
-    background: rgba(5, 8, 22, 0.62);
+    background: rgba(255, 255, 255, 0.82);
     backdrop-filter: blur(18px) saturate(150%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 22px 60px rgba(0, 0, 0, 0.22);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(15, 23, 42, 0.07);
 }
 
 .logo {
@@ -247,12 +247,12 @@ textarea:focus-visible {
 }
 
 .nav-links a:hover, .nav-links a.active {
-    color: var(--white);
+    color: var(--text);
 }
 
 .nav-links a:not(.btn):hover,
 .nav-links a:not(.btn).active {
-    text-shadow: 0 0 24px rgba(16, 185, 129, 0.5);
+    text-shadow: none;
 }
 
 .nav-toggle {
@@ -266,7 +266,7 @@ textarea:focus-visible {
     gap: 5px;
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: rgba(255,255,255,0.03);
+    background: rgba(15, 23, 42, 0.05);
 }
 
 .nav-toggle span {
@@ -274,7 +274,7 @@ textarea:focus-visible {
     width: 18px;
     height: 2px;
     border-radius: 999px;
-    background: var(--white);
+    background: var(--text);
 }
 
 /* Hero Section */
@@ -302,7 +302,7 @@ textarea:focus-visible {
     height: 760px;
     right: -250px;
     top: 30px;
-    background: radial-gradient(circle, rgba(79, 70, 229, 0.36), transparent 63%);
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.12), transparent 63%);
 }
 
 .hero::after {
@@ -310,7 +310,7 @@ textarea:focus-visible {
     height: 580px;
     left: -220px;
     bottom: 10%;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent 62%);
+    background: radial-gradient(circle, rgba(13, 148, 136, 0.1), transparent 62%);
 }
 
 .hero-container {
@@ -389,15 +389,15 @@ textarea:focus-visible {
 }
 
 .btn-outline {
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(15, 23, 42, 0.18);
+    background: rgba(15, 23, 42, 0.04);
     backdrop-filter: blur(14px);
-    color: var(--white);
+    color: var(--text);
 }
 
 .btn-outline:hover {
-    background: rgba(16, 185, 129, 0.14);
-    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(13, 148, 136, 0.08);
+    border-color: rgba(13, 148, 136, 0.4);
     transform: translateY(-3px);
 }
 
@@ -620,20 +620,20 @@ textarea:focus-visible {
 }
 
 .project-card {
-    background: linear-gradient(180deg, rgba(18, 27, 48, 0.9), rgba(9, 14, 31, 0.92));
+    background: #ffffff;
     border-radius: 24px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(15, 23, 42, 0.09);
     transition: 0.4s ease;
-    box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.07);
     display: flex;
     flex-direction: column;
 }
 
 .project-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(16, 185, 129, 0.28);
-    box-shadow: 0 24px 72px -30px rgba(16, 185, 129, 0.28), 0 22px 58px rgba(0,0,0,0.46);
+    border-color: rgba(13, 148, 136, 0.28);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12), 0 0 32px rgba(13, 148, 136, 0.08);
 }
 
 .project-image {
@@ -642,9 +642,9 @@ textarea:focus-visible {
     overflow: hidden;
     padding: 0.75rem;
     background:
-        radial-gradient(circle at 18% 0%, rgba(16, 185, 129, 0.22), transparent 34%),
-        radial-gradient(circle at 85% 20%, rgba(124, 58, 237, 0.24), transparent 38%),
-        linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+        radial-gradient(circle at 18% 0%, rgba(13, 148, 136, 0.1), transparent 34%),
+        radial-gradient(circle at 85% 20%, rgba(79, 70, 229, 0.1), transparent 38%),
+        linear-gradient(135deg, #eef2f7 0%, #e2e8f0 100%);
 }
 
 .project-image img {
@@ -667,9 +667,10 @@ textarea:focus-visible {
 }
 
 .project-category {
-    background: rgba(5, 8, 22, 0.72);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    color: var(--text);
     padding: 0.34rem 0.82rem;
     border-radius: 50px;
     font-size: 0.68rem;
@@ -729,7 +730,7 @@ textarea:focus-visible {
 }
 
 .project-points strong {
-    color: var(--white);
+    color: var(--text);
 }
 
 .process-grid {
@@ -740,12 +741,13 @@ textarea:focus-visible {
 }
 
 .process-card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
-    border: 1px solid rgba(255,255,255,0.11);
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 24px;
     padding: 2rem;
     position: relative;
     transition: 0.3s ease;
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
 }
 
 @media (min-width: 900px) {
@@ -755,14 +757,14 @@ textarea:focus-visible {
         top: 53px;
         right: -1.5rem;
         width: 1.5rem;
-        border-top: 2px dashed rgba(255,255,255,0.22);
+        border-top: 2px dashed rgba(15, 23, 42, 0.14);
     }
 }
 
 .process-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(16, 185, 129, 0.28);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28), 0 0 44px rgba(16, 185, 129, 0.08);
+    border-color: rgba(13, 148, 136, 0.28);
+    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.1), 0 0 32px rgba(13, 148, 136, 0.06);
 }
 
 .process-step {
@@ -773,7 +775,7 @@ textarea:focus-visible {
     height: 42px;
     margin-bottom: 1.2rem;
     border-radius: 999px;
-    background: rgba(16, 185, 129, 0.12);
+    background: rgba(13, 148, 136, 0.1);
     color: var(--accent);
     font-weight: 800;
     letter-spacing: 0.06em;
@@ -785,7 +787,7 @@ textarea:focus-visible {
 }
 
 .process-card p {
-    color: rgba(255,255,255,0.48);
+    color: var(--text-dim);
     font-size: 0.9rem;
     line-height: 1.7;
 }
@@ -838,8 +840,8 @@ textarea:focus-visible {
     grid-template-columns: 1fr 1.1fr;
     border-radius: 26px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 28px 86px rgba(0,0,0,0.46), 0 0 60px rgba(79, 70, 229, 0.1);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08), 0 0 40px rgba(79, 70, 229, 0.05);
     position: relative;
 }
 
@@ -847,8 +849,8 @@ textarea:focus-visible {
 .contact-info {
     padding: 2.35rem;
     background:
-        radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.24), transparent 34%),
-        linear-gradient(145deg, #0b1638 0%, #050816 100%);
+        radial-gradient(circle at 12% 10%, rgba(13, 148, 136, 0.14), transparent 34%),
+        linear-gradient(145deg, #eef2f7 0%, #f1f5f9 100%);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -864,7 +866,7 @@ textarea:focus-visible {
     left: -70px;
     width: 240px;
     height: 240px;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.32) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(13, 148, 136, 0.18) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -876,7 +878,7 @@ textarea:focus-visible {
     right: -60px;
     width: 180px;
     height: 180px;
-    background: radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -916,7 +918,7 @@ textarea:focus-visible {
 }
 
 .contact-info-top p {
-    color: rgba(255,255,255,0.5);
+    color: var(--text-dim);
     line-height: 1.6;
     font-size: 0.86rem;
     max-width: 390px;
@@ -932,16 +934,16 @@ textarea:focus-visible {
 
 .contact-highlight-card {
     padding: 0.9rem 1rem;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 14px;
     backdrop-filter: blur(8px);
     transition: 0.3s ease;
 }
 
 .contact-highlight-card:hover {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(13, 148, 136, 0.25);
     transform: translateX(4px);
 }
 
@@ -950,7 +952,7 @@ textarea:focus-visible {
     font-weight: 700;
     font-size: 0.62rem;
     letter-spacing: 0.9px;
-    color: rgba(255,255,255,0.35);
+    color: var(--text-dim);
     margin-bottom: 0.34rem;
 }
 
@@ -958,7 +960,7 @@ textarea:focus-visible {
     font-size: 0.84rem;
     line-height: 1.55;
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: var(--text);
 }
 
 /* Availability badge */
@@ -970,7 +972,7 @@ textarea:focus-visible {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.74rem;
-    color: rgba(255,255,255,0.45);
+    color: var(--text-dim);
 }
 
 .avail-dot {
@@ -985,7 +987,7 @@ textarea:focus-visible {
 /* RIGHT panel - form side */
 .contact-form {
     padding: 2.35rem;
-    background: rgba(5, 8, 22, 0.96);
+    background: #ffffff;
     position: relative;
 }
 
@@ -996,13 +998,13 @@ textarea:focus-visible {
 .form-header h3 {
     font-size: 1.05rem;
     font-weight: 700;
-    color: rgba(255,255,255,0.9);
+    color: var(--text);
     margin-bottom: 0.28rem;
 }
 
 .form-header p {
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.35);
+    color: var(--text-dim);
 }
 
 .form-row {
@@ -1023,16 +1025,16 @@ textarea:focus-visible {
     font-size: 0.68rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: rgba(255,255,255,0.4);
+    color: var(--text-dim);
 }
 
 .form-group input, .form-group textarea {
     width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.12);
     padding: 0.76rem 0.88rem;
     border-radius: 10px;
-    color: var(--white);
+    color: var(--text);
     font-family: inherit;
     font-size: 0.84rem;
     transition: 0.25s ease;
@@ -1044,14 +1046,14 @@ textarea:focus-visible {
 }
 
 .form-group input::placeholder, .form-group textarea::placeholder {
-    color: rgba(255,255,255,0.2);
+    color: rgba(15, 23, 42, 0.3);
 }
 
 .form-group input:focus, .form-group textarea:focus {
     outline: none;
-    border-color: rgba(16, 185, 129, 0.52);
-    background: rgba(16, 185, 129, 0.055);
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12), 0 0 30px rgba(79, 70, 229, 0.1);
+    border-color: rgba(13, 148, 136, 0.5);
+    background: rgba(13, 148, 136, 0.04);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
 }
 
 .btn-send {
@@ -1088,7 +1090,7 @@ textarea:focus-visible {
 .form-note {
     text-align: center;
     margin-top: 0.8rem;
-    color: rgba(255,255,255,0.25);
+    color: rgba(15, 23, 42, 0.3);
     font-size: 0.76rem;
 }
 
@@ -1097,7 +1099,7 @@ textarea:focus-visible {
     margin-top: 1rem;
     text-align: center;
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.68);
+    color: var(--text-dim);
 }
 
 .form-status.is-success {
@@ -1209,11 +1211,11 @@ textarea:focus-visible {
         flex-direction: column;
         gap: 1rem;
         padding: 1.25rem;
-        border: 1px solid var(--border);
+        border: 1px solid rgba(15, 23, 42, 0.1);
         border-radius: 18px;
-        background: rgba(5, 8, 22, 0.96);
+        background: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(18px) saturate(150%);
-        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.48);
+        box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
     }
 
     .nav-links.open {
