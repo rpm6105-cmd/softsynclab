@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom HRMS & Payroll System for Go Solar Solutions | SoftSync Solutions</title>
+    <meta name="description" content="How SoftSync Solutions built a custom HRMS, Payroll, and Compliance Management System for Go Solar Solutions — a renewable energy company managing distributed field and office staff across Navi Mumbai.">
+    <meta name="keywords" content="custom HRMS case study, payroll automation India, compliance management system, HR software SME, SoftSync Solutions, Go Solar Solutions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="icon" type="image/png" href="../assets/images/logo-s.png">
+    <style>
+        /* ── Hero ── */
+        .project-hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(to bottom, var(--bg-dark), var(--bg-light));
+            text-align: center;
+        }
+        .project-hero p {
+            max-width: 820px;
+            margin: 1.5rem auto 0;
+        }
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--glass);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+        .meta-item h4 {
+            color: var(--accent);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+        .meta-item p {
+            font-weight: 600;
+            color: rgba(255,255,255,0.88);
+        }
+
+        /* ── Client badge strip ── */
+        .client-strip {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .client-strip-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .client-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px;
+            padding: 0.85rem 1.4rem;
+        }
+        .client-badge-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .client-badge-text span {
+            display: block;
+        }
+        .client-badge-text .label {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+        .client-badge-text .value {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.88);
+        }
+
+        /* ── Section layout ── */
+        .case-section { padding: 5rem 0; }
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* ── Cards ── */
+        .proof-card, .deliverables-card, .tech-card, .module-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+        .proof-card h3, .deliverables-card h3, .tech-card h3, .module-card h3 {
+            margin-bottom: 1rem;
+        }
+        .deliverables-card ul, .module-card ul {
+            display: grid;
+            gap: 0.9rem;
+            margin-top: 1.25rem;
+        }
+        .deliverables-card li, .module-card li {
+            position: relative;
+            padding-left: 1.25rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .deliverables-card li::before, .module-card li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        /* ── Module grid ── */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .module-card {
+            border-radius: 18px;
+            padding: 1.6rem;
+            transition: border-color 0.25s ease;
+        }
+        .module-card:hover {
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+        .module-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .module-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .module-card p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        /* ── Tech stack ── */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.25rem;
+        }
+        .tech-tag {
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.25);
+            color: #a5b4fc;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .tech-tag.green {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.25);
+            color: #6ee7b7;
+        }
+        .tech-tag.warm {
+            background: rgba(248, 211, 111, 0.1);
+            border-color: rgba(248, 211, 111, 0.25);
+            color: #fde68a;
+        }
+
+        /* ── Deployment timeline ── */
+        .timeline {
+            position: relative;
+            margin-top: 2.5rem;
+        }
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 18px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), rgba(79,70,229,0.3));
+        }
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .timeline-dot {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .timeline-content h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+        .timeline-content p {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ── Impact ── */
+        .impact-card {
+            background: var(--gradient);
+            padding: 4rem;
+            border-radius: 32px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .stat-val {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.82;
+        }
+
+        /* ── Outcome list ── */
+        .outcome-list {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .outcome-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.2rem 1.4rem;
+            background: rgba(16, 185, 129, 0.04);
+            border: 1px solid rgba(16, 185, 129, 0.12);
+            border-radius: 14px;
+        }
+        .outcome-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1.5px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .outcome-item p {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .outcome-item strong {
+            color: rgba(255,255,255,0.92);
+        }
+
+        /* ── Testimonial ── */
+        .testimonial-section {
+            padding: 5rem 0;
+            border-top: 1px solid var(--border);
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(79,70,229,0.1), rgba(16,185,129,0.06));
+            border: 1px solid rgba(79,70,229,0.2);
+            border-radius: 28px;
+            padding: 3.5rem;
+            position: relative;
+        }
+        .quote-mark {
+            font-size: 6rem;
+            line-height: 1;
+            color: rgba(79,70,229,0.25);
+            font-family: Georgia, serif;
+            position: absolute;
+            top: 1.5rem;
+            left: 2.5rem;
+        }
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.82);
+            font-style: italic;
+            padding-top: 2rem;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .author-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .author-info .name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .author-info .title {
+            font-size: 0.84rem;
+            color: var(--text-dim);
+            margin-top: 0.15rem;
+        }
+
+        /* ── Screenshots guide ── */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        .screenshot-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+        }
+        .screenshot-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #a5b4fc;
+            flex-shrink: 0;
+        }
+        .screenshot-item p {
+            font-size: 0.87rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .screenshot-item strong {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 0.25rem;
+        }
+
+        /* ── CTA ── */
+        .back-nav {
+            margin-bottom: 2rem;
+            display: inline-block;
+            color: var(--text-dim);
+        }
+        .back-nav:hover { color: var(--white); }
+        .project-cta {
+            border-top: 1px solid var(--border);
+            padding: 5rem 0;
+        }
+        .project-cta-box {
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(56,189,248,0.08));
+            border: 1px solid rgba(37,99,235,0.18);
+            border-radius: 28px;
+            padding: 3rem;
+            text-align: center;
+        }
+        .project-cta-box p {
+            max-width: 640px;
+            margin: 1rem auto 0;
+            color: rgba(255,255,255,0.55);
+        }
+        .project-cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 960px) {
+            .project-meta, .case-grid, .stats-grid, .modules-grid {
+                grid-template-columns: 1fr;
+            }
+            .screenshots-grid { grid-template-columns: 1fr; }
+            .modules-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .modules-grid { grid-template-columns: 1fr; }
+            .impact-card { padding: 2.5rem 1.5rem; }
+            .testimonial-card { padding: 2.5rem 1.5rem; }
+        }
+    </style>
+    <script>
+      window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="dark-theme">
+
+    <!-- ── Navbar ── -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container navbar-container">
+            <a href="../index.html" class="logo" style="display:flex; align-items:center; gap:0.75rem;">
+                <img src="../assets/images/logo-s.png" alt="SoftSync Solutions" style="height:36px; width:auto; border-radius:8px;">
+                <span style="font-size:1.4rem; font-weight:800; letter-spacing:-0.5px;">Softsync<span style="color:var(--primary);">.</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#projects" class="active">Case Studies</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 1 — HERO
+    ───────────────────────────────────────────── -->
+    <header class="project-hero">
+        <div class="container overflow-hidden">
+            <a href="../index.html#projects" class="back-nav">← Back to Case Studies</a>
+            <span class="section-label">Case Study</span>
+            <h1 class="fade-in">From Spreadsheets to a System That Works</h1>
+            <p class="fade-in delay-1">
+                How Go Solar Solutions — a growing renewable energy company managing distributed field and office staff — moved from fragmented HR processes to a centralised HRMS, Payroll, and Compliance Management System built specifically for their operations.
+            </p>
+            <div class="project-meta fade-in delay-2">
+                <div class="meta-item">
+                    <h4>Client</h4>
+                    <p>Go Solar Solutions</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Industry</h4>
+                    <p>Renewable Energy</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Project Type</h4>
+                    <p>Custom HRMS, Payroll & Compliance</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Location</h4>
+                    <p>Navi Mumbai, India</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Client detail strip -->
+    <div class="client-strip">
+        <div class="container">
+            <div class="client-strip-inner">
+                <div class="client-badge">
+                    <div class="client-badge-icon">☀️</div>
+                    <div class="client-badge-text">
+                        <span class="label">Parent Entity</span>
+                        <span class="value">Warrington Renewsol Pvt. Ltd</span>
+                    </div>
+                </div>
+                <div class="client-badge">
+                    <div class="client-badge-icon">👤</div>
+                    <div class="client-badge-text">
+                        <span class="label">Director</span>
+                        <span class="value">Usman Mohamed Khalid Begawala</span>
+                    </div>
+                </div>
+                <div class="client-badge">
+                    <div class="client-badge-icon">⚙️</div>
+                    <div class="client-badge-text">
+                        <span class="label">System Type</span>
+                        <span class="value">Custom Internal Platform</span>
+                    </div>
+                </div>
+                <div class="client-badge">
+                    <div class="client-badge-icon">📅</div>
+                    <div class="client-badge-text">
+                        <span class="label">Engagement</span>
+                        <span class="value">Build + Ongoing Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 2 — PROJECT OVERVIEW
+    ───────────────────────────────────────────── -->
+    <section class="case-section">
+        <div class="container">
+            <div class="case-grid">
+                <div class="reveal">
+                    <span class="section-label">Overview</span>
+                    <h2>A growing team, a growing <span class="accent">operational gap</span></h2>
+                    <p style="margin-top:1.25rem; color:rgba(255,255,255,0.65);">
+                        Go Solar Solutions operates a mixed workforce — field installation teams, sales staff, and back-office personnel — spread across project sites and a central office in Navi Mumbai. As the team grew, the administrative effort required to manage employees, run monthly payroll, and maintain statutory compliance grew with it.
+                    </p>
+                    <p style="margin-top:1rem; color:rgba(255,255,255,0.65);">
+                        SoftSync Solutions was engaged to design and build a custom HRMS and Payroll platform tailored to the company's workflows — one that could handle their full employee lifecycle, automate month-end payroll processing, and provide a reliable foundation for compliance record-keeping.
+                    </p>
+                </div>
+                <div class="reveal">
+                    <img src="../assets/images/hrms-mockup.jpg" alt="Custom HRMS and payroll dashboard for Go Solar Solutions" style="border-radius: 20px; box-shadow: var(--shadow);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 3 — CHALLENGES
+    ───────────────────────────────────────────── -->
+    <section class="case-section bg-alt">
+        <div class="container">
+            <span class="section-label">The Challenge</span>
+            <h2 style="margin-bottom:2.5rem;">What the team was dealing <span class="accent">with</span></h2>
+            <div class="case-grid">
+                <div class="reveal">
+                    <div class="split-list">
+                        <div class="split-item">
+                            <div class="split-title">No Centralised Employee Records</div>
+                            <div class="split-desc">Employee data — joining dates, designations, compensation details, document copies — lived in multiple spreadsheets, folders, and email threads. There was no single reliable source of truth for HR information.</div>
+                        </div>
+                        <div class="split-item">
+                            <div class="split-title">Manual Payroll Every Month</div>
+                            <div class="split-desc">Salary calculations involved manual cross-referencing of attendance data, leave records, overtime inputs, and deduction rules. The process was time-consuming and left room for errors that were only caught after payslips had already gone out.</div>
+                        </div>
+                        <div class="split-item">
+                            <div class="split-title">Compliance Tracking Done Reactively</div>
+                            <div class="split-desc">PF, ESI, PT, and TDS records were maintained separately, often updated in response to filing deadlines rather than as part of an integrated workflow. This created last-minute pressure and inconsistencies across filing periods.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <div class="split-list">
+                        <div class="split-item">
+                            <div class="split-title">Attendance Visibility Was Limited</div>
+                            <div class="split-desc">For field teams especially, tracking daily attendance, site-based absences, and leave requests depended on manager calls and informal check-ins. Nothing was formally logged in one place.</div>
+                        </div>
+                        <div class="split-item">
+                            <div class="split-title">No Self-Service for Employees</div>
+                            <div class="split-desc">Every payslip request, leave application, or document query came to the HR admin directly — adding unnecessary back-and-forth and slowing down routine tasks for both employees and the team managing them.</div>
+                        </div>
+                        <div class="split-item">
+                            <div class="split-title">Scaling Was Becoming Harder</div>
+                            <div class="split-desc">As headcount grew, the limitations of the existing approach became more pronounced. Adding more people meant proportionally more admin effort — the team needed a system that could scale without scaling the manual workload with it.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 4 — SOLUTION
+    ───────────────────────────────────────────── -->
+    <section class="case-section">
+        <div class="container">
+            <div class="case-grid">
+                <div class="reveal proof-card">
+                    <h3>What SoftSync Built</h3>
+                    <p style="color:rgba(255,255,255,0.55); margin-bottom:1.5rem;">We designed the system around how Go Solar's HR and operations team actually worked — not around a generic feature checklist. The result is a platform they own, understand, and can operate without external dependency.</p>
+                    <div class="split-list">
+                        <div class="split-item">
+                            <div class="split-title">Centralised HR Management</div>
+                            <div class="split-desc">A single employee master covering onboarding records, department structure, role history, documents, and employment status — accessible and searchable by HR and management.</div>
+                        </div>
+                        <div class="split-item">
+                            <div class="split-title">Payroll Engine with Deduction Logic</div>
+                            <div class="split-desc">Monthly payroll runs that pull from live attendance and leave data, apply configured deduction and allowance rules, and generate payslips ready for distribution — with an approval step before finalisation.</div>
+                        </div>
+                        <div class="split-item">
+                            <div class="split-title">Compliance Workflow Layer</div>
+                            <div class="split-desc">Structured monthly compliance tracking for PF, ESI, PT, and TDS — with calculation support, record export, and a clear audit trail that makes filing periods less stressful for the team handling them.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal deliverables-card">
+                    <h3>Delivered Scope</h3>
+                    <p style="color:rgba(255,255,255,0.55);">The build focused on operational reliability and practical daily use — every feature included has a clear purpose in their workflow.</p>
+                    <ul>
+                        <li>Employee master and profile management with document storage</li>
+                        <li>Attendance tracking with daily entry, exception handling, and monthly review</li>
+                        <li>Leave management — application, approval, carry-forward, and balance tracking</li>
+                        <li>Payroll engine with configurable salary structure, allowances, and deductions</li>
+                        <li>Automated payslip generation and employee-facing download access</li>
+                        <li>PF, ESI, PT, and TDS compliance modules with monthly calculation and export</li>
+                        <li>Role-based access — HR admin, manager, and employee views</li>
+                        <li>Reporting layer for attendance summaries, payroll registers, and compliance logs</li>
+                        <li>Admin dashboard with headcount, payroll cost, and leave status overview</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 5 — KEY MODULES
+    ───────────────────────────────────────────── -->
+    <section class="case-section bg-alt">
+        <div class="container">
+            <span class="section-label">Platform Modules</span>
+            <h2>Key features <span class="accent">implemented</span></h2>
+            <p style="margin-top:1rem; color:rgba(255,255,255,0.55); max-width:680px;">Each module was scoped based on the team's actual workflows — built to handle the real-world conditions of a distributed, growing workforce in the renewable energy space.</p>
+            <div class="modules-grid reveal">
+                <div class="module-card">
+                    <span class="module-icon">👥</span>
+                    <h4>Employee Records Management</h4>
+                    <p>Centralised profiles with employment history, compensation details, department assignments, document uploads, and status tracking across the full employee lifecycle.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon">🕐</span>
+                    <h4>Attendance & Leave Tracking</h4>
+                    <p>Daily attendance logging with manager review, shift handling, late/absent flags, and a complete leave workflow including applications, approvals, and balance tracking.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon">💰</span>
+                    <h4>Payroll Processing Engine</h4>
+                    <p>Configurable salary structures with CTC breakdown, allowance and deduction rules, attendance-linked pay calculation, and a finalisation workflow before payslips are released.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon">📄</span>
+                    <h4>Payslip Generation</h4>
+                    <p>Automated monthly payslip creation with employee-accessible download. Payslips reflect the approved payroll run and include all relevant earnings, deductions, and net pay.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon">🏛️</span>
+                    <h4>Statutory Compliance Module</h4>
+                    <p>Monthly tracking and calculation support for PF (EPF), ESI, Professional Tax, and TDS — with structured records designed to support filing and audit requirements.</p>
+                </div>
+                <div class="module-card">
+                    <span class="module-icon">📊</span>
+                    <h4>Reports & Admin Dashboard</h4>
+                    <p>Role-appropriate views for HR and management: headcount summaries, monthly payroll registers, leave balance reports, and compliance log exports for review and record-keeping.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 6 — TECHNOLOGY STACK
+    ───────────────────────────────────────────── -->
+    <section class="case-section">
+        <div class="container">
+            <div class="case-grid">
+                <div class="reveal">
+                    <span class="section-label">Technology</span>
+                    <h2>Built to be <span class="accent">reliable</span> and maintainable</h2>
+                    <p style="margin-top:1.25rem; color:rgba(255,255,255,0.65);">The stack was chosen for stability, long-term maintainability, and practical fit for a growing SME — not for trend-chasing. The client can run, access, and extend this system without being locked into a specific vendor or configuration.</p>
+                    <p style="margin-top:1rem; color:rgba(255,255,255,0.65);">The system is deployed on managed cloud infrastructure with environment-level separation, role-based security policies, and a database structure designed to handle payroll and compliance records with integrity.</p>
+                </div>
+                <div class="reveal tech-card">
+                    <h3>Technology Stack</h3>
+                    <div style="margin-top:1.5rem;">
+                        <p style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); margin-bottom:0.6rem;">Frontend</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <p style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); margin-bottom:0.6rem;">Backend & Database</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag green">Supabase</span>
+                            <span class="tech-tag green">PostgreSQL</span>
+                            <span class="tech-tag green">Row-Level Security</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <p style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); margin-bottom:0.6rem;">Infrastructure & Auth</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag warm">Vercel</span>
+                            <span class="tech-tag warm">Supabase Auth</span>
+                            <span class="tech-tag warm">Resend (Email)</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <p style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); margin-bottom:0.6rem;">Development Workflow</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">GitHub</span>
+                            <span class="tech-tag">CI/CD (Auto-Deploy)</span>
+                            <span class="tech-tag">SQL Migrations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 7 — DEPLOYMENT & SUPPORT
+    ───────────────────────────────────────────── -->
+    <section class="case-section bg-alt">
+        <div class="container">
+            <span class="section-label">Deployment & Support</span>
+            <h2>From build to <span class="accent">live operation</span></h2>
+            <p style="margin-top:1rem; color:rgba(255,255,255,0.55); max-width:680px;">Delivery was structured to give the Go Solar team a stable, tested system from day one — with direct support for onboarding and any post-launch operational queries.</p>
+            <div class="timeline reveal">
+                <div class="timeline-item">
+                    <div class="timeline-dot">01</div>
+                    <div class="timeline-content">
+                        <h4>Discovery & Scope Definition</h4>
+                        <p>Detailed requirement sessions with Go Solar's HR and operations lead to map existing workflows, define data structures, and agree on module scope and phasing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">02</div>
+                    <div class="timeline-content">
+                        <h4>Database Architecture & Core Build</h4>
+                        <p>Employee master, attendance, leave, and payroll schema built in PostgreSQL with row-level security policies. Core HR and payroll modules built and internally tested.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">03</div>
+                    <div class="timeline-content">
+                        <h4>Compliance Module Integration</h4>
+                        <p>PF, ESI, PT, and TDS calculation logic integrated and validated against India-specific statutory requirements. Export formats structured for standard filing workflows.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">04</div>
+                    <div class="timeline-content">
+                        <h4>Client Testing & Data Migration</h4>
+                        <p>Go Solar's team was given access to a staging environment for testing with real scenarios. Existing employee data was cleaned, structured, and migrated into the new system.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">05</div>
+                    <div class="timeline-content">
+                        <h4>Go-Live & Handover</h4>
+                        <p>System went live with full production deployment. HR team was trained on day-to-day operations. Handover documentation and admin access provided to the client.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">✓</div>
+                    <div class="timeline-content">
+                        <h4>Ongoing Support Arrangement</h4>
+                        <p>SoftSync remains engaged for feature additions, configuration changes, and operational queries. Any updates or workflow adjustments are handled directly without the client needing technical resources of their own.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 8 — BUSINESS IMPACT
+    ───────────────────────────────────────────── -->
+    <section class="case-section">
+        <div class="container">
+            <div class="impact-card reveal">
+                <span class="section-label" style="background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.2); color:#fff;">Business Impact</span>
+                <h2 style="margin-top:1rem;">The difference it <span class="white">made</span></h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-val">One</span>
+                        <p class="stat-label">System for all employee, payroll, and compliance records</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-val">↓ Manual</span>
+                        <p class="stat-label">Month-end payroll effort significantly reduced</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-val">Structured</span>
+                        <p class="stat-label">Compliance records ready for filing periods</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="outcome-list" style="margin-top:3rem;">
+                <div class="outcome-item reveal">
+                    <div class="outcome-check">✓</div>
+                    <p><strong>HR operations centralised.</strong> All employee records, documents, and role history now live in one accessible system — no more searching across folders or spreadsheets during audits or onboarding.</p>
+                </div>
+                <div class="outcome-item reveal">
+                    <div class="outcome-check">✓</div>
+                    <p><strong>Payroll processed with less effort.</strong> Monthly payroll now runs from a structured workflow rather than manual assembly — attendance data feeds directly into the payroll engine, reducing the time and review steps involved.</p>
+                </div>
+                <div class="outcome-item reveal">
+                    <div class="outcome-check">✓</div>
+                    <p><strong>Compliance workload made manageable.</strong> PF, ESI, PT, and TDS records are maintained month-to-month within the system. The team goes into filing periods with clean, structured data instead of scrambling to compile it.</p>
+                </div>
+                <div class="outcome-item reveal">
+                    <div class="outcome-check">✓</div>
+                    <p><strong>Employees have self-service access.</strong> Staff can view and download their own payslips and submit leave requests through the system — reducing the admin back-and-forth that previously required HR to handle each request manually.</p>
+                </div>
+                <div class="outcome-item reveal">
+                    <div class="outcome-check">✓</div>
+                    <p><strong>The system scales with the business.</strong> As headcount grows, the admin effort stays proportional. New employees are added through a structured onboarding flow, and the payroll and compliance logic handles them automatically from the next cycle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 9 — TESTIMONIAL
+    ───────────────────────────────────────────── -->
+    <section class="testimonial-section">
+        <div class="container">
+            <span class="section-label">Client Perspective</span>
+            <h2 style="margin-top:0.75rem; margin-bottom:2.5rem;">In their own <span class="accent">words</span></h2>
+            <div class="testimonial-card reveal">
+                <div class="quote-mark">"</div>
+                <p class="testimonial-text">
+                    Before this system, our HR team was spending a significant part of every month just assembling payroll — pulling data from different places, checking attendance records manually, and then double-checking everything before salaries went out. Compliance was handled separately, and keeping everything in order before filing deadlines always created pressure.
+                    <br><br>
+                    What SoftSync built for us has changed how we operate that side of the business. Payroll now follows a proper process, our employee records are in one place, and the compliance tracking actually keeps up with our monthly cycle instead of falling behind. The team understood what we needed without us having to explain every technical detail — they took our workflows seriously and built around them.
+                    <br><br>
+                    It's a practical system that our HR team actually uses every day. That's what we needed, and that's what we got.
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">UB</div>
+                    <div class="author-info">
+                        <p class="name">Usman Mohamed Khalid Begawala</p>
+                        <p class="title">Director — Go Solar Solutions, A Brand By Warrington Renewsol Pvt. Ltd · Navi Mumbai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 10 — SCREENSHOT GUIDE (optional)
+    ───────────────────────────────────────────── -->
+    <section class="case-section bg-alt">
+        <div class="container">
+            <span class="section-label">What to Show</span>
+            <h2>Recommended <span class="accent">screenshots</span> for this page</h2>
+            <p style="margin-top:1rem; color:rgba(255,255,255,0.5); max-width:640px;">Replace the placeholder image above with real screenshots from the deployed system. These are the most effective visuals for building trust with prospective clients.</p>
+            <div class="screenshots-grid reveal">
+                <div class="screenshot-item">
+                    <div class="screenshot-num">1</div>
+                    <div>
+                        <strong>Admin Dashboard Overview</strong>
+                        <p>The main dashboard showing headcount, payroll cost summary, pending leave requests, and compliance status at a glance.</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-num">2</div>
+                    <div>
+                        <strong>Employee Master / Profile View</strong>
+                        <p>An employee profile page showing the full record — role, department, salary details, document status, and employment history.</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-num">3</div>
+                    <div>
+                        <strong>Monthly Payroll Run Screen</strong>
+                        <p>The payroll processing interface showing salary components, deductions, attendance-linked adjustments, and the approval workflow.</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-num">4</div>
+                    <div>
+                        <strong>Payslip Preview</strong>
+                        <p>A generated payslip showing the Go Solar / Warrington Renewsol branding, earnings breakdown, statutory deductions, and net pay.</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-num">5</div>
+                    <div>
+                        <strong>Compliance Module — PF / ESI View</strong>
+                        <p>The compliance tracking screen showing monthly PF and ESI calculations per employee, with export options and filing status.</p>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <div class="screenshot-num">6</div>
+                    <div>
+                        <strong>Attendance & Leave Management</strong>
+                        <p>Monthly attendance view with daily records, leave applications, manager approvals, and balance summary for the team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────────────────────────────────────
+         SECTION 11 — CTA
+    ───────────────────────────────────────────── -->
+    <section class="project-cta">
+        <div class="container">
+            <div class="project-cta-box reveal">
+                <span class="section-label">Need Something Similar?</span>
+                <h2>Managing HR and payroll manually across a growing team?</h2>
+                <p>If your business is outgrowing spreadsheets — or needs compliance records you can actually rely on — we can help you design the right internal system around how your team works.</p>
+                <div class="project-cta-actions">
+                    <a href="../index.html#contact" class="btn btn-primary">Book a Discovery Call</a>
+                    <a href="../index.html#projects" class="btn btn-outline">See More Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
