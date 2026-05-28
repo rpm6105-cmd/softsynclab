@@ -140,10 +140,11 @@
         .cta-banner { padding:2rem 1.25rem; }
         #projects .project-card { flex-direction: column !important; }
         #projects .project-card .project-image { width: 100% !important; aspect-ratio: 16/9 !important; }
-        #testimonial .author-row { flex-wrap: wrap; }
-        #testimonial .author-row .read-link { margin-left: 0 !important; margin-top: 0.75rem; width: 100%; }
+        #testimonial > .container > div > div { grid-template-columns: 1fr !important; }
         #founder > .container > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; text-align: center; }
         #founder .section-label { display: inline-block; }
+        #testimonial .author-row { flex-wrap: wrap; }
+        #testimonial .author-row .read-link { margin-left: 0 !important; margin-top: 0.75rem; width: 100%; }
         
         /* Dashboard Mockup Mobile Layout Fix */
         .dash-body { flex-direction: column; height: auto; }
@@ -430,45 +431,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <h2>What our client says about <span class="accent">working with us</span></h2>
             </div>
 
-            <div class="reveal" style="max-width:860px;margin:3rem auto 0;">
-                <div style="background:#ffffff;border:1px solid rgba(15,23,42,0.08);border-radius:28px;padding:3rem;box-shadow:0 8px 40px rgba(15,23,42,0.07);position:relative;overflow:hidden;">
+            <div class="reveal" style="max-width:920px;margin:3rem auto 0;">
+                <div style="background:#ffffff;border:1px solid rgba(15,23,42,0.08);border-radius:28px;overflow:hidden;box-shadow:0 8px 40px rgba(15,23,42,0.07);display:grid;grid-template-columns:260px 1fr;">
 
-                    <!-- Decorative quote mark -->
-                    <div style="position:absolute;top:1.5rem;left:2rem;font-size:8rem;line-height:1;font-family:Georgia,serif;color:rgba(13,148,136,0.08);pointer-events:none;font-weight:700;">&ldquo;</div>
-
-                    <!-- Top: Client identity -->
-                    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;position:relative;z-index:1;">
-                        <div style="display:flex;align-items:center;gap:1.25rem;">
-                            <img src="assets/images/usman-photo.jpg" alt="Usman Mohamed Khalid Begawala" style="width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:top center;border:3px solid rgba(13,148,136,0.25);box-shadow:0 4px 16px rgba(15,23,42,0.12);flex-shrink:0;">
-                            <div>
-                                <p style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.15rem;">Usman Mohamed Khalid Begawala</p>
-                                <p style="font-size:0.82rem;color:var(--text-dim);">Director — Go Solar Solutions</p>
-                                <p style="font-size:0.78rem;color:rgba(15,23,42,0.4);">Warrington Renewsol Pvt. Ltd · Navi Mumbai</p>
-                            </div>
+                    <!-- Left: Photo panel -->
+                    <div style="background:linear-gradient(160deg,#f0fdf9,#f8fafc);border-right:1px solid rgba(15,23,42,0.07);padding:2.5rem 1.75rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.25rem;">
+                        <img src="assets/images/usman-photo.jpg" alt="Usman Mohamed Khalid Begawala" style="width:160px;height:160px;border-radius:20px;object-fit:cover;object-position:top center;box-shadow:0 12px 40px rgba(15,23,42,0.14);display:block;flex-shrink:0;">
+                        <div>
+                            <p style="font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:0.2rem;">Usman Mohamed Khalid Begawala</p>
+                            <p style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.15rem;">Director</p>
+                            <p style="font-size:0.78rem;font-weight:600;color:var(--accent);">Go Solar Solutions</p>
+                            <p style="font-size:0.72rem;color:rgba(15,23,42,0.4);margin-top:0.1rem;">Warrington Renewsol Pvt. Ltd</p>
+                            <p style="font-size:0.72rem;color:rgba(15,23,42,0.4);">Navi Mumbai, India</p>
                         </div>
-                        <img src="assets/images/go-solar-logo.png" alt="Go Solar Solutions" style="height:52px;width:auto;object-fit:contain;opacity:0.85;">
+                        <img src="assets/images/go-solar-logo.png" alt="Go Solar Solutions" style="height:40px;width:auto;object-fit:contain;opacity:0.8;">
+                        <div style="color:#f59e0b;font-size:0.9rem;letter-spacing:3px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     </div>
 
-                    <!-- Quote -->
-                    <blockquote style="position:relative;z-index:1;margin:0;padding:0;">
-                        <p style="font-size:1.1rem;line-height:1.8;color:rgba(15,23,42,0.75);font-style:italic;margin-bottom:1.25rem;">
-                            "Managing a solar company's workforce is different from managing a standard office. Your technicians are on site, your sales team is in the field, and your HR team is trying to hold it all together — usually with spreadsheets and follow-up calls. That was us before this system."
-                        </p>
-                        <p style="font-size:1.1rem;line-height:1.8;color:rgba(15,23,42,0.75);font-style:italic;margin-bottom:1.25rem;">
-                            "What SoftSync built isn't a standard HR tool with our logo on it. It actually understands solar operations — the way sites are categorised, how technicians work, how AMC contracts run, what equipment needs to be tracked. When we showed the system to our team, the first reaction was <span style="font-style:normal;font-weight:600;color:var(--text);">'this is actually how we work.'</span>"
-                        </p>
-                        <p style="font-size:1.1rem;line-height:1.8;color:rgba(15,23,42,0.75);font-style:italic;">
-                            "Payroll used to take us most of a week and still had errors. Both of those problems are gone now."
-                        </p>
-                    </blockquote>
-
-                    <!-- Bottom: Stars + CTA -->
-                    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(15,23,42,0.07);">
-                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                            <div style="color:#f59e0b;font-size:1rem;letter-spacing:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <!-- Right: Quote panel -->
+                    <div style="padding:2.5rem;position:relative;overflow:hidden;">
+                        <div style="position:absolute;top:1rem;left:1.5rem;font-size:7rem;line-height:1;font-family:Georgia,serif;color:rgba(13,148,136,0.07);pointer-events:none;font-weight:700;">&ldquo;</div>
+                        <blockquote style="position:relative;z-index:1;margin:0;padding:0.5rem 0 0;">
+                            <p style="font-size:1rem;line-height:1.85;color:rgba(15,23,42,0.75);font-style:italic;margin-bottom:1.1rem;">
+                                "Managing a solar company's workforce is different from managing a standard office. Your technicians are on site, your sales team is in the field, and your HR team is trying to hold it all together — usually with spreadsheets and follow-up calls. That was us before this system."
+                            </p>
+                            <p style="font-size:1rem;line-height:1.85;color:rgba(15,23,42,0.75);font-style:italic;margin-bottom:1.1rem;">
+                                "What SoftSync built isn't a standard HR tool with our logo on it. It actually understands solar operations — the way sites are categorised, how technicians work, how AMC contracts run, what equipment needs to be tracked. When we showed the system to our team, the first reaction was <span style="font-style:normal;font-weight:600;color:var(--text);">'this is actually how we work.'</span>"
+                            </p>
+                            <p style="font-size:1rem;line-height:1.85;color:rgba(15,23,42,0.75);font-style:italic;">
+                                "Payroll used to take us most of a week and still had errors. Both of those problems are gone now."
+                            </p>
+                        </blockquote>
+                        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(15,23,42,0.07);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;">
                             <span style="font-size:0.82rem;color:var(--text-dim);">Solar HRMS · Payroll Automation · AMC Management</span>
+                            <a href="projects/go-solar-hrms.html" style="font-size:0.85rem;font-weight:600;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">Read full case study &rarr;</a>
                         </div>
-                        <a href="projects/go-solar-hrms.html" style="font-size:0.85rem;font-weight:600;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:0.4rem;">Read full case study &rarr;</a>
                     </div>
 
                 </div>
@@ -486,7 +483,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div style="text-align:center;">
                         <div style="position:relative;display:inline-block;">
                             <img src="assets/images/rohith-photo.jpg" alt="Rohith PM — Founder & Director, SoftSync Solutions" style="width:240px;height:240px;border-radius:24px;object-fit:cover;object-position:top center;box-shadow:0 16px 60px rgba(15,23,42,0.12);display:block;margin:0 auto;">
-                            <!-- Live badge -->
                             <div style="position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#ffffff;border:1px solid rgba(15,23,42,0.1);border-radius:999px;padding:0.4rem 1rem;box-shadow:0 4px 16px rgba(15,23,42,0.08);display:flex;align-items:center;gap:0.5rem;">
                                 <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;"></span>
                                 <span style="font-size:0.75rem;font-weight:700;color:var(--text);">Founder & Director</span>
@@ -506,7 +502,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                         <div style="position:relative;padding-left:1.5rem;border-left:3px solid var(--accent);margin-bottom:1.5rem;">
                             <p style="font-size:1.05rem;line-height:1.8;color:rgba(15,23,42,0.75);font-style:italic;">
-                                "Most software built for small and mid-size businesses is either too generic to be useful or too complex to be practical. We started SoftSync because we believed there was a better way — build around the business, not the other way around.
+                                "Most software built for small and mid-size businesses is either too generic to be useful or too complex to be practical. We started SoftSync because we believed there was a better way — build around the business, not the other way around."
                             </p>
                         </div>
 
@@ -517,7 +513,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             Go Solar Solutions is one of our live deployments — a complete Solar HRMS and operations platform used daily by their team across Navi Mumbai. Every project we take on is held to the same standard: working software in the hands of real teams, solving real problems.
                         </p>
 
-                        <!-- Values row -->
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
                             <div style="padding:1rem 1.25rem;background:#f8fafc;border:1px solid rgba(15,23,42,0.08);border-radius:14px;">
                                 <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--accent);margin-bottom:0.3rem;">Approach</p>
@@ -537,39 +532,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Process Section -->
-    <section id="process" class="section bg-alt">
-        <div class="container">
-            <div class="section-header text-center reveal">
-                <span class="section-label">How We Work</span>
-                <h2>From workflow problem to <span class="accent">working software</span></h2>
-                <p style="color:var(--text-dim);max-width:720px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">Clients usually come to us when their operations are slowed down by spreadsheets, manual coordination, or disconnected tools. Reduced manual work by up to 60% for clients through our 4-step process.</p>
-            </div>
-            <div class="process-grid reveal">
-                <div class="process-card">
-                    <span class="process-step">01</span>
-                    <h3>Discovery & Workflow Mapping</h3>
-                    <p>We understand your current process, bottlenecks, handoffs, and reporting needs before proposing any build.</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-step">02</span>
-                    <h3>Solution Scope & Proposal</h3>
-                    <p>You get a practical scope covering modules, milestones, recommended stack, and a delivery plan aligned to business priority.</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-step">03</span>
-                    <h3>Build, Iterate, Deploy</h3>
-                    <p>We ship in milestones, gather feedback quickly, and deploy a system your team can actually use in day-to-day operations.</p>
-                </div>
-                <div class="process-card">
-                    <span class="process-step">04</span>
-                    <h3>Support & Expansion</h3>
-                    <p>After launch, we refine workflows, add modules, and help you scale the system as your business grows.</p>
                 </div>
             </div>
         </div>
