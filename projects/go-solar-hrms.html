@@ -170,22 +170,22 @@
         }
         .tech-tag {
             background: rgba(79, 70, 229, 0.1);
-            border: 1px solid rgba(79, 70, 229, 0.25);
-            color: #a5b4fc;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: #4338ca;
             padding: 0.35rem 0.85rem;
             border-radius: 999px;
             font-size: 0.82rem;
-            font-weight: 500;
+            font-weight: 600;
         }
         .tech-tag.green {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: rgba(16, 185, 129, 0.25);
-            color: #6ee7b7;
+            background: rgba(13, 148, 136, 0.1);
+            border-color: rgba(13, 148, 136, 0.3);
+            color: #0f766e;
         }
         .tech-tag.warm {
-            background: rgba(248, 211, 111, 0.1);
-            border-color: rgba(248, 211, 111, 0.25);
-            color: #fde68a;
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.35);
+            color: #b45309;
         }
 
         /* ── Deployment timeline ── */
@@ -351,47 +351,6 @@
             margin-top: 0.15rem;
         }
 
-        /* ── Screenshots guide ── */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.25rem;
-            margin-top: 2rem;
-        }
-        .screenshot-item {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            padding: 1.25rem;
-            background: rgba(15,23,42,0.02);
-            border: 1px solid rgba(15,23,42,0.07);
-            border-radius: 14px;
-        }
-        .screenshot-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: rgba(79, 70, 229, 0.15);
-            border: 1px solid rgba(79, 70, 229, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #a5b4fc;
-            flex-shrink: 0;
-        }
-        .screenshot-item p {
-            font-size: 0.87rem;
-            color: rgba(15,23,42,0.55);
-        }
-        .screenshot-item strong {
-            display: block;
-            font-size: 0.9rem;
-            color: rgba(15,23,42,0.85);
-            margin-bottom: 0.25rem;
-        }
-
         /* ── CTA ── */
         .back-nav {
             margin-bottom: 2rem;
@@ -428,7 +387,7 @@
             .project-meta, .case-grid, .stats-grid, .modules-grid {
                 grid-template-columns: 1fr;
             }
-            .screenshots-grid { grid-template-columns: 1fr; }
+
             .modules-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
@@ -632,9 +591,11 @@
                         <li>Payroll engine with configurable salary structure, allowances, and deductions</li>
                         <li>Automated payslip generation and employee-facing download access</li>
                         <li>PF, ESI, PT, and TDS compliance modules with monthly calculation and export</li>
+                        <li>Solar AMC site management — contract tracking, scheduled service visits, and expiry alerts</li>
                         <li>Role-based access — HR admin, manager, and employee views</li>
                         <li>Reporting layer for attendance summaries, payroll registers, and compliance logs</li>
                         <li>Admin dashboard with headcount, payroll cost, and leave status overview</li>
+                        <li>3 months free post-launch support included (T&amp;C apply)</li>
                     </ul>
                 </div>
             </div>
@@ -783,8 +744,8 @@
                 <div class="timeline-item">
                     <div class="timeline-dot">✓</div>
                     <div class="timeline-content">
-                        <h4>Ongoing Support Arrangement</h4>
-                        <p>SoftSync remains engaged for feature additions, configuration changes, and operational queries. Any updates or workflow adjustments are handled directly without the client needing technical resources of their own.</p>
+                        <h4>3 Months Free Post-Launch Support <span style="font-size:0.75rem;font-weight:600;color:var(--accent);background:rgba(13,148,136,0.1);border:1px solid rgba(13,148,136,0.2);padding:0.15rem 0.55rem;border-radius:999px;margin-left:0.5rem;">T&amp;C Apply</span></h4>
+                        <p>Every project includes 3 months of complimentary post-launch support covering bug fixes, configuration adjustments, and operational queries — so the team is never left on their own after go-live. Extended support and feature additions are available as an ongoing arrangement.</p>
                     </div>
                 </div>
             </div>
@@ -857,83 +818,30 @@
                     It's a practical system that our HR team actually uses every day. That's what we needed, and that's what we got.
                 </p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">UB</div>
-                    <div class="author-info">
+                    <img src="../assets/images/usman-photo.jpg" alt="Usman Mohamed Khalid Begawala" style="width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top center;border:2px solid rgba(13,148,136,0.25);flex-shrink:0;">
+                    <div class="author-info" style="flex:1;">
                         <p class="name">Usman Mohamed Khalid Begawala</p>
-                        <p class="title">Director — Go Solar Solutions, A Brand By Warrington Renewsol Pvt. Ltd · Navi Mumbai</p>
+                        <p class="title">Director — Go Solar Solutions · A Brand By Warrington Renewsol Pvt. Ltd · Navi Mumbai</p>
                     </div>
+                    <img src="../assets/images/go-solar-logo.png" alt="Go Solar Solutions" style="height:44px;width:auto;object-fit:contain;opacity:0.85;flex-shrink:0;">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─────────────────────────────────────────────
-         SECTION 10 — SCREENSHOT GUIDE (optional)
-    ───────────────────────────────────────────── -->
-    <section class="case-section bg-alt">
-        <div class="container">
-            <span class="section-label">What to Show</span>
-            <h2>Recommended <span class="accent">screenshots</span> for this page</h2>
-            <p style="margin-top:1rem; color:rgba(15,23,42,0.5); max-width:640px;">Replace the placeholder image above with real screenshots from the deployed system. These are the most effective visuals for building trust with prospective clients.</p>
-            <div class="screenshots-grid reveal">
-                <div class="screenshot-item">
-                    <div class="screenshot-num">1</div>
-                    <div>
-                        <strong>Admin Dashboard Overview</strong>
-                        <p>The main dashboard showing headcount, payroll cost summary, pending leave requests, and compliance status at a glance.</p>
-                    </div>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-num">2</div>
-                    <div>
-                        <strong>Employee Master / Profile View</strong>
-                        <p>An employee profile page showing the full record — role, department, salary details, document status, and employment history.</p>
-                    </div>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-num">3</div>
-                    <div>
-                        <strong>Monthly Payroll Run Screen</strong>
-                        <p>The payroll processing interface showing salary components, deductions, attendance-linked adjustments, and the approval workflow.</p>
-                    </div>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-num">4</div>
-                    <div>
-                        <strong>Payslip Preview</strong>
-                        <p>A generated payslip showing the Go Solar / Warrington Renewsol branding, earnings breakdown, statutory deductions, and net pay.</p>
-                    </div>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-num">5</div>
-                    <div>
-                        <strong>Compliance Module — PF / ESI View</strong>
-                        <p>The compliance tracking screen showing monthly PF and ESI calculations per employee, with export options and filing status.</p>
-                    </div>
-                </div>
-                <div class="screenshot-item">
-                    <div class="screenshot-num">6</div>
-                    <div>
-                        <strong>Attendance & Leave Management</strong>
-                        <p>Monthly attendance view with daily records, leave applications, manager approvals, and balance summary for the team.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ─────────────────────────────────────────────
-         SECTION 11 — CTA
+         SECTION 10 — CTA
     ───────────────────────────────────────────── -->
     <section class="project-cta">
         <div class="container">
             <div class="project-cta-box reveal">
                 <span class="section-label">Need Something Similar?</span>
-                <h2>Managing HR and payroll manually across a growing team?</h2>
-                <p>If your business is outgrowing spreadsheets — or needs compliance records you can actually rely on — we can help you design the right internal system around how your team works.</p>
+                <h2>Managing HR, payroll, or solar AMC contracts manually across a growing team?</h2>
+                <p>If your solar business is outgrowing spreadsheets — or needs payroll automation, compliance records, and AMC tracking you can actually rely on — we can help design the right system around how your team works. Every build includes <strong style="color:var(--text);">3 months of free post-launch support</strong> (T&amp;C apply).</p>
                 <div class="project-cta-actions">
                     <a href="../index.html#contact" class="btn btn-primary">Book a Discovery Call</a>
-                    <a href="../index.html#projects" class="btn btn-outline">See More Case Studies</a>
+                    <a href="../index.html" class="btn btn-outline">Back to Home</a>
                 </div>
             </div>
         </div>
