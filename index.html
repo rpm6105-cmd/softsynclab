@@ -138,6 +138,8 @@
         .stats-bar { grid-template-columns:repeat(2,1fr); }
         .company-pillars { grid-template-columns:1fr; }
         .cta-banner { padding:2rem 1.25rem; }
+        #projects .project-card { flex-direction: column !important; }
+        #projects .project-card .project-image { width: 100% !important; aspect-ratio: 16/9 !important; }
         
         /* Dashboard Mockup Mobile Layout Fix */
         .dash-body { flex-direction: column; height: auto; }
@@ -165,7 +167,7 @@
     })(window,document,'script','dataLayer','GTM-NCLNLNGN');</script>
     <!-- End Google Tag Manager -->
 </head>
-<body class="dark-theme">
+<body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCLNLNGN"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -181,9 +183,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <ul class="nav-links">
                 <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Case Studies</a></li>
+                <li><a href="projects/go-solar-hrms.html">Case Studies</a></li>
                 <li><a href="#process">Process</a></li>
-                <li><a href="#contact" class="btn btn-sm" style="background:var(--accent); color:#000; font-weight:700; border:none; box-shadow:0 0 16px rgba(34,211,238,0.4);">Schedule a Call</a></li>
+                <li><a href="#contact" class="btn btn-sm" style="background:var(--accent); color:#fff; font-weight:700; border:none; box-shadow:0 0 16px rgba(13,148,136,0.3);">Schedule a Call</a></li>
             </ul>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
@@ -373,150 +375,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section id="projects" class="projects section">
+    <!-- Case Study Section — Single Featured Project -->
+    <section id="projects" class="section">
         <div class="container">
-            <div class="section-header reveal">
-                <div class="flex-between">
-                    <div>
-                        <span class="section-label">Selected Work</span>
-                        <h2>Custom systems built for <span class="accent">real operational needs</span></h2>
-                    </div>
-                </div>
+            <div class="section-header text-center reveal">
+                <span class="section-label">Case Study</span>
+                <h2>Custom software built for <span class="accent">real solar operations</span></h2>
+                <p style="color:var(--text-dim);max-width:560px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">
+                    We don't just build generic HR tools. Here's a live example of what we built for a solar EPC company — and what it actually solved.
+                </p>
             </div>
 
-            <div class="project-filters" style="display:flex; gap:0.8rem; justify-content:center; margin-top:2rem; flex-wrap:wrap;">
-                <button class="filter-btn active" data-filter="all" style="padding:0.6rem 1.2rem; border-radius:50px; background:var(--accent); color:#000; font-weight:600; border:none; cursor:pointer;">All</button>
-                <button class="filter-btn" data-filter="hr" style="padding:0.6rem 1.2rem; border-radius:50px; background:rgba(15,23,42,0.04); color:var(--text-dim); font-weight:500; border:1px solid rgba(15,23,42,0.1); cursor:pointer;">HR & Payroll</button>
-                <button class="filter-btn" data-filter="compliance" style="padding:0.6rem 1.2rem; border-radius:50px; background:rgba(15,23,42,0.04); color:var(--text-dim); font-weight:500; border:1px solid rgba(15,23,42,0.1); cursor:pointer;">Compliance</button>
-                <button class="filter-btn" data-filter="fleet" style="padding:0.6rem 1.2rem; border-radius:50px; background:rgba(15,23,42,0.04); color:var(--text-dim); font-weight:500; border:1px solid rgba(15,23,42,0.1); cursor:pointer;">Fleet</button>
-                <button class="filter-btn" data-filter="energy" style="padding:0.6rem 1.2rem; border-radius:50px; background:rgba(15,23,42,0.04); color:var(--text-dim); font-weight:500; border:1px solid rgba(15,23,42,0.1); cursor:pointer;">Energy</button>
-                <button class="filter-btn" data-filter="inventory" style="padding:0.6rem 1.2rem; border-radius:50px; background:rgba(15,23,42,0.04); color:var(--text-dim); font-weight:500; border:1px solid rgba(15,23,42,0.1); cursor:pointer;">Inventory</button>
-            </div>
-
-            <div class="project-grid">
-                <!-- Case Study 1: HRMS -->
-                <div class="project-card reveal" data-category="hr">
-                    <div class="project-image">
-                        <img src="assets/img/projects/showcase-hrms.svg" alt="Anonymized HRMS payroll dashboard mockup" class="screenshot-crop" width="1600" height="900" loading="lazy" decoding="async">
-                        <div class="project-overlay"><span class="project-category">HR &amp; Payroll</span></div>
+            <div class="reveal" style="max-width:900px;margin:3rem auto 0;">
+                <div class="project-card" style="flex-direction:row;align-items:stretch;">
+                    <div class="project-image" style="aspect-ratio:unset;width:42%;flex-shrink:0;">
+                        <img src="assets/img/projects/showcase-solar.svg" alt="Go Solar Solutions HRMS platform" class="screenshot-crop" width="800" height="600" loading="lazy" decoding="async">
+                        <div class="project-overlay"><span class="project-category">Solar EPC &middot; Live in Production</span></div>
                     </div>
-                    <div class="project-info">
-                        <h3>Enterprise HRMS &amp; Payroll</h3>
-                        <p>Built for operations-heavy businesses managing large teams across multiple locations with complex attendance and payroll logic.</p>
-                        <div class="project-points">
-                            <div><strong>Challenge:</strong> Manual payroll and attendance were prone to human error and delays.</div>
-                            <div><strong>Solution:</strong> Automated calculation engine with real-time analytics and employee self-service.</div>
-                            <div><strong>Result:</strong> 80% reduction in payroll processing time.</div>
+                    <div class="project-info" style="padding:2.5rem;">
+                        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+                            <span style="font-size:1.4rem;">&#9728;&#65039;</span>
+                            <div>
+                                <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);margin-bottom:0.1rem;">Go Solar Solutions</p>
+                                <p style="font-size:0.75rem;color:var(--text-dim);">Warrington Renewsol Pvt. Ltd &middot; Navi Mumbai</p>
+                            </div>
                         </div>
-                        <div class="project-tags">
-                            <span>HRMS</span>
+                        <h3 style="font-size:1.35rem;margin-bottom:0.75rem;">Solar HRMS, Payroll &amp; AMC Management Platform</h3>
+                        <p style="color:var(--text-dim);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;">A complete custom platform built for a solar EPC company — covering employee management, payroll automation, statutory compliance, solar AMC contract tracking, and solar equipment inventory. Built from scratch around how a solar company actually operates.</p>
+                        <div class="project-tags" style="margin-bottom:1.5rem;">
+                            <span>Solar HRMS</span>
                             <span>Payroll Automation</span>
-                            <span>Internal Tooling</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="projects/go-solar-hrms.html" class="btn btn-sm btn-primary">Read Case Study</a>
-                            <span style="font-size:0.7rem;color:rgba(15,23,42,0.35);margin-left:1rem;">Live demo available</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 2: Compliance -->
-                <div class="project-card reveal" data-category="compliance">
-                    <div class="project-image">
-                        <img src="assets/img/projects/showcase-compliance.svg" alt="Anonymized compliance tracker dashboard mockup" class="screenshot-crop" width="1600" height="900" loading="lazy" decoding="async">
-                        <div class="project-overlay"><span class="project-category">Legal &amp; Compliance</span></div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Automated Compliance Tracker</h3>
-                        <p>A specialized tool for managing statutory deadlines and document workflows for 200+ clients without losing track of a single filing.</p>
-                        <div class="project-points">
-                            <div><strong>Challenge:</strong> Fragmented document collection and manual deadline reminders.</div>
-                            <div><strong>Solution:</strong> Centralized tracking with automated alerts and risk-status dashboards.</div>
-                            <div><strong>Result:</strong> Zero missed deadlines over 12 months.</div>
-                        </div>
-                        <div class="project-tags">
+                            <span>AMC Management</span>
+                            <span>Solar Inventory</span>
                             <span>Compliance</span>
-                            <span>Alerts</span>
-                            <span>Document Workflow</span>
                         </div>
                         <div class="project-actions">
-                            <a href="projects/compliance.html" class="btn btn-sm btn-primary">Read Case Study</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 3: Solar -->
-                <div class="project-card reveal" data-category="energy">
-                    <div class="project-image">
-                        <img src="assets/img/projects/showcase-solar.svg" alt="Anonymized solar ROI proposal engine mockup" class="screenshot-crop" width="1600" height="900" loading="lazy" decoding="async">
-                        <div class="project-overlay"><span class="project-category">Energy &amp; Utilities</span></div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Solar ROI &amp; Proposal Engine</h3>
-                        <p>A design and calculation tool that automates the generation of complex solar proposals with precise ROI estimates and payback modeling.</p>
-                        <div class="project-points">
-                            <div><strong>Challenge:</strong> Manually creating ROI reports took hours and limited sales throughput.</div>
-                            <div><strong>Solution:</strong> Dynamic proposal builder with automated financial modeling and PDF generation.</div>
-                            <div><strong>Result:</strong> Proposals delivered 10x faster than traditional methods.</div>
-                        </div>
-                        <div class="project-tags">
-                            <span>Solar Tech</span>
-                            <span>Proposal Automation</span>
-                            <span>Financial Modeling</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="projects/solar.html" class="btn btn-sm btn-primary">Read Case Study</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 4: Fleet Management -->
-                <div class="project-card reveal" data-category="fleet">
-                    <div class="project-image">
-                        <img src="assets/img/projects/showcase-fleet.svg" alt="Anonymized fleet operations dashboard mockup" class="screenshot-crop" width="1600" height="900" loading="lazy" decoding="async">
-                        <div class="project-overlay"><span class="project-category">Logistics</span></div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Smart Fleet Operations</h3>
-                        <p>Real-time fleet tracking and fuel consumption analysis for bus operators managing distributed vehicle assets and fuel budgets.</p>
-                        <div class="project-points">
-                            <div><strong>Challenge:</strong> Lack of visibility into fuel theft and inefficient route management.</div>
-                            <div><strong>Solution:</strong> IoT-integrated dashboard with consumption trends and "Attention Required" alerts.</div>
-                            <div><strong>Result:</strong> 15% reduction in monthly fuel expenditure.</div>
-                        </div>
-                        <div class="project-tags">
-                            <span>Fleet Management</span>
-                            <span>IoT Dashboards</span>
-                            <span>Fuel Tracking</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="#contact" class="btn btn-sm btn-primary">Read Case Study</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 5: Operations -->
-                <div class="project-card reveal" data-category="inventory">
-                    <div class="project-image">
-                        <img src="assets/img/projects/showcase-ops.svg" alt="Anonymized operations center dashboard mockup" class="screenshot-crop" width="1600" height="900" loading="lazy" decoding="async">
-                        <div class="project-overlay"><span class="project-category">Inventory &amp; Ops</span></div>
-                    </div>
-                    <div class="project-info">
-                        <h3>Integrated Operations Center</h3>
-                        <p>A unified dashboard for managing stock, employee assignments, and service delivery for a large-scale logistics facility.</p>
-                        <div class="project-points">
-                            <div><strong>Challenge:</strong> Information silos between stock management and service teams.</div>
-                            <div><strong>Solution:</strong> Unified operations portal with real-time stock-to-service mapping and activity logs.</div>
-                            <div><strong>Result:</strong> 40% improvement in cross-departmental coordination.</div>
-                        </div>
-                        <div class="project-tags">
-                            <span>Inventory</span>
-                            <span>Resource Planning</span>
-                            <span>Operations</span>
-                        </div>
-                        <div class="project-actions">
-                            <a href="#contact" class="btn btn-sm btn-primary">Unlock Module Details</a>
+                            <a href="projects/go-solar-hrms.html" class="btn btn-primary btn-sm">Read Full Case Study &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -524,7 +418,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <!-- Process Section -->
+        <!-- Process Section -->
     <section id="process" class="section bg-alt">
         <div class="container">
             <div class="section-header text-center reveal">
@@ -571,7 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 .faq-item { border-bottom: 1px solid rgba(15,23,42,0.08); padding: 1.25rem 0; cursor: pointer; transition: 0.3s; }
                 .faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: 600; color: var(--text); transition: 0.3s; }
                 .faq-item:hover .faq-question { color: var(--accent); }
-                .faq-icon { color: rgba(34,211,238,0.7); font-size: 1.4rem; font-weight: 300; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+                .faq-icon { color: var(--accent); font-size: 1.4rem; font-weight: 300; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
                 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
                 .faq-item.active .faq-answer { max-height: 200px; margin-top: 0.8rem; }
                 .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent); }
