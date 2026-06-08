@@ -100,6 +100,46 @@ window.switchView = (viewName) => {
     document.getElementById(`view-${viewName}`).classList.add('active');
     document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
     if (viewName === 'catalogue') { renderCatalogue(); renderQQ(); }
+    if (viewName === 'suite') {
+        window.setViewOnlyMode(false);
+    }
+};
+
+window.setViewOnlyMode = (enabled) => {
+    const layout = document.querySelector('#view-suite .split-layout');
+    const modeSelect = document.getElementById('suite-mode');
+    const saveBtn = document.querySelector('#view-suite .topbar-actions button[onclick="saveDocument()"]');
+    const backBtn = document.getElementById('back-to-history-btn');
+    const printBtn = document.querySelector('#view-suite .topbar-actions button[onclick="window.print()"]');
+    
+    if (printBtn) {
+        printBtn.innerHTML = enabled ? '📥 Download PDF' : '🖨️ Print PDF';
+    }
+
+    if (enabled) {
+        if (layout) layout.classList.add('view-only');
+        if (modeSelect) modeSelect.style.display = 'none';
+        if (saveBtn) saveBtn.style.display = 'none';
+        
+        if (!backBtn && saveBtn) {
+            const btn = document.createElement('button');
+            btn.id = 'back-to-history-btn';
+            btn.className = 'btn btn-ghost';
+            btn.innerHTML = '⬅ Back to History';
+            btn.onclick = () => {
+                window.setViewOnlyMode(false);
+                switchView('history');
+            };
+            saveBtn.parentNode.insertBefore(btn, saveBtn);
+        } else if (backBtn) {
+            backBtn.style.display = 'inline-block';
+        }
+    } else {
+        if (layout) layout.classList.remove('view-only');
+        if (modeSelect) modeSelect.style.display = 'inline-block';
+        if (saveBtn) saveBtn.style.display = 'inline-block';
+        if (backBtn) backBtn.style.display = 'none';
+    }
 };
 
 document.querySelectorAll('.nav-item').forEach(item => {
@@ -714,7 +754,15 @@ window.saveDocument = async () => {
     const client = document.getElementById('doc-client').value;
     const subject = document.getElementById('doc-subject').value;
     const amount = mode === 'proposal' ? parseFloat(document.getElementById('p-cost').value||0) : activeItems.reduce((acc,item)=>acc+(item.qty*item.rate),0);
-    const payload = { client_name: client, created_at: new Date().toISOString() };
+    const docDateVal = document.getElementById('doc-date').value;
+    let createdAt = new Date().toISOString();
+    if (docDateVal) {
+        const parsedDate = new Date(docDateVal);
+        if (!isNaN(parsedDate)) {
+            createdAt = parsedDate.toISOString();
+        }
+    }
+    const payload = { client_name: client, created_at: createdAt };
     if (mode==='proposal') {
         Object.assign(payload,{project_title:subject,scope_of_work:document.getElementById('p-scope').value,deliverables:document.getElementById('p-deliverables').value,project_cost:amount,timeline:document.getElementById('p-timeline').value,payment_terms:document.getElementById('p-payment').value,notes:document.getElementById('p-notes').value});
     } else {
@@ -873,10 +921,15 @@ window.loadDocumentFromHistory = (idx) => {
     // Set date if available
     if (d.created_at) {
         const dateEl = document.getElementById('doc-date');
-        if (dateEl) dateEl.valueAsDate = new Date(d.created_at);
+        if (dateEl) {
+            dateEl.valueAsDate = new Date(d.created_at);
+            updateDueDate(); // This will recalculate the due date and trigger renderLive()
+        }
+    } else {
+        renderLive();
     }
 
-    renderLive();
+    window.setViewOnlyMode(true);
     showCatToast(`Loaded ${d._label} for ${d.client_name || 'client'} ✓`);
 };
 
