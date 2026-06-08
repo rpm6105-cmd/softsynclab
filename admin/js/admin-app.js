@@ -906,15 +906,25 @@ window.saveDocument = async () => {
         }
         if(mode==='letterhead') payload.message_body = document.getElementById('letter-body').value;
         if(mode==='invoice'){payload.amount=amount;payload.status='Pending';}
-        if(mode==='moa' || mode==='amc') {
+        if(mode==='moa') {
             Object.assign(payload, {
-                purpose: mode === 'amc' ? ("AMC:" + document.getElementById('amc-project').value) : document.getElementById('moa-purpose').value,
-                scope:   mode === 'amc' ? document.getElementById('amc-inclusions').value : document.getElementById('moa-scope').value,
-                cost:    mode === 'amc' ? parseFloat(document.getElementById('amc-cost').value||0) : parseFloat(document.getElementById('moa-cost').value||0),
-                payment: mode === 'amc' ? document.getElementById('amc-payment').value : document.getElementById('moa-payment').value,
-                timeline:mode === 'amc' ? document.getElementById('doc-due-date').value : document.getElementById('moa-timeline').value,
-                support:  mode === 'amc' ? document.getElementById('amc-exclusions').value : document.getElementById('moa-support').value,
-                law:     mode === 'amc' ? 'Mumbai, Maharashtra' : document.getElementById('moa-law').value
+                purpose: document.getElementById('moa-purpose').value,
+                scope:   document.getElementById('moa-scope').value,
+                cost:    parseFloat(document.getElementById('moa-cost').value||0),
+                payment: document.getElementById('moa-payment').value,
+                timeline:document.getElementById('moa-timeline').value,
+                support:  document.getElementById('moa-support').value,
+                law:     document.getElementById('moa-law').value
+            });
+        }
+        if(mode==='amc') {
+            Object.assign(payload, {
+                project_name:  "AMC:" + document.getElementById('amc-project').value,
+                deliverables:  document.getElementById('amc-inclusions').value,
+                live_url:      "Cost:" + (document.getElementById('amc-cost').value || '0'),
+                credentials:   document.getElementById('amc-payment').value,
+                support_terms: document.getElementById('amc-exclusions').value,
+                notes:         document.getElementById('doc-due-date').value,
             });
         }
         if(mode==='handover') {
@@ -929,7 +939,7 @@ window.saveDocument = async () => {
         }
         if(mode!=='invoice' && mode!=='moa' && mode!=='handover' && mode!=='amc') payload.price=amount;
     }
-    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'moas' };
+    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'handovers' };
     const table = tableMap[mode] || 'quotes';
     const { error } = await supabase.from(table).insert([payload]);
     if (error) alert("Sync Error: "+error.message);
@@ -950,16 +960,16 @@ async function loadHistory() {
         ...(q||[]).map(x=>({...x, _type:'quotation',  _label:'Quote',    _val:x.price})),
         ...(i||[]).map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
         ...(p||[]).map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
-        ...(m||[]).map(x=>{
-            const isAmc = x.purpose && x.purpose.startsWith('AMC:');
+        ...(m||[]).map(x=>({...x, _type:'moa',        _label:'MOA',      _val:x.cost})),
+        ...(h||[]).map(x=>{
+            const isAmc = x.project_name && x.project_name.startsWith('AMC:');
             return {
                 ...x,
-                _type:  isAmc ? 'amc' : 'moa',
-                _label: isAmc ? 'AMC' : 'MOA',
-                _val:   x.cost
+                _type:  isAmc ? 'amc' : 'handover',
+                _label: isAmc ? 'AMC' : 'Handover',
+                _val:   isAmc ? (parseFloat(x.live_url ? x.live_url.replace('Cost:', '') : 0) || 0) : 0
             };
-        }),
-        ...(h||[]).map(x=>({...x, _type:'handover',   _label:'Handover', _val:0}))
+        })
     ].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
 
     const list = document.getElementById('history-list');
@@ -1049,11 +1059,11 @@ window.loadDocumentFromHistory = (idx) => {
         }
     } else if (d._type === 'amc') {
         const fields = {
-            'amc-project':    d.purpose ? d.purpose.substring(4) : '',
-            'amc-inclusions': d.scope || '',
-            'amc-cost':       d.cost || 0,
-            'amc-payment':    d.payment || '',
-            'amc-exclusions': d.support || '',
+            'amc-project':    d.project_name ? d.project_name.substring(4) : '',
+            'amc-inclusions': d.deliverables || '',
+            'amc-cost':       d.live_url ? d.live_url.replace('Cost:', '') : 0,
+            'amc-payment':    d.credentials || '',
+            'amc-exclusions': d.support_terms || '',
         };
         for (const [id, val] of Object.entries(fields)) {
             const el = document.getElementById(id);
@@ -1080,8 +1090,8 @@ window.loadDocumentFromHistory = (idx) => {
 
     if (d._type === 'amc') {
         const dueEl = document.getElementById('doc-due-date');
-        if (dueEl && d.timeline) {
-            dueEl.value = d.timeline;
+        if (dueEl && d.notes) {
+            dueEl.value = d.notes;
         }
         renderLive();
     } else if (d.created_at && (d._type === 'quotation' || d._type === 'invoice')) {
