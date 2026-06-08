@@ -174,26 +174,26 @@ window.updateUI = () => {
     if (mode === 'letterhead') {
         letterEditor.style.display = 'block';
         subjectField.style.display = 'block';
-        preview.className = 'a4-page theme-cyan';
+        preview.className = 'preview-wrapper theme-cyan';
     } else if (mode === 'proposal') {
         proposalEditor.style.display = 'block';
-        preview.className = 'a4-page theme-cyan';
+        preview.className = 'preview-wrapper theme-cyan';
     } else if (mode === 'quotation') {
         itemsEditor.style.display = 'block';
-        preview.className = 'a4-page theme-cyan';
+        preview.className = 'preview-wrapper theme-cyan';
     } else if (mode === 'invoice') {
         itemsEditor.style.display = 'block';
-        preview.className = 'a4-page theme-indigo';
+        preview.className = 'preview-wrapper theme-indigo';
     } else if (mode === 'moa') {
         moaEditor.style.display = 'block';
-        preview.className = 'a4-page theme-indigo';
+        preview.className = 'preview-wrapper theme-indigo';
     } else if (mode === 'handover') {
         handoverEditor.style.display = 'block';
         subjectField.style.display = 'block';
-        preview.className = 'a4-page theme-indigo';
+        preview.className = 'preview-wrapper theme-indigo';
     } else if (mode === 'amc') {
         if (amcEditor) amcEditor.style.display = 'block';
-        preview.className = 'a4-page theme-indigo';
+        preview.className = 'preview-wrapper theme-indigo';
     }
     renderLive();
 };
@@ -228,7 +228,7 @@ window.updateDueDate = () => {
 // --- Header Generator ---
 const getHeaderHTML = (title, docNumber, dateStr) => {
     return `
-    <div style="position:relative;background:${C.white};padding:12mm 18mm 10mm;border-bottom:1px solid ${C.border};overflow:hidden;">
+    <div class="print-header" style="position:relative;background:${C.white};padding:12mm 18mm 10mm;border-bottom:1px solid ${C.border};overflow:hidden;">
         <div style="position:absolute;inset:0;background:linear-gradient(135deg, ${C.blueLight} 0%, ${C.violetLight} 100%);opacity:0.4;"></div>
         <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
             <div style="display:flex;align-items:center;gap:15px;">
@@ -301,7 +301,7 @@ window.renderLive = () => {
                 : `#${isInv ? invNum : qtNum}`;
 
             document.getElementById('document-preview').innerHTML = `
-            <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+            <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;">
                 <!-- HEADER -->
                 ${getHeaderHTML(label, docNum, dateStr)}
 
@@ -392,7 +392,7 @@ window.renderLive = () => {
                 </div>
             </div>
 
-            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
 
     } else if (mode === 'proposal') {
@@ -419,7 +419,7 @@ window.renderLive = () => {
             : `#PROP-${year}-${month}-${rand}`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;">
 
             <!-- HEADER -->
             ${getHeaderHTML('PROJECT PROPOSAL', propNum, dateStr)}
@@ -467,7 +467,7 @@ window.renderLive = () => {
                 ${sig}
             </div>
 
-            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'letterhead') {
         const ltNum = window._currentHistoryDoc && window._currentHistoryDoc._type === 'letterhead'
@@ -475,7 +475,7 @@ window.renderLive = () => {
             : `#LT-${year}-${month}-${rand}`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
 
             <!-- HEADER -->
             ${getHeaderHTML('OFFICIAL LETTER', ltNum, dateStr)}
@@ -506,7 +506,7 @@ window.renderLive = () => {
                 ${sig}
             </div>
 
-            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
 
     } else if (mode === 'moa') {
@@ -531,15 +531,14 @@ window.renderLive = () => {
             : `#MOA-${year}-${month}-${rand}`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
             <!-- HEADER -->
             ${getHeaderHTML('MEMORANDUM OF AGREEMENT', moaNum, dateStr)}
 
             <!-- WATERMARK / ACCENT -->
             <div style="position:absolute;top:0;right:0;width:100mm;height:100mm;background:radial-gradient(circle at top right, ${C.blueLight} 0%, transparent 70%);opacity:0.4;z-index:0;"></div>
 
-            <div style="position:relative;z-index:1;padding:10mm 18mm;">
-
+            <div style="position:relative;z-index:1;padding:10mm 18mm 0;">
                 <!-- PARTIES -->
                 <div style="font-size:0.85rem;color:${C.textDark};line-height:1.8;margin-bottom:10mm;background:${C.offWhite};padding:6mm;border-radius:12px;border:1px solid ${C.border};">
                     This Memorandum of Agreement (“Agreement”) is entered into on **${dateStr}**, by and between:
@@ -566,9 +565,6 @@ window.renderLive = () => {
                 ${moaSection('3', 'Project Cost', `Total Project Cost: **₹${parseFloat(cost).toLocaleString('en-IN')}** (as per quotation)\nTaxes (if applicable): Extra`)}
                 ${moaSection('4', 'Payment Terms', payment)}
                 ${moaSection('5', 'Implementation Timeline', timeline)}
-                
-                <div style="page-break-before: always; height:1px;"></div>
-
                 ${moaSection('6', 'Client Responsibilities', `The Client agrees to:\n* Provide accurate requirements and data on time\n* Assign a point of contact for coordination\n* Review and approve deliverables promptly`)}
                 ${moaSection('7', 'Support & Maintenance', support)}
                 ${moaSection('8', 'Data Security & Confidentiality', `Both parties agree to maintain confidentiality of all shared data and not disclose it to any third party without prior consent.`)}
@@ -578,7 +574,7 @@ window.renderLive = () => {
                 ${moaSection('12', 'Governing Law', `This Agreement shall be governed by the laws of India, and jurisdiction shall be ${law}.`)}
                 
                 <!-- ACCEPTANCE -->
-                <div class="no-break" style="margin-top:12mm;padding-top:8mm;border-top:1.5px solid ${C.navy};">
+                <div class="no-break" style="margin-top:12mm;padding-top:8mm;border-top:1.5px solid ${C.navy};padding-bottom:12mm;">
                     <h3 style="font-size:0.9rem;font-weight:900;text-transform:uppercase;margin-bottom:8mm;color:${C.navyDark};">13. Acceptance</h3>
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40mm;">
                         <div>
@@ -593,10 +589,9 @@ window.renderLive = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
             
-            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'handover') {
         const projectName     = document.getElementById('ho-project').value       || '[Project Name]';
@@ -621,7 +616,7 @@ window.renderLive = () => {
             : `<div style="font-size:0.85rem;color:${C.textLight};font-style:italic;padding:8px 0;">No deliverables listed</div>`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;">
 
             <!-- HEADER -->
             ${getHeaderHTML('PROJECT HANDOVER', '#' + hoNum, dateStr)}
@@ -713,7 +708,7 @@ window.renderLive = () => {
                 </div>
             </div>
 
-            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'amc') {
         const amcProject    = document.getElementById('amc-project').value      || '[Project Name]';
@@ -748,7 +743,7 @@ window.renderLive = () => {
              : `<div style="font-size:0.82rem;color:${C.textLight};font-style:italic;padding:4px 0;">Standard exclusions apply</div>`;
 
          document.getElementById('document-preview').innerHTML = `
-         <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+         <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
              <!-- HEADER -->
              ${getHeaderHTML('AMC AGREEMENT', '#' + amcNum, dateStr)}
 
@@ -822,7 +817,7 @@ window.renderLive = () => {
                      </div>
                  </div>
              </div>
-             <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
          </div>`;
     }
 
