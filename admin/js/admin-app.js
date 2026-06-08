@@ -716,7 +716,7 @@ window.saveDocument = async () => {
     if (mode==='proposal') {
         Object.assign(payload,{project_title:subject,scope_of_work:document.getElementById('p-scope').value,deliverables:document.getElementById('p-deliverables').value,project_cost:amount,timeline:document.getElementById('p-timeline').value,payment_terms:document.getElementById('p-payment').value,notes:document.getElementById('p-notes').value});
     } else {
-        if(mode !== 'moa') {
+        if(mode !== 'moa' && mode !== 'handover') {
             payload.service=subject; 
             payload.items=activeItems;
         }
@@ -743,7 +743,7 @@ window.saveDocument = async () => {
                 notes:         document.getElementById('ho-notes').value,
             });
         }
-        if(mode!=='invoice' && mode!=='moa') payload.price=amount;
+        if(mode!=='invoice' && mode!=='moa' && mode!=='handover') payload.price=amount;
     }
     const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers' };
     const table = tableMap[mode] || 'quotes';
