@@ -486,7 +486,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="topbar">
                 <h1>Business Suite</h1>
                 <div class="topbar-actions">
-                    <select id="suite-mode" class="mode-select" onchange="updateUI()">
+                    <select id="suite-mode" class="mode-select" onchange="window.updateUI()">
                         <option value="quotation">New Quotation</option>
                         <option value="proposal">New Proposal</option>
                         <option value="invoice">New Tax Invoice</option>
@@ -495,8 +495,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <option value="handover">Project Handover</option>
                         <option value="amc">New AMC Agreement</option>
                     </select>
-                    <button class="btn btn-ghost" onclick="resetForm()">🆕 New Document</button>
-                    <button class="btn btn-ghost" onclick="saveDocument()">💾 Save & Sync</button>
+                    <button class="btn btn-ghost" onclick="window.resetForm()">🆕 New Document</button>
+                    <button class="btn btn-ghost" onclick="window.saveDocument()">💾 Save & Sync</button>
                     <button class="btn btn-primary" onclick="window.print()">🖨️ Print PDF</button>
                 </div>
             </div>

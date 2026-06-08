@@ -86,7 +86,7 @@ window.resetForm = () => {
     if (dueDateEl) dueDateEl.valueAsDate = dueDate;
     
     // Line items
-    activeItems = [];
+    activeItems.length = 0;
     initLineItems();
     
     // Proposal details
