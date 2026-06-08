@@ -303,8 +303,10 @@ window.renderLive = () => {
                     <div style="flex:1;">
                         <div style="padding:18px;background:${isInv ? '#eff6ff' : C.violetLight};border-radius:14px;border:1px solid ${isInv ? 'rgba(37,99,235,0.1)' : 'rgba(124,58,237,0.1)'};max-width:420px;">
                             <p style="font-size:0.75rem;color:${isInv ? '#1e40af' : C.violet};line-height:1.7;margin:0;">
+                                ${isInv ? 'Thank you for your payment. This invoice is sent as a receipt.' : `
                                 <span style="font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Important:</span><br>
-                                ${isInv ? 'Please process the payment within 7 days of invoice issue. Mention invoice # in transfer reference.' : 'This quotation is valid for 14 days. Prices are subject to change based on final requirements.'}
+                                This quotation is valid for 14 days. Prices are subject to change based on final requirements.
+                                `}
                             </p>
                         </div>
                     </div>
