@@ -176,6 +176,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadHistory();
         renderCatalogue();
         renderQQ();
+        
+        // Force reset again shortly after load to override Chrome's post-load form recovery
+        setTimeout(() => {
+            window.resetForm();
+        }, 50);
     } catch (err) {
         console.error('Admin App: Critical Init Error:', err);
     }
