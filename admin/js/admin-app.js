@@ -61,6 +61,97 @@ const footer = `
     </div>`;
 
 // --- Initial Setup ---
+window.resetForm = () => {
+    console.log('Admin App: Resetting form to default values...');
+    
+    // Client details
+    const clientEl = document.getElementById('doc-client');
+    const subjectEl = document.getElementById('doc-subject');
+    const addrEl = document.getElementById('doc-client-address');
+    const phoneEl = document.getElementById('doc-client-phone');
+    
+    if (clientEl) clientEl.value = '';
+    if (subjectEl) subjectEl.value = '';
+    if (addrEl) addrEl.value = '';
+    if (phoneEl) phoneEl.value = '';
+    
+    // Dates
+    const today = new Date();
+    const docDateEl = document.getElementById('doc-date');
+    if (docDateEl) docDateEl.valueAsDate = today;
+    
+    const dueDate = new Date();
+    dueDate.setDate(today.getDate() + 14);
+    const dueDateEl = document.getElementById('doc-due-date');
+    if (dueDateEl) dueDateEl.valueAsDate = dueDate;
+    
+    // Line items
+    activeItems = [];
+    initLineItems();
+    
+    // Proposal details
+    const pFields = {
+        'p-scope': '',
+        'p-deliverables': '',
+        'p-cost': '',
+        'p-timeline': '',
+        'p-payment': '',
+        'p-notes': ''
+    };
+    for (const [id, val] of Object.entries(pFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
+    
+    // Letterhead
+    const lbEl = document.getElementById('letter-body');
+    if (lbEl) lbEl.value = '';
+    
+    // Handover
+    const hoFields = {
+        'ho-project': '',
+        'ho-deliverables': `* Source code repository\n* Admin panel access\n* User documentation\n* Database backup`,
+        'ho-url': '',
+        'ho-credentials': '',
+        'ho-support': `30 days of free post-delivery support included.\nExtended support available via AMC at ₹4,000/month.`,
+        'ho-notes': ''
+    };
+    for (const [id, val] of Object.entries(hoFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
+    
+    // MOA details
+    const moaFields = {
+        'moa-purpose': `This Agreement outlines the terms and conditions under which the Service Provider will deliver a customized HRMS & Payroll Software Solution to the Client.`,
+        'moa-scope': `* Employee Management System\n* Attendance Tracking\n* Payroll Processing\n* Compliance Management\n* Basic Reporting Dashboard`,
+        'moa-cost': '90000',
+        'moa-payment': `* 50% advance payment before project initiation\n* 30% upon completion of development\n* 20% upon final delivery/go-live`,
+        'moa-timeline': `Estimated timeline: 3–5 weeks from the date of advance payment`,
+        'moa-support': `30 days of free post-delivery support included\nPost-support period: AMC (Annual Maintenance Contract) can be opted separately`,
+        'moa-law': `Mumbai, Maharashtra`
+    };
+    for (const [id, val] of Object.entries(moaFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
+    
+    // AMC details
+    const amcFields = {
+        'amc-project': '',
+        'amc-inclusions': `* Server maintenance\n* Bug fixes\n* Monthly database backup`,
+        'amc-exclusions': `* New features will be charged extra at ₹1,500/hour\n* Third-party API subscription costs are not included`,
+        'amc-cost': '4000',
+        'amc-payment': `Quarterly Advance`
+    };
+    for (const [id, val] of Object.entries(amcFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
+    
+    renderLive();
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         console.log('Admin App: Initializing...');
@@ -80,11 +171,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('app-layout').style.display = 'flex';
         console.log('Admin App: Layout displayed');
         
-        const today = new Date();
-        document.getElementById('doc-date').valueAsDate = today;
+        window.resetForm();
         updateUI();
-        initLineItems();
-        renderLive();
         loadHistory();
         renderCatalogue();
         renderQQ();
@@ -139,7 +227,10 @@ window.setViewOnlyMode = (enabled) => {
         if (modeSelect) modeSelect.style.display = 'inline-block';
         if (saveBtn) saveBtn.style.display = 'inline-block';
         if (backBtn) backBtn.style.display = 'none';
-        window._currentHistoryDoc = null;
+        if (window._currentHistoryDoc) {
+            window._currentHistoryDoc = null;
+            window.resetForm();
+        }
     }
 };
 
