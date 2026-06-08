@@ -355,34 +355,36 @@ window.renderLive = () => {
                     </div>
                 </div>
 
-                <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:8mm;">
-                    <div style="flex:1;">
-                        <div style="padding:18px;background:${isInv ? '#eff6ff' : C.violetLight};border-radius:14px;border:1px solid ${isInv ? 'rgba(37,99,235,0.1)' : 'rgba(124,58,237,0.1)'};max-width:420px;">
-                            <p style="font-size:0.75rem;color:${isInv ? '#1e40af' : C.violet};line-height:1.7;margin:0;">
-                                ${isInv ? 'Thank you for your payment. This invoice is sent as a receipt.' : `
-                                <span style="font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Important:</span><br>
-                                This quotation is valid for 14 days. Prices are subject to change based on final requirements.
-                                `}
-                            </p>
+                <div class="no-break">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:8mm;">
+                        <div style="flex:1;">
+                            <div style="padding:18px;background:${isInv ? '#eff6ff' : C.violetLight};border-radius:14px;border:1px solid ${isInv ? 'rgba(37,99,235,0.1)' : 'rgba(124,58,237,0.1)'};max-width:420px;">
+                                <p style="font-size:0.75rem;color:${isInv ? '#1e40af' : C.violet};line-height:1.7;margin:0;">
+                                    ${isInv ? 'Thank you for your payment. This invoice is sent as a receipt.' : `
+                                    <span style="font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Important:</span><br>
+                                    This quotation is valid for 14 days. Prices are subject to change based on final requirements.
+                                    `}
+                                </p>
+                            </div>
+                        </div>
+                        <div style="width:200px;text-align:right;">
+                            ${sig}
                         </div>
                     </div>
-                    <div style="width:200px;text-align:right;">
-                        ${sig}
-                    </div>
-                </div>
 
-                <!-- PAYMENT DETAILS -->
-                <div style="margin-top:14mm;padding-top:8mm;border-top:1px solid ${C.border};">
-                    <h3 style="font-size:1.1rem;font-weight:800;color:${C.navyDark};margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                        <div style="width:5px;height:22px;background:${isInv ? C.navy : GRADIENT};border-radius:3px;"></div>
-                        Bank Transfer Details
-                    </h3>
-                    <div style="background:${C.offWhite};border:1px solid ${C.border};border-radius:16px;padding:20px;max-width:540px;">
-                        <div style="font-size:0.8rem;color:${C.textMid};display:grid;grid-template-columns:1fr 1.2fr;gap:10px;">
-                            <div style="display:flex;justify-content:space-between;padding-right:15px;border-right:1px solid ${C.border};"><span>Bank Name</span><span style="font-weight:700;color:${C.textDark};">${BANK.bank}</span></div>
-                            <div style="display:flex;justify-content:space-between;padding-left:15px;"><span>Account Holder</span><span style="font-weight:700;color:${C.textDark};">${BANK.holder}</span></div>
-                            <div style="display:flex;justify-content:space-between;padding-right:15px;border-right:1px solid ${C.border};"><span>IFSC Code</span><span style="font-weight:700;color:${C.textDark};">${BANK.ifsc}</span></div>
-                            <div style="display:flex;justify-content:space-between;padding-left:15px;"><span>Account Number</span><span style="font-weight:700;color:${C.textDark};">${BANK.acc}</span></div>
+                    <!-- PAYMENT DETAILS -->
+                    <div style="margin-top:14mm;padding-top:8mm;border-top:1px solid ${C.border};">
+                        <h3 style="font-size:1.1rem;font-weight:800;color:${C.navyDark};margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+                            <div style="width:5px;height:22px;background:${isInv ? C.navy : GRADIENT};border-radius:3px;"></div>
+                            Bank Transfer Details
+                        </h3>
+                        <div style="background:${C.offWhite};border:1px solid ${C.border};border-radius:16px;padding:20px;max-width:540px;">
+                            <div style="font-size:0.8rem;color:${C.textMid};display:grid;grid-template-columns:1fr 1.2fr;gap:10px;">
+                                <div style="display:flex;justify-content:space-between;padding-right:15px;border-right:1px solid ${C.border};"><span>Bank Name</span><span style="font-weight:700;color:${C.textDark};">${BANK.bank}</span></div>
+                                <div style="display:flex;justify-content:space-between;padding-left:15px;"><span>Account Holder</span><span style="font-weight:700;color:${C.textDark};">${BANK.holder}</span></div>
+                                <div style="display:flex;justify-content:space-between;padding-right:15px;border-right:1px solid ${C.border};"><span>IFSC Code</span><span style="font-weight:700;color:${C.textDark};">${BANK.ifsc}</span></div>
+                                <div style="display:flex;justify-content:space-between;padding-left:15px;"><span>Account Number</span><span style="font-weight:700;color:${C.textDark};">${BANK.acc}</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -402,7 +404,7 @@ window.renderLive = () => {
         const notes         = document.getElementById('p-notes').value;
 
         const section = (num, title, content) => `
-            <div style="margin-bottom:8mm;padding-bottom:6mm;border-bottom:1px solid ${C.border};">
+            <div class="no-break" style="margin-bottom:8mm;padding-bottom:6mm;border-bottom:1px solid ${C.border};">
                 <div style="display:flex;align-items:center;gap:12px;margin-bottom:4mm;">
                     <div style="width:28px;height:28px;background:${GRADIENT};border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                         <span style="font-size:0.8rem;font-weight:800;color:white;">${num}</span>
@@ -457,7 +459,7 @@ window.renderLive = () => {
             </div>
 
             <!-- SIGN OFF -->
-            <div style="padding:10mm 18mm;background:${C.white};display:flex;justify-content:space-between;align-items:flex-end;">
+            <div class="no-break" style="padding:10mm 18mm;background:${C.white};display:flex;justify-content:space-between;align-items:flex-end;">
                 <div style="font-size:0.75rem;color:${C.textMid};line-height:1.8;max-width:280px;font-style:italic;">
                     This proposal is valid for 21 days from the date above.<br>
                     Project kickoff begins upon receipt of advance payment.
@@ -465,7 +467,7 @@ window.renderLive = () => {
                 ${sig}
             </div>
 
-            <div style="margin-top:auto;width:100%;">${footer}</div>
+            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'letterhead') {
         const ltNum = window._currentHistoryDoc && window._currentHistoryDoc._type === 'letterhead'
@@ -500,7 +502,7 @@ window.renderLive = () => {
             </div>
 
             <!-- SIGNATURE -->
-            <div style="padding:0 18mm 12mm;display:flex;justify-content:flex-end;">
+            <div class="no-break" style="padding:0 18mm 12mm;display:flex;justify-content:flex-end;">
                 ${sig}
             </div>
 
@@ -516,8 +518,8 @@ window.renderLive = () => {
         const support    = document.getElementById('moa-support').value;
         const law        = document.getElementById('moa-law').value;
 
-        const section = (num, title, content) => `
-            <div style="margin-bottom:6mm;">
+        const moaSection = (num, title, content) => `
+            <div class="no-break" style="margin-bottom:6mm;">
                 <h3 style="font-size:0.9rem;font-weight:800;color:${C.navyDark};margin-bottom:3mm;text-transform:uppercase;letter-spacing:0.05em;display:flex;gap:8px;">
                     <span>${num}.</span> <span>${title}</span>
                 </h3>
@@ -559,24 +561,24 @@ window.renderLive = () => {
                 <div style="height:1px;background:${C.border};margin-bottom:8mm;"></div>
 
                 <!-- SECTIONS -->
-                ${section('1', 'Purpose', purpose)}
-                ${section('2', 'Scope of Work', scope)}
-                ${section('3', 'Project Cost', `Total Project Cost: **₹${parseFloat(cost).toLocaleString('en-IN')}** (as per quotation)\nTaxes (if applicable): Extra`)}
-                ${section('4', 'Payment Terms', payment)}
-                ${section('5', 'Implementation Timeline', timeline)}
+                ${moaSection('1', 'Purpose', purpose)}
+                ${moaSection('2', 'Scope of Work', scope)}
+                ${moaSection('3', 'Project Cost', `Total Project Cost: **₹${parseFloat(cost).toLocaleString('en-IN')}** (as per quotation)\nTaxes (if applicable): Extra`)}
+                ${moaSection('4', 'Payment Terms', payment)}
+                ${moaSection('5', 'Implementation Timeline', timeline)}
                 
                 <div style="page-break-before: always; height:1px;"></div>
 
-                ${section('6', 'Client Responsibilities', `The Client agrees to:\n* Provide accurate requirements and data on time\n* Assign a point of contact for coordination\n* Review and approve deliverables promptly`)}
-                ${section('7', 'Support & Maintenance', support)}
-                ${section('8', 'Data Security & Confidentiality', `Both parties agree to maintain confidentiality of all shared data and not disclose it to any third party without prior consent.`)}
-                ${section('9', 'Intellectual Property', `The final software developed for the Client will be usable by the Client. Core framework/technology remains the intellectual property of the Service Provider.`)}
-                ${section('10', 'Termination', `Either party may terminate this agreement with written notice if terms are not fulfilled or payments are delayed. Advance payments are non-refundable once work has commenced.`)}
-                ${section('11', 'Limitation of Liability', `The Service Provider shall not be liable for any indirect losses or issues arising due to incorrect data provided by the Client.`)}
-                ${section('12', 'Governing Law', `This Agreement shall be governed by the laws of India, and jurisdiction shall be ${law}.`)}
+                ${moaSection('6', 'Client Responsibilities', `The Client agrees to:\n* Provide accurate requirements and data on time\n* Assign a point of contact for coordination\n* Review and approve deliverables promptly`)}
+                ${moaSection('7', 'Support & Maintenance', support)}
+                ${moaSection('8', 'Data Security & Confidentiality', `Both parties agree to maintain confidentiality of all shared data and not disclose it to any third party without prior consent.`)}
+                ${moaSection('9', 'Intellectual Property', `The final software developed for the Client will be usable by the Client. Core framework/technology remains the intellectual property of the Service Provider.`)}
+                ${moaSection('10', 'Termination', `Either party may terminate this agreement with written notice if terms are not fulfilled or payments are delayed. Advance payments are non-refundable once work has commenced.`)}
+                ${moaSection('11', 'Limitation of Liability', `The Service Provider shall not be liable for any indirect losses or issues arising due to incorrect data provided by the Client.`)}
+                ${moaSection('12', 'Governing Law', `This Agreement shall be governed by the laws of India, and jurisdiction shall be ${law}.`)}
                 
                 <!-- ACCEPTANCE -->
-                <div style="margin-top:12mm;padding-top:8mm;border-top:1.5px solid ${C.navy};">
+                <div class="no-break" style="margin-top:12mm;padding-top:8mm;border-top:1.5px solid ${C.navy};">
                     <h3 style="font-size:0.9rem;font-weight:900;text-transform:uppercase;margin-bottom:8mm;color:${C.navyDark};">13. Acceptance</h3>
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40mm;">
                         <div>
@@ -689,7 +691,7 @@ window.renderLive = () => {
             </div>` : ''}
 
             <!-- ACCEPTANCE -->
-            <div style="padding:8mm 18mm;background:${C.white};">
+            <div class="no-break" style="padding:8mm 18mm;background:${C.white};">
                 <div style="display:flex;align-items:center;gap:10px;margin-bottom:5mm;">
                     <div style="width:4px;height:18px;background:${GRADIENT};border-radius:3px;"></div>
                     <h3 style="font-size:0.85rem;font-weight:800;color:${C.navyDark};margin:0;text-transform:uppercase;letter-spacing:0.04em;">Acceptance &amp; Sign-off</h3>
@@ -711,7 +713,7 @@ window.renderLive = () => {
                 </div>
             </div>
 
-            <div style="width:100%;">${footer}</div>
+            <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'amc') {
         const amcProject    = document.getElementById('amc-project').value      || '[Project Name]';
@@ -803,7 +805,7 @@ window.renderLive = () => {
              </div>
 
              <!-- SIGN-OFF -->
-             <div style="padding:8mm 18mm 12mm;background:${C.white};">
+             <div class="no-break" style="padding:8mm 18mm 12mm;background:${C.white};">
                  <div style="font-size:0.78rem;color:${C.textMid};line-height:1.6;margin-bottom:8mm;font-style:italic;">
                      Both parties agree to the terms of this Annual Maintenance Contract. Work outside the defined scope will be subject to extra charges as outlined above.
                  </div>
