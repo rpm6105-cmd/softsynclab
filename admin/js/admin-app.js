@@ -139,6 +139,7 @@ window.setViewOnlyMode = (enabled) => {
         if (modeSelect) modeSelect.style.display = 'inline-block';
         if (saveBtn) saveBtn.style.display = 'inline-block';
         if (backBtn) backBtn.style.display = 'none';
+        window._currentHistoryDoc = null;
     }
 };
 
@@ -224,6 +225,32 @@ window.updateDueDate = () => {
     renderLive();
 };
 
+// --- Header Generator ---
+const getHeaderHTML = (title, docNumber, dateStr) => {
+    return `
+    <div style="position:relative;background:${C.white};padding:12mm 18mm 10mm;border-bottom:1px solid ${C.border};overflow:hidden;">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg, ${C.blueLight} 0%, ${C.violetLight} 100%);opacity:0.4;"></div>
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
+            <div style="display:flex;align-items:center;gap:15px;">
+                <div style="width:60px;height:60px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
+                </div>
+                <div>
+                    <h1 style="font-size:1.6rem;font-weight:800;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;line-height:1.2;">${company.name}</h1>
+                    <p style="font-size:0.8rem;color:${C.textMid};margin:2px 0 0;letter-spacing:0.02em;font-weight:500;">SaaS Development Agency</p>
+                </div>
+            </div>
+            <div style="text-align:right;">
+                <div style="font-size:1.8rem;font-weight:900;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em;line-height:1;text-transform:uppercase;">${title}</div>
+                <div style="margin-top:10px;font-size:0.75rem;color:${C.textMid};">
+                    <div style="margin-bottom:4px;"><span style="font-weight:700;color:${C.textDark};">${docNumber}</span></div>
+                    <div>Date: <span style="font-weight:600;color:${C.textDark};">${dateStr}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+};
+
 // --- Rendering Engine ---
 window.renderLive = () => {
     console.log('Admin App: renderLive() triggered');
@@ -269,30 +296,14 @@ window.renderLive = () => {
                 </tr>`;
             }).join('');
 
+            const docNum = window._currentHistoryDoc && window._currentHistoryDoc._type === mode
+                ? `#${mode === 'invoice' ? 'INV' : 'QT'}-${window._currentHistoryDoc.id}`
+                : `#${isInv ? invNum : qtNum}`;
+
             document.getElementById('document-preview').innerHTML = `
             <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
                 <!-- HEADER -->
-                <div style="position:relative;background:${headerBg};padding:12mm 18mm 10mm;border-bottom:${headerBorder};overflow:hidden;">
-                    ${!isInv ? `<div style="position:absolute;inset:0;background:linear-gradient(135deg, ${C.blueLight} 0%, ${C.violetLight} 100%);opacity:0.4;"></div>` : ''}
-                    <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
-                        <div style="display:flex;align-items:center;gap:15px;">
-                            <div style="width:60px;height:60px;border-radius:14px;background:${isInv ? C.navy : GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-                                <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
-                            </div>
-                            <div>
-                                <h1 style="font-size:1.6rem;font-weight:800;${isInv ? `color:${C.navyDark}` : `background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent`};margin:0;">${company.name}</h1>
-                                <p style="font-size:0.8rem;color:${C.textMid};margin:2px 0 0;letter-spacing:0.02em;">Digital Transformation Experts</p>
-                            </div>
-                        </div>
-                        <div style="text-align:right;">
-                            <div style="font-size:2rem;font-weight:900;${isInv ? `color:${accentColor}` : `background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent`};letter-spacing:-0.02em;line-height:1;">${label}</div>
-                            <div style="margin-top:10px;font-size:0.75rem;color:${C.textMid};">
-                                <div style="margin-bottom:4px;"><span style="font-weight:700;color:${C.textDark};">#${isInv ? invNum : qtNum}</span></div>
-                                <div>Date: <span style="font-weight:600;color:${C.textDark};">${dateStr}</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                ${getHeaderHTML(label, docNum, dateStr)}
 
             <!-- BILLING INFO -->
             <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
@@ -401,31 +412,20 @@ window.renderLive = () => {
                 <div style="padding-left:40px;font-size:0.85rem;color:${C.textMid};line-height:1.8;">${content || `<span style="color:${C.textLight};font-style:italic;">Not specified</span>`}</div>
             </div>`;
 
+        const propNum = window._currentHistoryDoc && window._currentHistoryDoc._type === 'proposal'
+            ? `#PROP-${window._currentHistoryDoc.id}`
+            : `#PROP-${year}-${month}-${rand}`;
+
         document.getElementById('document-preview').innerHTML = `
         <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
 
             <!-- HEADER -->
-            <div style="position:relative;background:${C.white};padding:12mm 18mm 10mm;border-bottom:1px solid ${C.border};overflow:hidden;">
-                <div style="position:absolute;inset:0;background:linear-gradient(135deg, ${C.blueLight} 0%, ${C.violetLight} 100%);opacity:0.4;"></div>
-                <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
-                    <div style="display:flex;align-items:center;gap:15px;">
-                        <div style="width:64px;height:64px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                            <img src="${LOGO_ICON}" style="width:42px;height:auto;filter:brightness(0) invert(1);">
-                        </div>
-                        <div>
-                            <h1 style="font-size:1.6rem;font-weight:800;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;">${company.name}</h1>
-                            <p style="font-size:0.8rem;color:${C.textMid};margin:2px 0 0;">SaaS Development Agency</p>
-                        </div>
-                    </div>
-                    <div style="text-align:right;">
-                        <p style="font-size:0.75rem;color:${C.textMid};text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Proposal Date</p>
-                        <p style="font-size:1rem;font-weight:700;color:${C.textDark};">${dateStr}</p>
-                    </div>
-                </div>
-                <div style="position:relative;margin-top:12mm;">
-                    <h2 style="font-size:2.8rem;font-weight:900;color:${C.navyDark};letter-spacing:-0.03em;line-height:1;margin:0;">Project Proposal</h2>
-                    <p style="font-size:1.1rem;color:${C.textMid};margin:8px 0 0;">Professional SaaS Development Services</p>
-                </div>
+            ${getHeaderHTML('PROJECT PROPOSAL', propNum, dateStr)}
+
+            <!-- SUBTITLE STRIP -->
+            <div style="position:relative;padding:8mm 18mm 4mm;">
+                <h2 style="font-size:2.4rem;font-weight:900;color:${C.navyDark};letter-spacing:-0.03em;line-height:1.2;margin:0;">Project Proposal</h2>
+                <p style="font-size:1rem;color:${C.textMid};margin:6px 0 0;">Professional SaaS Development Services</p>
             </div>
 
             <!-- META ROW -->
@@ -468,22 +468,15 @@ window.renderLive = () => {
             <div style="margin-top:auto;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'letterhead') {
+        const ltNum = window._currentHistoryDoc && window._currentHistoryDoc._type === 'letterhead'
+            ? `#LT-${window._currentHistoryDoc.id}`
+            : `#LT-${year}-${month}-${rand}`;
+
         document.getElementById('document-preview').innerHTML = `
         <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
 
             <!-- HEADER -->
-            <div style="position:relative;background:${C.white};padding:10mm 18mm 8mm;border-bottom:1px solid ${C.border};overflow:hidden;">
-                <div style="position:absolute;top:0;right:0;width:320px;height:160px;background:linear-gradient(225deg, ${C.blueLight} 0%, transparent 100%);opacity:0.5;"></div>
-                <div style="position:relative;display:flex;justify-content:space-between;align-items:center;">
-                    <div style="width:52px;height:52px;border-radius:12px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                        <img src="${LOGO_ICON}" style="width:34px;height:auto;filter:brightness(0) invert(1);">
-                    </div>
-                    <div style="text-align:right;">
-                        <p style="font-size:1.1rem;font-weight:800;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;">${company.name}</p>
-                        <p style="font-size:0.7rem;color:${C.textMid};margin:2px 0 0;">${company.email} · www.softsyncsolutions.in</p>
-                    </div>
-                </div>
-            </div>
+            ${getHeaderHTML('OFFICIAL LETTER', ltNum, dateStr)}
 
             <!-- TO / DATE -->
             <div style="background:${C.offWhite};padding:6mm 18mm;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid ${C.border};">
@@ -531,18 +524,19 @@ window.renderLive = () => {
                 <div style="font-size:0.85rem;color:${C.textDark};line-height:1.6;padding-left:8mm;white-space:pre-wrap;">${content}</div>
             </div>`;
 
+        const moaNum = window._currentHistoryDoc && window._currentHistoryDoc._type === 'moa'
+            ? `#MOA-${window._currentHistoryDoc.id}`
+            : `#MOA-${year}-${month}-${rand}`;
+
         document.getElementById('document-preview').innerHTML = `
-        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;padding:20mm 18mm;">
+        <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+            <!-- HEADER -->
+            ${getHeaderHTML('MEMORANDUM OF AGREEMENT', moaNum, dateStr)}
+
             <!-- WATERMARK / ACCENT -->
             <div style="position:absolute;top:0;right:0;width:100mm;height:100mm;background:radial-gradient(circle at top right, ${C.blueLight} 0%, transparent 70%);opacity:0.4;z-index:0;"></div>
 
-            <div style="position:relative;z-index:1;">
-                <!-- TITLE -->
-                <div style="text-align:center;margin-bottom:12mm;">
-                    <h1 style="font-size:1.8rem;font-weight:900;color:${C.navyDark};text-transform:uppercase;letter-spacing:0.1em;margin:0;">Memorandum of Agreement</h1>
-                    <div style="width:60mm;height:3px;background:${GRADIENT};margin:3mm auto;"></div>
-                    <p style="font-size:0.85rem;color:${C.textMid};margin-top:2px;">Dated: <span style="font-weight:700;color:${C.textDark};">${dateStr}</span></p>
-                </div>
+            <div style="position:relative;z-index:1;padding:10mm 18mm;">
 
                 <!-- PARTIES -->
                 <div style="font-size:0.85rem;color:${C.textDark};line-height:1.8;margin-bottom:10mm;background:${C.offWhite};padding:6mm;border-radius:12px;border:1px solid ${C.border};">
@@ -628,26 +622,7 @@ window.renderLive = () => {
         <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
 
             <!-- HEADER -->
-            <div style="position:relative;background:${C.navyDark};padding:12mm 18mm 10mm;overflow:hidden;">
-                <div style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:${C.violet};opacity:0.08;"></div>
-                <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
-                    <div style="display:flex;align-items:center;gap:15px;">
-                        <div style="width:60px;height:60px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                            <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
-                        </div>
-                        <div>
-                            <h1 style="font-size:1.5rem;font-weight:800;color:${C.white};margin:0;">${company.name}</h1>
-                            <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin:3px 0 0;">SaaS Development Agency</p>
-                        </div>
-                    </div>
-                    <div style="text-align:right;">
-                        <div style="font-size:1.8rem;font-weight:900;color:${C.white};letter-spacing:-0.02em;line-height:1;">PROJECT</div>
-                        <div style="font-size:1.8rem;font-weight:900;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em;line-height:1;">HANDOVER</div>
-                        <div style="margin-top:8px;font-size:0.72rem;color:rgba(255,255,255,0.5);">Ref: <span style="color:${C.white};font-weight:700;">${hoNum}</span></div>
-                        <div style="font-size:0.72rem;color:rgba(255,255,255,0.5);">Date: <span style="color:${C.white};font-weight:600;">${dateStr}</span></div>
-                    </div>
-                </div>
-            </div>
+            ${getHeaderHTML('PROJECT HANDOVER', '#' + hoNum, dateStr)}
 
             <!-- PARTY STRIP -->
             <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
@@ -773,25 +748,7 @@ window.renderLive = () => {
          document.getElementById('document-preview').innerHTML = `
          <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
              <!-- HEADER -->
-             <div style="position:relative;background:${C.navyDark};padding:12mm 18mm 10mm;overflow:hidden;">
-                 <div style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:${C.blue};opacity:0.08;"></div>
-                 <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;z-index:1;">
-                     <div style="display:flex;align-items:center;gap:15px;">
-                         <div style="width:60px;height:60px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                             <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
-                         </div>
-                         <div>
-                             <h1 style="font-size:1.5rem;font-weight:800;color:${C.white};margin:0;">${company.name}</h1>
-                             <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin:3px 0 0;">Annual Maintenance Contract</p>
-                         </div>
-                     </div>
-                     <div style="text-align:right;">
-                         <div style="font-size:1.8rem;font-weight:900;color:${C.white};letter-spacing:-0.02em;line-height:1;">AMC</div>
-                         <div style="font-size:1.8rem;font-weight:900;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em;line-height:1;">AGREEMENT</div>
-                         <div style="margin-top:8px;font-size:0.72rem;color:rgba(255,255,255,0.5);">Ref: <span style="color:${C.white};font-weight:700;">${amcNum}</span></div>
-                     </div>
-                 </div>
-             </div>
+             ${getHeaderHTML('AMC AGREEMENT', '#' + amcNum, dateStr)}
 
              <!-- PARTIES STRIP -->
              <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
@@ -999,6 +956,8 @@ async function loadHistory() {
 window.loadDocumentFromHistory = (idx) => {
     const d = _historyRecords[idx];
     if (!d) return;
+
+    window._currentHistoryDoc = d;
 
     // Switch to Business Suite
     switchView('suite');
