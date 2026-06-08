@@ -251,6 +251,33 @@ const getHeaderHTML = (title, docNumber, dateStr) => {
     </div>`;
 };
 
+const wrapInTableLayout = (headerHTML, contentHTML) => {
+    return `
+    <table class="doc-layout-table" style="width:100%;border-collapse:collapse;border:none;margin:0;padding:0;table-layout:fixed;">
+        <thead>
+            <tr style="border:none;">
+                <td style="padding:0;border:none;vertical-align:top;">
+                    ${headerHTML}
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border:none;">
+                <td style="padding:0;border:none;vertical-align:top;">
+                    ${contentHTML}
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr style="border:none;">
+                <td style="padding:0;border:none;vertical-align:bottom;">
+                    <div style="height:15mm;"></div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>`;
+};
+
 // --- Rendering Engine ---
 window.renderLive = () => {
     console.log('Admin App: renderLive() triggered');
@@ -296,24 +323,16 @@ window.renderLive = () => {
                 </tr>`;
             }).join('');
 
-            const docNum = window._currentHistoryDoc && window._currentHistoryDoc._type === mode
-                ? `#${mode === 'invoice' ? 'INV' : 'QT'}-${window._currentHistoryDoc.id}`
-                : `#${isInv ? invNum : qtNum}`;
-
-            document.getElementById('document-preview').innerHTML = `
-            <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;">
-                <!-- HEADER -->
-                ${getHeaderHTML(label, docNum, dateStr)}
-
+                      const contentHTML = `
             <!-- BILLING INFO -->
             <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
-                <div style="padding:10mm 18mm;border-right:1px solid ${C.border};">
+                <div style="padding:8mm 18mm;border-right:1px solid ${C.border};">
                     <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:10px;">Issued By</div>
                     <div style="font-size:1.1rem;font-weight:800;color:${C.textDark};margin-bottom:6px;">${company.name}</div>
                     <div style="font-size:0.8rem;color:${C.textMid};line-height:1.6;max-width:240px;">${company.address}</div>
                     <div style="font-size:0.8rem;color:${C.textMid};margin-top:4px;">${company.email}</div>
                 </div>
-                <div style="padding:10mm 18mm;">
+                <div style="padding:8mm 18mm;">
                     <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:10px;">${isInv ? 'Billed To' : 'Quotation For'}</div>
                     <div style="font-size:1.1rem;font-weight:800;color:${C.textDark};margin-bottom:6px;">${client}</div>
                     <div style="font-size:0.8rem;color:${C.textMid};line-height:1.6;">${addr}</div>
@@ -322,7 +341,7 @@ window.renderLive = () => {
             </div>
 
             <!-- LINE ITEMS -->
-            <div style="padding:10mm 18mm;background:${C.white};">
+            <div style="padding:6mm 18mm;background:${C.white};">
                 <div style="border-radius:14px;border:1px solid ${C.border};overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.03);">
                     <table style="width:100%;border-collapse:collapse;">
                         <thead>
@@ -341,7 +360,7 @@ window.renderLive = () => {
                 </div>
 
                 <!-- TOTALS SECTION -->
-                <div style="display:flex;justify-content:flex-end;margin-top:12mm;">
+                <div style="display:flex;justify-content:flex-end;margin-top:4mm;">
                     <div style="width:340px;background:${C.offWhite};border-radius:16px;padding:24px;border:1px solid ${C.border};">
                         <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
                             <span style="font-size:0.9rem;color:${C.textMid};">Subtotal</span>
@@ -356,7 +375,7 @@ window.renderLive = () => {
                 </div>
 
                 <div class="no-break">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:8mm;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:4mm;">
                         <div style="flex:1;">
                             <div style="padding:18px;background:${isInv ? '#eff6ff' : C.violetLight};border-radius:14px;border:1px solid ${isInv ? 'rgba(37,99,235,0.1)' : 'rgba(124,58,237,0.1)'};max-width:420px;">
                                 <p style="font-size:0.75rem;color:${isInv ? '#1e40af' : C.violet};line-height:1.7;margin:0;">
@@ -373,7 +392,7 @@ window.renderLive = () => {
                     </div>
 
                     <!-- PAYMENT DETAILS -->
-                    <div style="margin-top:14mm;padding-top:8mm;border-top:1px solid ${C.border};">
+                    <div style="margin-top:4mm;padding-top:4mm;border-top:1px solid ${C.border};">
                         <h3 style="font-size:1.1rem;font-weight:800;color:${C.navyDark};margin-bottom:15px;display:flex;align-items:center;gap:10px;">
                             <div style="width:5px;height:22px;background:${isInv ? C.navy : GRADIENT};border-radius:3px;"></div>
                             Bank Transfer Details
@@ -388,13 +407,13 @@ window.renderLive = () => {
                         </div>
                     </div>
                 </div>
+            </div>`;
 
-                </div>
-            </div>
-
-            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
-        </div>`;
-
+            document.getElementById('document-preview').innerHTML = `
+            <div class="a4-page dynamic-height single-page" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+                ${wrapInTableLayout(getHeaderHTML(label, docNum, dateStr), contentHTML)}
+                <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+            </div>`;
     } else if (mode === 'proposal') {
         const scope         = document.getElementById('p-scope').value;
         const deliverables  = document.getElementById('p-deliverables').value;
@@ -418,12 +437,7 @@ window.renderLive = () => {
             ? `#PROP-${window._currentHistoryDoc.id}`
             : `#PROP-${year}-${month}-${rand}`;
 
-        document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;">
-
-            <!-- HEADER -->
-            ${getHeaderHTML('PROJECT PROPOSAL', propNum, dateStr)}
-
+        const contentHTML = `
             <!-- SUBTITLE STRIP -->
             <div style="position:relative;padding:8mm 18mm 4mm;">
                 <h2 style="font-size:2.4rem;font-weight:900;color:${C.navyDark};letter-spacing:-0.03em;line-height:1.2;margin:0;">Project Proposal</h2>
@@ -465,8 +479,11 @@ window.renderLive = () => {
                     Project kickoff begins upon receipt of advance payment.
                 </div>
                 ${sig}
-            </div>
+            </div>`;
 
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(getHeaderHTML('PROJECT PROPOSAL', propNum, dateStr), contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'letterhead') {
@@ -474,12 +491,7 @@ window.renderLive = () => {
             ? `#LT-${window._currentHistoryDoc.id}`
             : `#LT-${year}-${month}-${rand}`;
 
-        document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
-
-            <!-- HEADER -->
-            ${getHeaderHTML('OFFICIAL LETTER', ltNum, dateStr)}
-
+        const contentHTML = `
             <!-- TO / DATE -->
             <div style="background:${C.offWhite};padding:6mm 18mm;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid ${C.border};">
                 <div>
@@ -504,8 +516,11 @@ window.renderLive = () => {
             <!-- SIGNATURE -->
             <div class="no-break" style="padding:0 18mm 12mm;display:flex;justify-content:flex-end;">
                 ${sig}
-            </div>
+            </div>`;
 
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(getHeaderHTML('OFFICIAL LETTER', ltNum, dateStr), contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
 
@@ -530,11 +545,7 @@ window.renderLive = () => {
             ? `#MOA-${window._currentHistoryDoc.id}`
             : `#MOA-${year}-${month}-${rand}`;
 
-        document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
-            <!-- HEADER -->
-            ${getHeaderHTML('MEMORANDUM OF AGREEMENT', moaNum, dateStr)}
-
+        const contentHTML = `
             <!-- WATERMARK / ACCENT -->
             <div style="position:absolute;top:0;right:0;width:100mm;height:100mm;background:radial-gradient(circle at top right, ${C.blueLight} 0%, transparent 70%);opacity:0.4;z-index:0;"></div>
 
@@ -589,8 +600,11 @@ window.renderLive = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>`;
+
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(getHeaderHTML('MEMORANDUM OF AGREEMENT', moaNum, dateStr), contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'handover') {
@@ -615,12 +629,7 @@ window.renderLive = () => {
             }).join('')
             : `<div style="font-size:0.85rem;color:${C.textLight};font-style:italic;padding:8px 0;">No deliverables listed</div>`;
 
-        document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;">
-
-            <!-- HEADER -->
-            ${getHeaderHTML('PROJECT HANDOVER', '#' + hoNum, dateStr)}
-
+        const contentHTML = `
             <!-- PARTY STRIP -->
             <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
                 <div style="padding:8mm 18mm;border-right:1px solid ${C.border};">
@@ -706,8 +715,11 @@ window.renderLive = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>`;
 
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(getHeaderHTML('PROJECT HANDOVER', '#' + hoNum, dateStr), contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'amc') {
@@ -742,20 +754,16 @@ window.renderLive = () => {
              }).join('')
              : `<div style="font-size:0.82rem;color:${C.textLight};font-style:italic;padding:4px 0;">Standard exclusions apply</div>`;
 
-         document.getElementById('document-preview').innerHTML = `
-         <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
-             <!-- HEADER -->
-             ${getHeaderHTML('AMC AGREEMENT', '#' + amcNum, dateStr)}
-
+         const contentHTML = `
              <!-- PARTIES STRIP -->
              <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
                  <div style="padding:6mm 18mm;border-right:1px solid ${C.border};">
-                     <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:4px;">Service Provider</div>
+                     <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:4px;">Service Provider</div>
                      <div style="font-size:0.95rem;font-weight:800;color:${C.textDark};">${company.name}</div>
                      <div style="font-size:0.75rem;color:${C.textMid};margin-top:2px;">${company.email}</div>
                  </div>
                  <div style="padding:6mm 18mm;">
-                     <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:4px;">Client</div>
+                     <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:4px;">Client</div>
                      <div style="font-size:0.95rem;font-weight:800;color:${C.textDark};">${client}</div>
                      ${addr ? `<div style="font-size:0.75rem;color:${C.textMid};margin-top:2px;">${addr}</div>` : ''}
                  </div>
@@ -816,7 +824,11 @@ window.renderLive = () => {
                          </div>
                      </div>
                  </div>
-             </div>
+             </div>`;
+
+         document.getElementById('document-preview').innerHTML = `
+         <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+             ${wrapInTableLayout(getHeaderHTML('AMC AGREEMENT', '#' + amcNum, dateStr), contentHTML)}
              <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
          </div>`;
     }
