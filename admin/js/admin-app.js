@@ -323,7 +323,11 @@ window.renderLive = () => {
                 </tr>`;
             }).join('');
 
-                      const contentHTML = `
+            const docNum = window._currentHistoryDoc && window._currentHistoryDoc._type === mode
+                ? `#${mode === 'invoice' ? 'INV' : 'QT'}-${window._currentHistoryDoc.id}`
+                : `#${isInv ? invNum : qtNum}`;
+
+            const contentHTML = `
             <!-- BILLING INFO -->
             <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
                 <div style="padding:8mm 18mm;border-right:1px solid ${C.border};">
