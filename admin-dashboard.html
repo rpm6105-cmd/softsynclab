@@ -400,6 +400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <option value="letterhead">New Letterhead</option>
                         <option value="moa">Memorandum of Agreement</option>
                         <option value="handover">Project Handover</option>
+                        <option value="amc">New AMC Agreement</option>
                     </select>
                     <button class="btn btn-ghost" onclick="saveDocument()">💾 Save & Sync</button>
                     <button class="btn btn-primary" onclick="window.print()">🖨️ Print PDF</button>
@@ -491,6 +492,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="form-group">
                             <label>Known Issues / Notes (optional)</label>
                             <textarea id="ho-notes" class="form-input" style="height:60px;" oninput="renderLive()" placeholder="Any items still pending or caveats to communicate..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card" id="amc-editor" style="display:none;">
+                        <h3>AMC Agreement Details</h3>
+                        <div class="form-group">
+                            <label>Project Name</label>
+                            <input type="text" id="amc-project" class="form-input" placeholder="e.g. HRMS Portal Support" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Inclusions / Covered Services (one per line)</label>
+                            <textarea id="amc-inclusions" class="form-input" style="height:90px;" oninput="renderLive()" placeholder="* Server maintenance&#10;* Bug fixes&#10;* Monthly database backup"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Exclusions &amp; Extra Cost Items (one per line)</label>
+                            <textarea id="amc-exclusions" class="form-input" style="height:80px;" oninput="renderLive()" placeholder="* New features will be charged extra at ₹1,500/hour&#10;* Third-party API subscription costs are not included"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>AMC Cost (₹)</label>
+                            <input type="number" id="amc-cost" class="form-input" value="4000" oninput="renderLive()">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>Payment Cycle / Terms</label>
+                            <input type="text" id="amc-payment" class="form-input" value="Quarterly Advance" placeholder="e.g. Monthly Retainer, Quarterly Advance" oninput="renderLive()">
                         </div>
                     </div>
 

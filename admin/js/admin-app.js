@@ -159,6 +159,7 @@ window.updateUI = () => {
     const letterEditor = document.getElementById('letter-editor');
     const moaEditor = document.getElementById('moa-editor');
     const handoverEditor = document.getElementById('handover-editor');
+    const amcEditor = document.getElementById('amc-editor');
     const subjectField = document.getElementById('subject-field-group');
 
     itemsEditor.style.display = 'none';
@@ -166,6 +167,7 @@ window.updateUI = () => {
     letterEditor.style.display = 'none';
     moaEditor.style.display = 'none';
     handoverEditor.style.display = 'none';
+    if (amcEditor) amcEditor.style.display = 'none';
     subjectField.style.display = 'none';
 
     if (mode === 'letterhead') {
@@ -187,6 +189,9 @@ window.updateUI = () => {
     } else if (mode === 'handover') {
         handoverEditor.style.display = 'block';
         subjectField.style.display = 'block';
+        preview.className = 'a4-page theme-indigo';
+    } else if (mode === 'amc') {
+        if (amcEditor) amcEditor.style.display = 'block';
         preview.className = 'a4-page theme-indigo';
     }
     renderLive();
@@ -733,6 +738,133 @@ window.renderLive = () => {
 
             <div style="width:100%;">${footer}</div>
         </div>`;
+    } else if (mode === 'amc') {
+        const amcProject    = document.getElementById('amc-project').value      || '[Project Name]';
+        const inclusionsRaw = document.getElementById('amc-inclusions').value   || '';
+        const exclusionsRaw = document.getElementById('amc-exclusions').value   || '';
+        const amcCost       = document.getElementById('amc-cost').value         || '0';
+        const amcPayment    = document.getElementById('amc-payment').value      || 'Quarterly Advance';
+        const amcNum        = `AMC-${year}-${month}-${rand}`;
+
+        const inclusionsLines = inclusionsRaw.split('\n').filter(l => l.trim());
+        const inclusionsHTML = inclusionsLines.length
+            ? inclusionsLines.map(line => {
+                const text = line.replace(/^[\*\-•]\s*/, '').trim();
+                return `<div style="display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid ${C.border};">
+                    <div style="flex-shrink:0;margin-top:2px;width:16px;height:16px;background:linear-gradient(135deg,#16a34a,#15803d);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+                        <svg width="9" height="7" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <span style="font-size:0.82rem;color:${C.textDark};line-height:1.4;">${text}</span>
+                </div>`;
+            }).join('')
+            : `<div style="font-size:0.82rem;color:${C.textLight};font-style:italic;padding:6px 0;">No services specified</div>`;
+
+         const exclusionsLines = exclusionsRaw.split('\n').filter(l => l.trim());
+         const exclusionsHTML = exclusionsLines.length
+             ? exclusionsLines.map(line => {
+                 const text = line.replace(/^[\*\-•]\s*/, '').trim();
+                 return `<div style="display:flex;align-items:flex-start;gap:8px;padding:4px 0;">
+                     <span style="color:#f59e0b;font-weight:700;">•</span>
+                     <span style="font-size:0.82rem;color:${C.textMid};line-height:1.4;">${text}</span>
+                 </div>`;
+             }).join('')
+             : `<div style="font-size:0.82rem;color:${C.textLight};font-style:italic;padding:4px 0;">Standard exclusions apply</div>`;
+
+         document.getElementById('document-preview').innerHTML = `
+         <div style="background:${C.white};min-height:297mm;position:relative;font-family:'Inter',sans-serif;">
+             <!-- HEADER -->
+             <div style="position:relative;background:${C.navyDark};padding:12mm 18mm 10mm;overflow:hidden;">
+                 <div style="position:absolute;top:-30px;right:-30px;width:200px;height:200px;border-radius:50%;background:${C.blue};opacity:0.08;"></div>
+                 <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;z-index:1;">
+                     <div style="display:flex;align-items:center;gap:15px;">
+                         <div style="width:60px;height:60px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                             <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
+                         </div>
+                         <div>
+                             <h1 style="font-size:1.5rem;font-weight:800;color:${C.white};margin:0;">${company.name}</h1>
+                             <p style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin:3px 0 0;">Annual Maintenance Contract</p>
+                         </div>
+                     </div>
+                     <div style="text-align:right;">
+                         <div style="font-size:1.8rem;font-weight:900;color:${C.white};letter-spacing:-0.02em;line-height:1;">AMC</div>
+                         <div style="font-size:1.8rem;font-weight:900;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.02em;line-height:1;">AGREEMENT</div>
+                         <div style="margin-top:8px;font-size:0.72rem;color:rgba(255,255,255,0.5);">Ref: <span style="color:${C.white};font-weight:700;">${amcNum}</span></div>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- PARTIES STRIP -->
+             <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
+                 <div style="padding:6mm 18mm;border-right:1px solid ${C.border};">
+                     <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:4px;">Service Provider</div>
+                     <div style="font-size:0.95rem;font-weight:800;color:${C.textDark};">${company.name}</div>
+                     <div style="font-size:0.75rem;color:${C.textMid};margin-top:2px;">${company.email}</div>
+                 </div>
+                 <div style="padding:6mm 18mm;">
+                     <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:4px;">Client</div>
+                     <div style="font-size:0.95rem;font-weight:800;color:${C.textDark};">${client}</div>
+                     ${addr ? `<div style="font-size:0.75rem;color:${C.textMid};margin-top:2px;">${addr}</div>` : ''}
+                 </div>
+             </div>
+
+             <!-- CONTRACT OVERVIEW -->
+             <div style="padding:8mm 18mm 6mm;background:${C.white};border-bottom:1px solid ${C.border};display:grid;grid-template-columns:1.5fr 1fr;gap:20px;">
+                 <div>
+                     <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:${C.textLight};margin-bottom:4px;">Project Name</div>
+                     <div style="font-size:1.1rem;font-weight:800;color:${C.navyDark};">${amcProject}</div>
+                 </div>
+                 <div>
+                     <div style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:${C.textLight};margin-bottom:4px;">Contract Period</div>
+                     <div style="font-size:0.9rem;font-weight:700;color:${C.textDark};">${dateStr} to ${validStr}</div>
+                 </div>
+             </div>
+
+             <!-- INCLUSIONS -->
+             <div style="padding:8mm 18mm;background:${C.white};border-bottom:1px solid ${C.border};">
+                 <h3 style="font-size:0.85rem;font-weight:800;color:${C.navyDark};margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;">Covered Services (Inclusions)</h3>
+                 <div style="margin-top:3mm;">${inclusionsHTML}</div>
+             </div>
+
+             <!-- EXCLUSIONS & LIMITATIONS -->
+             <div style="padding:8mm 18mm;background:${C.white};border-bottom:1px solid ${C.border};">
+                 <h3 style="font-size:0.85rem;font-weight:800;color:${C.navyDark};margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;">Exclusions &amp; Out-of-Scope</h3>
+                 <div style="margin-top:3mm;background:#fef3c7;border:1px solid #fde68a;border-radius:12px;padding:12px 16px;">
+                     ${exclusionsHTML}
+                 </div>
+             </div>
+
+             <!-- AMC FEES & PAYMENT CYCLE -->
+             <div style="padding:8mm 18mm;background:${C.offWhite};border-bottom:1px solid ${C.border};display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                 <div>
+                     <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:${C.textLight};margin-bottom:4px;">AMC Fees</div>
+                     <div style="font-size:1.4rem;font-weight:900;color:${C.navyDark};">₹${parseFloat(amcCost).toLocaleString('en-IN')}</div>
+                 </div>
+                 <div>
+                     <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:${C.textLight};margin-bottom:4px;">Payment Cycle</div>
+                     <div style="font-size:1.1rem;font-weight:800;color:${C.navyDark};">${amcPayment}</div>
+                 </div>
+             </div>
+
+             <!-- SIGN-OFF -->
+             <div style="padding:8mm 18mm 12mm;background:${C.white};">
+                 <div style="font-size:0.78rem;color:${C.textMid};line-height:1.6;margin-bottom:8mm;font-style:italic;">
+                     Both parties agree to the terms of this Annual Maintenance Contract. Work outside the defined scope will be subject to extra charges as outlined above.
+                 </div>
+                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:30mm;">
+                     <div>
+                         <div style="font-size:0.72rem;font-weight:700;color:${C.textLight};text-transform:uppercase;margin-bottom:12mm;">For ${company.name}</div>
+                         ${sig}
+                     </div>
+                     <div>
+                         <div style="font-size:0.72rem;font-weight:700;color:${C.textLight};text-transform:uppercase;margin-bottom:20mm;">For ${client}</div>
+                         <div style="border-top:1px solid ${C.textLight};padding-top:4px;">
+                             <div style="font-size:0.65rem;color:${C.textLight};text-transform:uppercase;">Authorized Signatory &amp; Date</div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+         </div>`;
     }
 
     } catch (err) {
@@ -769,20 +901,20 @@ window.saveDocument = async () => {
         if(mode === 'quotation' || mode === 'letterhead') {
             payload.service=subject;
         }
-        if(mode !== 'moa' && mode !== 'handover') {
+        if(mode !== 'moa' && mode !== 'handover' && mode !== 'amc') {
             payload.items=activeItems;
         }
         if(mode==='letterhead') payload.message_body = document.getElementById('letter-body').value;
         if(mode==='invoice'){payload.amount=amount;payload.status='Pending';}
-        if(mode==='moa') {
+        if(mode==='moa' || mode==='amc') {
             Object.assign(payload, {
-                purpose: document.getElementById('moa-purpose').value,
-                scope:   document.getElementById('moa-scope').value,
-                cost:    document.getElementById('moa-cost').value,
-                payment: document.getElementById('moa-payment').value,
-                timeline:document.getElementById('moa-timeline').value,
-                support:  document.getElementById('moa-support').value,
-                law:     document.getElementById('moa-law').value
+                purpose: mode === 'amc' ? ("AMC:" + document.getElementById('amc-project').value) : document.getElementById('moa-purpose').value,
+                scope:   mode === 'amc' ? document.getElementById('amc-inclusions').value : document.getElementById('moa-scope').value,
+                cost:    mode === 'amc' ? parseFloat(document.getElementById('amc-cost').value||0) : parseFloat(document.getElementById('moa-cost').value||0),
+                payment: mode === 'amc' ? document.getElementById('amc-payment').value : document.getElementById('moa-payment').value,
+                timeline:mode === 'amc' ? document.getElementById('doc-due-date').value : document.getElementById('moa-timeline').value,
+                support:  mode === 'amc' ? document.getElementById('amc-exclusions').value : document.getElementById('moa-support').value,
+                law:     mode === 'amc' ? 'Mumbai, Maharashtra' : document.getElementById('moa-law').value
             });
         }
         if(mode==='handover') {
@@ -795,9 +927,9 @@ window.saveDocument = async () => {
                 notes:         document.getElementById('ho-notes').value,
             });
         }
-        if(mode!=='invoice' && mode!=='moa' && mode!=='handover') payload.price=amount;
+        if(mode!=='invoice' && mode!=='moa' && mode!=='handover' && mode!=='amc') payload.price=amount;
     }
-    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers' };
+    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'moas' };
     const table = tableMap[mode] || 'quotes';
     const { error } = await supabase.from(table).insert([payload]);
     if (error) alert("Sync Error: "+error.message);
@@ -818,7 +950,15 @@ async function loadHistory() {
         ...(q||[]).map(x=>({...x, _type:'quotation',  _label:'Quote',    _val:x.price})),
         ...(i||[]).map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
         ...(p||[]).map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
-        ...(m||[]).map(x=>({...x, _type:'moa',        _label:'MOA',      _val:x.cost})),
+        ...(m||[]).map(x=>{
+            const isAmc = x.purpose && x.purpose.startsWith('AMC:');
+            return {
+                ...x,
+                _type:  isAmc ? 'amc' : 'moa',
+                _label: isAmc ? 'AMC' : 'MOA',
+                _val:   x.cost
+            };
+        }),
         ...(h||[]).map(x=>({...x, _type:'handover',   _label:'Handover', _val:0}))
     ].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
 
@@ -907,6 +1047,18 @@ window.loadDocumentFromHistory = (idx) => {
             const el = document.getElementById(id);
             if (el) el.value = val;
         }
+    } else if (d._type === 'amc') {
+        const fields = {
+            'amc-project':    d.purpose ? d.purpose.substring(4) : '',
+            'amc-inclusions': d.scope || '',
+            'amc-cost':       d.cost || 0,
+            'amc-payment':    d.payment || '',
+            'amc-exclusions': d.support || '',
+        };
+        for (const [id, val] of Object.entries(fields)) {
+            const el = document.getElementById(id);
+            if (el) el.value = val;
+        }
     } else {
         // Quotation or Invoice
         activeItems.length = 0;
@@ -923,8 +1075,17 @@ window.loadDocumentFromHistory = (idx) => {
         const dateEl = document.getElementById('doc-date');
         if (dateEl) {
             dateEl.valueAsDate = new Date(d.created_at);
-            updateDueDate(); // This will recalculate the due date and trigger renderLive()
         }
+    }
+
+    if (d._type === 'amc') {
+        const dueEl = document.getElementById('doc-due-date');
+        if (dueEl && d.timeline) {
+            dueEl.value = d.timeline;
+        }
+        renderLive();
+    } else if (d.created_at && (d._type === 'quotation' || d._type === 'invoice')) {
+        updateDueDate(); // Recalculate due date + 14 days and trigger renderLive()
     } else {
         renderLive();
     }
@@ -937,7 +1098,7 @@ window.deleteDocumentFromHistory = async (idx) => {
     const d = _historyRecords[idx];
     if (!d || !confirm(`Delete ${d._label} for ${d.client_name || 'this client'}?`)) return;
 
-    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : 'quotes');
+    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : (d._type === 'moa' || d._type === 'amc' ? 'moas' : 'quotes'));
     const { error } = await supabase.from(table).delete().eq('id', d.id);
 
     if (error) {
