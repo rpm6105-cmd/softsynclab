@@ -50,6 +50,26 @@
     {
       "source": "/favicon.ico",
       "destination": "/favicon.svg"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.softsyncsolutions.in"
+        }
+      ],
+      "destination": "/admin-login.html"
+    },
+    {
+      "source": "/dashboard",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.softsyncsolutions.in"
+        }
+      ],
+      "destination": "/admin-dashboard.html"
     }
   ]
 }
