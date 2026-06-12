@@ -22,17 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTopBtn.style.display = window.scrollY > 500 ? 'block' : 'none';
         }
 
-        let current = '';
-        sections.forEach((section) => {
-            const sectionTop = section.offsetTop;
-            if (window.pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
+        if (sections.length > 0) {
+            let current = '';
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        navLinks.forEach((link) => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-        });
+            navLinks.forEach((link) => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+            });
+        }
 
         scrollTicking = false;
     };
