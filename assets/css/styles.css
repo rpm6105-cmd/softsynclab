@@ -272,6 +272,51 @@ textarea:focus-visible {
     border-radius: 2px;
 }
 
+.nav-links a.nav-demo {
+    background: rgba(13, 148, 136, 0.08);
+    color: var(--accent);
+    padding: 0.35rem 0.85rem;
+    border-radius: 50px;
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: all 0.3s ease;
+}
+
+.nav-links a.nav-demo:hover {
+    background: rgba(13, 148, 136, 0.15);
+    border-color: rgba(13, 148, 136, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.1);
+}
+
+.nav-links a.nav-demo::after {
+    display: none !important;
+}
+
+.nav-demo-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    animation: demoPulse 2s infinite;
+}
+
+@keyframes demoPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
 .nav-toggle {
     display: none;
     cursor: pointer;
@@ -1250,6 +1295,16 @@ textarea:focus-visible {
 
     .nav-links a:not(.btn).active {
         border-left-color: var(--accent);
+    }
+
+    .nav-links a.nav-demo {
+        align-self: flex-start;
+        border-left: 1px solid rgba(13, 148, 136, 0.2);
+        padding-left: 0.85rem;
+    }
+
+    .nav-links a.nav-demo.active {
+        border-left-color: rgba(13, 148, 136, 0.2);
     }
     
     .nav-toggle {
