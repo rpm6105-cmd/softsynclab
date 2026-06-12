@@ -46,11 +46,7 @@
       ]
     }
   ],
-  "rewrites": [
-    {
-      "source": "/favicon.ico",
-      "destination": "/favicon.svg"
-    },
+  "redirects": [
     {
       "source": "/",
       "has": [
@@ -59,7 +55,36 @@
           "value": "admin.softsyncsolutions.in"
         }
       ],
-      "destination": "/admin-login.html"
+      "destination": "/admin-login.html",
+      "permanent": false
+    },
+    {
+      "source": "/admin-login.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "softsyncsolutions.in"
+        }
+      ],
+      "destination": "https://admin.softsyncsolutions.in/",
+      "permanent": true
+    },
+    {
+      "source": "/admin-dashboard.html",
+      "has": [
+        {
+          "type": "host",
+          "value": "softsyncsolutions.in"
+        }
+      ],
+      "destination": "https://admin.softsyncsolutions.in/admin-dashboard.html",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon.svg"
     },
     {
       "source": "/dashboard",
