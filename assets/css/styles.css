@@ -1642,3 +1642,41 @@ textarea:focus-visible {
     filter: brightness(1.15);
     background-position: right center;
 }
+
+/* ━━━ FOUNDER SECTION RESPONSIVE STYLES ━━━ */
+.founder-card {
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 28px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 8px 40px rgba(15, 23, 42, 0.06);
+}
+
+.founder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.founder-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .founder-card {
+        padding: 2.25rem 1.5rem;
+    }
+    
+    .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .founder-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}
