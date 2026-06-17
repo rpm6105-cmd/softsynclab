@@ -346,7 +346,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
       <strong>For SOFTSYNC SOLUTIONS</strong><br><br><br>
       Signature: _______________________<br><br>
       Name: <strong>Rohith PM</strong><br>
-      Title: <strong>Proprietor</strong><br>
+      Title: <strong>Founder & Proprietor</strong><br>
       Date: ____________________________
     </td>
     <td style="width: 50%; border: none;">

@@ -49,14 +49,14 @@ const sig = `
     <div style="text-align:right;">
         <p style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:${C.navy};margin:0 0 2px;line-height:1.1;">Rohith P.M.</p>
         <div style="width:120px;height:2px;background:${GRADIENT};margin:0 0 5px auto;"></div>
-        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder, Softsync Solutions</p>
+        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder & Proprietor, Softsync Solutions</p>
     </div>`;
 
 const sigLeft = `
     <div style="text-align:left;margin-top:2px;margin-bottom:2px;">
         <p style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:${C.navy};margin:0 0 2px;line-height:1.1;">Rohith P.M.</p>
         <div style="width:120px;height:2px;background:${GRADIENT};margin:0 0 5px 0;"></div>
-        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder, Softsync Solutions</p>
+        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder & Proprietor, Softsync Solutions</p>
     </div>`;
 
 /* ── FOOTER BAR ── */
@@ -1129,7 +1129,7 @@ window.renderLive = () => {
                                 <strong>For SOFTSYNC SOLUTIONS</strong><br><br>
                                 ${sigLeft}
                                 Name: <strong>Rohith PM</strong><br>
-                                Title: <strong>Proprietor</strong>
+                                Title: <strong>Founder & Proprietor</strong>
                             </td>
                             <td style="width: 50%; border: none; padding: 0; vertical-align: top;">
                                 <strong>THE FREELANCER</strong><br><br><br>
