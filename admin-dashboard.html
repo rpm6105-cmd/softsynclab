@@ -43,6 +43,11 @@
             --cyan: #10b981;
         }
 
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
@@ -494,6 +499,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <option value="moa">Memorandum of Agreement</option>
                         <option value="handover">Project Handover</option>
                         <option value="amc">New AMC Agreement</option>
+                        <option value="freelancer_agreement">Freelancer Agreement</option>
                     </select>
                     <button class="btn btn-ghost" onclick="window.resetForm()">🆕 New Document</button>
                     <button class="btn btn-ghost" onclick="window.saveDocument()">💾 Save & Sync</button>
@@ -610,6 +616,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="form-group" style="margin-bottom:0;">
                             <label>Payment Cycle / Terms</label>
                             <input type="text" id="amc-payment" class="form-input" value="Quarterly Advance" placeholder="e.g. Monthly Retainer, Quarterly Advance" oninput="renderLive()">
+                        </div>
+                    </div>
+
+                    <div class="card" id="freelancer-editor" style="display:none;">
+                        <h3>Freelancer Agreement Details</h3>
+                        <div class="form-group">
+                            <label>PAN Card Number</label>
+                            <input type="text" id="fl-pan" class="form-input" placeholder="e.g. ABCDE1234F" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Aadhaar Number</label>
+                            <input type="text" id="fl-aadhaar" class="form-input" placeholder="e.g. 1234 5678 9012" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="fl-email" class="form-input" placeholder="e.g. rahul@example.com" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="fl-phone" class="form-input" placeholder="e.g. +91 98765 43210" oninput="renderLive()">
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Compensation Fee (₹)</label>
+                                <input type="number" id="fl-cost" class="form-input" value="15000" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Frequency</label>
+                                <select id="fl-cycle" class="form-input" onchange="renderLive()">
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Project-Based">Project-Based</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>Scope of Services</label>
+                            <textarea id="fl-services" class="form-input" style="height:100px;" oninput="renderLive()">* Email marketing campaigns&#10;* LinkedIn outreach and lead generation&#10;* Social media marketing&#10;* Content creation for marketing purposes&#10;* Prospect research&#10;* Lead qualification&#10;* Marketing reporting and analytics&#10;* Other mutually agreed marketing activities</textarea>
                         </div>
                     </div>
 

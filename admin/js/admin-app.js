@@ -148,6 +148,21 @@ window.resetForm = () => {
         const el = document.getElementById(id);
         if (el) el.value = val;
     }
+
+    // Freelancer Details
+    const flFields = {
+        'fl-pan': '',
+        'fl-aadhaar': '',
+        'fl-email': '',
+        'fl-phone': '',
+        'fl-cost': '15000',
+        'fl-cycle': 'Monthly',
+        'fl-services': `* Email marketing campaigns\n* LinkedIn outreach and lead generation\n* Social media marketing\n* Content creation for marketing purposes\n* Prospect research\n* Lead qualification\n* Marketing reporting and analytics\n* Other mutually agreed marketing activities`
+    };
+    for (const [id, val] of Object.entries(flFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
     
     renderLive();
 };
@@ -257,6 +272,7 @@ window.updateUI = () => {
     const moaEditor = document.getElementById('moa-editor');
     const handoverEditor = document.getElementById('handover-editor');
     const amcEditor = document.getElementById('amc-editor');
+    const flEditor = document.getElementById('freelancer-editor');
     const subjectField = document.getElementById('subject-field-group');
 
     itemsEditor.style.display = 'none';
@@ -265,7 +281,20 @@ window.updateUI = () => {
     moaEditor.style.display = 'none';
     handoverEditor.style.display = 'none';
     if (amcEditor) amcEditor.style.display = 'none';
+    if (flEditor) flEditor.style.display = 'none';
     subjectField.style.display = 'none';
+
+    const clientLabel = document.getElementById('doc-client')?.previousElementSibling;
+    const dateLabel = document.getElementById('doc-date')?.previousElementSibling;
+    const dueLabel = document.getElementById('doc-due-date')?.previousElementSibling;
+    const addrLabel = document.getElementById('doc-client-address')?.previousElementSibling;
+    const phoneLabel = document.getElementById('doc-client-phone')?.previousElementSibling;
+
+    if (clientLabel) clientLabel.innerText = 'Client Name';
+    if (dateLabel) dateLabel.innerText = 'Issue Date';
+    if (dueLabel) dueLabel.innerText = 'Valid Till';
+    if (addrLabel) addrLabel.innerText = 'Client Address';
+    if (phoneLabel) phoneLabel.innerText = 'Client Phone';
 
     if (mode === 'letterhead') {
         letterEditor.style.display = 'block';
@@ -290,6 +319,14 @@ window.updateUI = () => {
     } else if (mode === 'amc') {
         if (amcEditor) amcEditor.style.display = 'block';
         preview.className = 'preview-wrapper theme-indigo';
+    } else if (mode === 'freelancer_agreement') {
+        if (flEditor) flEditor.style.display = 'block';
+        preview.className = 'preview-wrapper theme-indigo';
+        if (clientLabel) clientLabel.innerText = 'Freelancer Full Name';
+        if (dateLabel) dateLabel.innerText = 'Agreement Date';
+        if (dueLabel) dueLabel.innerText = 'Start Date';
+        if (addrLabel) addrLabel.innerText = 'Freelancer Address';
+        if (phoneLabel) phoneLabel.innerText = 'Freelancer Phone';
     }
     renderLive();
 };
@@ -931,8 +968,234 @@ window.renderLive = () => {
              ${wrapInTableLayout(getHeaderHTML('AMC AGREEMENT', '#' + amcNum, dateStr), contentHTML)}
              <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
          </div>`;
-    }
+    } else if (mode === 'freelancer_agreement') {
+        const flName = document.getElementById('doc-client').value || '[Freelancer Full Name]';
+        const flAddress = document.getElementById('doc-client-address').value || '[Address]';
+        const flPhone = document.getElementById('doc-client-phone').value || '[Phone Number]';
+        const flEmail = document.getElementById('fl-email').value || '[Email]';
+        const flPan = document.getElementById('fl-pan').value || '[PAN Number]';
+        const flAadhaar = document.getElementById('fl-aadhaar').value || '[Aadhaar Number]';
+        const flCost = document.getElementById('fl-cost').value || '0';
+        const flCycle = document.getElementById('fl-cycle').value || 'Monthly';
+        const flServicesRaw = document.getElementById('fl-services').value || '';
+        const flNum = `FLA-${year}-${month}-${rand}`;
 
+        const servicesLines = flServicesRaw.split('\n').filter(l => l.trim());
+        const servicesListHTML = servicesLines.map(line => {
+            const text = line.replace(/^[\*\-•]\s*/, '').trim();
+            return `<li style="margin-bottom:6px;">${text}</li>`;
+        }).join('');
+
+        const contentHTML = `
+            <style>
+                .agreement-body h2 { font-size: 1.05rem; font-weight: 800; color: ${C.navy}; margin: 6mm 0 3mm; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid ${C.border}; padding-bottom: 2px; }
+                .agreement-body p, .agreement-body li { font-size: 0.82rem; color: ${C.textDark}; line-height: 1.6; text-align: justify; }
+                .agreement-body ul { padding-left: 20px; margin-bottom: 4mm; }
+                .agreement-body table { font-size: 0.78rem; margin: 4mm 0; }
+                .agreement-body td, .agreement-body th { border: 1px solid ${C.border}; padding: 6px 10px; }
+                .agreement-body th { background: ${C.offWhite}; font-weight: 700; }
+            </style>
+
+            <div class="agreement-body" style="padding: 10mm 18mm 0; background: ${C.white}; position: relative; z-index: 1;">
+                
+                <div class="no-break" style="margin-bottom: 15mm; padding: 15px; border: 1px solid ${C.border}; border-radius: 12px; background: ${C.offWhite};">
+                    <div style="text-align: center; padding: 10px 0;">
+                        <h4 style="margin: 0; color: ${C.textLight}; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem;">Standard Contract Template</h4>
+                        <h2 style="margin: 5px 0 10px; font-size: 1.4rem; color: ${C.navy}; border-bottom: none; padding-bottom: 0;">FREELANCER MARKETING SERVICES AGREEMENT</h2>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem;">
+                        <tr><td style="width: 30%; font-weight: 700; border: none; color: ${C.textMid};">Client:</td><td style="border: none; font-weight: 600;">Softsync Solutions (Bangalore, India)</td></tr>
+                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Freelancer:</td><td style="border: none; font-weight: 600;">${flName}</td></tr>
+                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Effective Date:</td><td style="border: none; font-weight: 600;">${dateStr}</td></tr>
+                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Compensation:</td><td style="border: none; font-weight: 600;">₹${parseFloat(flCost).toLocaleString('en-IN')} / ${flCycle}</td></tr>
+                    </table>
+                </div>
+
+                <p style="margin-bottom: 4mm;">
+                    This Freelancer Marketing Services Agreement (the <strong>"Agreement"</strong>) is entered into on this <strong>${dateStr}</strong> at Bengaluru, Karnataka, India, by and between:
+                </p>
+
+                <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
+                    <strong>SOFTSYNC SOLUTIONS</strong>, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, <strong>Mr. Rohith PM</strong> (hereinafter referred to as the <strong>"Client"</strong> or the <strong>"Company"</strong>) of the <strong>FIRST PART</strong>;
+                </p>
+                
+                <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
+                    <strong>${flName}</strong>, son/daughter/wife of __________________________, aged about _____ years, residing at <strong>${flAddress}</strong> (PAN: <strong>${flPan}</strong>, Aadhaar No: <strong>${flAadhaar}</strong>) (hereinafter referred to as the <strong>"Freelancer"</strong>) of the <strong>SECOND PART</strong>.
+                </p>
+
+                <p style="margin-bottom: 4mm; font-style: italic;">
+                    (The Client and the Freelancer shall hereinafter be collectively referred to as the "Parties" and individually as a "Party").
+                </p>
+
+                <h2>Preamble</h2>
+                <p style="margin-bottom: 4mm;">
+                    <strong>WHEREAS</strong> the Client is engaged in the business of building custom internal tools, software dashboards, workflow automation systems, and providing custom IT solutions to operations-heavy businesses.
+                    <br>
+                    <strong>WHEREAS</strong> the Freelancer represents that they have the requisite expertise, qualification, skills, and resources to perform marketing services, lead generation, and social media management campaigns.
+                    <br>
+                    <strong>WHEREAS</strong> the Client desires to retain the Freelancer, and the Freelancer agrees to perform the marketing and lead generation services under the terms and conditions set forth in this Agreement.
+                </p>
+
+                <h2>1. Scope of Services</h2>
+                <p style="margin-bottom: 2mm;">
+                    1.1 <strong>Services:</strong> The Freelancer agrees to perform marketing services for the Client in a professional and timely manner. The services shall include (collectively, the <strong>"Services"</strong>):
+                </p>
+                <ul>
+                    ${servicesListHTML || '<li style="color:#94a3b8;font-style:italic;">No services specified</li>'}
+                </ul>
+                <p style="margin-bottom: 4mm;">
+                    1.2 <strong>Limitation of Authority:</strong> The Freelancer is engaged solely for the execution of the marketing tasks outlined above. The Freelancer <strong>is not authorized</strong> to make commitments, sign contracts, negotiate pricing, offer discounts, or represent the Company legally without express prior written approval from Mr. Rohith PM.
+                </p>
+
+                <h2>2. Independent Contractor Relationship</h2>
+                <p style="margin-bottom: 4mm;">
+                    2.1 The relationship is strictly that of an <strong>independent contractor</strong>. Nothing in this Agreement shall construct a partnership, joint venture, employer-employee, or agency relationship. The Freelancer is not entitled to any benefits, perks, paid leaves, or gratuities of the Client.
+                </p>
+
+                <h2>3. Term & Termination</h2>
+                <p style="margin-bottom: 4mm;">
+                    3.1 This Agreement shall commence on <strong>${validStr}</strong> (the Start Date) and continues until terminated. Either Party may terminate this Agreement for convenience with <strong>7 days' written notice</strong>. The Client may terminate immediately for cause, including breach of confidentiality, unauthorized system access, fraud, or failure to perform.
+                </p>
+
+                <h2>4. Compensation & Taxation</h2>
+                <p style="margin-bottom: 4mm;">
+                    4.1 The Client shall pay the Freelancer a fee of <strong>₹${parseFloat(flCost).toLocaleString('en-IN')}</strong> per <strong>${flCycle}</strong>. The Freelancer shall submit invoices weekly/monthly, to be paid within 7 days of approval. The Freelancer is solely responsible for self-assessment income tax, GST, and statutory liabilities. The Client shall deduct TDS as applicable under the Income Tax Act, 1961.
+                </p>
+
+                <h2>5. Confidentiality & Non-Disclosure</h2>
+                <p style="margin-bottom: 4mm;">
+                    5.1 The Freelancer shall keep strictly confidential all customer info, prospect databases, pricing sheets, marketing strategies, credentials, source code, and internal communications of Softsync Solutions. This obligation survives termination for a period of <strong>3 (three) years</strong>.
+                </p>
+
+                <h2>6. Intellectual Property Rights</h2>
+                <p style="margin-bottom: 4mm;">
+                    6.1 All templates, graphics, reports, leads databases, and deliverables created during the engagement (the <strong>"Work Product"</strong>) shall be deemed <strong>"work made for hire"</strong> and shall remain the exclusive property of Softsync Solutions.
+                </p>
+
+                <h2>7. Access, Security & Limitations</h2>
+                <p style="margin-bottom: 4mm;">
+                    7.1 Access credentials remain the property of Softsync Solutions. The Freelancer shall not share passwords, grant third-party access, or access banking, hosting (Vercel/Supabase), domain registrars, or financial accounts. All access must be immediately revoked upon termination, and any copies of data on personal devices permanently deleted.
+                </p>
+
+                <h2>8. Non-Solicitation</h2>
+                <p style="margin-bottom: 4mm;">
+                    8.1 For <strong>12 months</strong> following termination, the Freelancer shall not solicit Softsync Solutions customers, leads, employees, or contractors, or use the company's proprietary databases for personal gain.
+                </p>
+
+                <h2>9. Governing Law & Jurisdiction</h2>
+                <p style="margin-bottom: 4mm;">
+                    9.1 This Agreement shall be governed by the laws of India, and disputes shall be subject to the exclusive jurisdiction of the courts in <strong>Bengaluru, Karnataka</strong>.
+                </p>
+
+                <div class="no-break" style="margin-top: 10mm; padding-top: 5mm; border-top: 1px solid ${C.border};">
+                    <table style="width: 100%; border: none; margin-top: 5mm;">
+                        <tr style="border: none;">
+                            <td style="width: 50%; border: none; padding: 0;">
+                                <strong>For SOFTSYNC SOLUTIONS</strong><br><br><br>
+                                Signature: _______________________<br><br>
+                                Name: <strong>Rohith PM</strong><br>
+                                Title: <strong>Proprietor</strong>
+                            </td>
+                            <td style="width: 50%; border: none; padding: 0;">
+                                <strong>THE FREELANCER</strong><br><br><br>
+                                Signature: _______________________<br><br>
+                                Name: <strong>${flName}</strong><br>
+                                Title: <strong>Freelancer</strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="page-break" style="page-break-before: always; break-before: page; margin-top: 20px;"></div>
+
+                <!-- SCHEDULE A -->
+                <div class="no-break" style="padding-top: 10mm;">
+                    <h2 style="text-align: center; border: none; margin-bottom: 6mm;">SCHEDULE A</h2>
+                    <h3 style="text-align: center; font-size: 1.1rem; font-weight: 800; margin-top: 0; margin-bottom: 8mm; color: ${C.navy};">ONE-PAGE SUMMARY OF KEY OBLIGATIONS</h3>
+                    <p style="margin-bottom: 4mm;">
+                        1. <strong>Services Scope:</strong> Execution of marketing outreach, campaigns, and lead qualification. Strictly no legal or financial commitments.
+                        <br>
+                        2. <strong>Confidentiality:</strong> Strict non-disclosure of lists, leads, credentials, and internal chat logs. Survives for 3 years.
+                        <br>
+                        3. <strong>Intellectual Property:</strong> Softsync Solutions holds exclusive rights to all campaign deliverables and work products.
+                        <br>
+                        4. <strong>Non-Solicitation:</strong> Cannot solicit clients, leads, or team members for 12 months post-termination.
+                        <br>
+                        5. <strong>Security:</strong> Credentials must not be shared. No accessing hosting, DNS, or banking portals.
+                    </p>
+                    <p style="margin-top: 8mm; font-weight: 600;">
+                        I have read, understood, and accept the summary of obligations above.
+                        <br><br><br>
+                        Freelancer Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; Date: _________________
+                    </p>
+                </div>
+
+                <div class="page-break" style="page-break-before: always; break-before: page; margin-top: 20px;"></div>
+
+                <!-- SCHEDULE B -->
+                <div class="no-break" style="padding-top: 10mm;">
+                    <h2 style="text-align: center; border: none; margin-bottom: 6mm;">SCHEDULE B</h2>
+                    <h3 style="text-align: center; font-size: 1.1rem; font-weight: 800; margin-top: 0; margin-bottom: 8mm; color: ${C.navy};">ACCOUNT & ACCESS GRANTED CHECKLIST</h3>
+                    <table style="width:100%; border-collapse:collapse; margin-top: 4mm;">
+                        <thead>
+                            <tr>
+                                <th>Account / System</th>
+                                <th>Purpose</th>
+                                <th>Access Scope / Restrictions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Google Workspace</strong></td>
+                                <td>Outbound marketing emails</td>
+                                <td>Outreach communications only. No personal registrations.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>LinkedIn Sales Navigator</strong></td>
+                                <td>Lead generation search & connect</td>
+                                <td>For lead generation campaigns only. Professional tone.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CRM & Lead Database</strong></td>
+                                <td>Lead management</td>
+                                <td>Export/Download of databases strictly prohibited.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lead Gen Tools</strong> (e.g. Apollo)</td>
+                                <td>Prospect email lookup</td>
+                                <td>Subject to credit limits. No credential sharing.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 8mm; font-weight: 600; font-size: 0.82rem;">
+                        <strong>Initial Grant Acknowledgment:</strong> I acknowledge receiving access to the accounts above for my duties and agree to maintain password hygiene.
+                        <br><br>
+                        Freelancer Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; Date: _________________
+                    </p>
+                </div>
+
+                <div class="page-break" style="page-break-before: always; break-before: page; margin-top: 20px;"></div>
+
+                <!-- SCHEDULE C -->
+                <div class="no-break" style="padding-top: 10mm; padding-bottom: 15mm;">
+                    <h2 style="text-align: center; border: none; margin-bottom: 6mm;">SCHEDULE C</h2>
+                    <h3 style="text-align: center; font-size: 1.1rem; font-weight: 800; margin-top: 0; margin-bottom: 8mm; color: ${C.navy};">CONFIDENTIALITY & NON-DISCLOSURE ACKNOWLEDGMENT</h3>
+                    <p style="margin-bottom: 4mm;">
+                        I, <strong>${flName}</strong>, hereby declare that I will keep all lead lists, software credentials, source codes, and communications of Softsync Solutions strictly confidential. I will not copy or transfer proprietary databases to personal storage. Upon termination, I will immediately delete all digital duplicates from my devices and certify the same in writing. Any breach of these terms entitles Softsync Solutions to seek immediate termination and legal action for damages in Bengaluru, India.
+                    </p>
+                    <div style="margin-top: 12mm; font-size: 0.82rem;">
+                        <strong>Freelancer Signature:</strong> ______________________________________<br><br>
+                        <strong>Date:</strong> ________________________ &nbsp;&nbsp;&nbsp;&nbsp; <strong>Place:</strong> ________________________
+                    </div>
+                </div>
+
+            </div>`;
+
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(getHeaderHTML('FREELANCER AGREEMENT', '#' + flNum, dateStr), contentHTML)}
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+        </div>`;
     } catch (err) {
         console.error('Render Error:', err);
         if (preview) {
@@ -967,7 +1230,7 @@ window.saveDocument = async () => {
         if(mode === 'quotation' || mode === 'letterhead') {
             payload.service=subject;
         }
-        if(mode !== 'moa' && mode !== 'handover' && mode !== 'amc') {
+        if(mode !== 'moa' && mode !== 'handover' && mode !== 'amc' && mode !== 'freelancer_agreement') {
             payload.items=activeItems;
         }
         if(mode==='letterhead') payload.message_body = document.getElementById('letter-body').value;
@@ -981,6 +1244,23 @@ window.saveDocument = async () => {
                 timeline:document.getElementById('moa-timeline').value,
                 support:  document.getElementById('moa-support').value,
                 law:     document.getElementById('moa-law').value
+            });
+        }
+        if(mode==='freelancer_agreement') {
+            Object.assign(payload, {
+                purpose: JSON.stringify({
+                    pan: document.getElementById('fl-pan').value,
+                    aadhaar: document.getElementById('fl-aadhaar').value,
+                    email: document.getElementById('fl-email').value,
+                    phone: document.getElementById('fl-phone').value,
+                    address: document.getElementById('doc-client-address').value
+                }),
+                scope:   document.getElementById('fl-services').value,
+                cost:    parseFloat(document.getElementById('fl-cost').value||0),
+                payment: document.getElementById('fl-cycle').value,
+                timeline:document.getElementById('doc-due-date').value,
+                support:  document.getElementById('fl-email').value + ' | ' + document.getElementById('fl-phone').value,
+                law:     'Bengaluru, Karnataka'
             });
         }
         if(mode==='amc') {
@@ -1003,9 +1283,9 @@ window.saveDocument = async () => {
                 notes:         document.getElementById('ho-notes').value,
             });
         }
-        if(mode!=='invoice' && mode!=='moa' && mode!=='handover' && mode!=='amc') payload.price=amount;
+        if(mode!=='invoice' && mode!=='moa' && mode!=='handover' && mode!=='amc' && mode!=='freelancer_agreement') payload.price=amount;
     }
-    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'handovers' };
+    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'handovers', freelancer_agreement:'moas' };
     const table = tableMap[mode] || 'quotes';
     const { error } = await supabase.from(table).insert([payload]);
     if (error) alert("Sync Error: "+error.message);
@@ -1026,7 +1306,23 @@ async function loadHistory() {
         ...(q||[]).map(x=>({...x, _type:'quotation',  _label:'Quote',    _val:x.price})),
         ...(i||[]).map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
         ...(p||[]).map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
-        ...(m||[]).map(x=>({...x, _type:'moa',        _label:'MOA',      _val:x.cost})),
+        ...(m||[]).map(x => {
+            let isFreelancer = false;
+            try {
+                if (x.purpose && x.purpose.startsWith('{')) {
+                    const parsed = JSON.parse(x.purpose);
+                    if (parsed.pan !== undefined || parsed.aadhaar !== undefined) {
+                        isFreelancer = true;
+                    }
+                }
+            } catch(e) {}
+            return {
+                ...x,
+                _type:  isFreelancer ? 'freelancer_agreement' : 'moa',
+                _label: isFreelancer ? 'Freelancer' : 'MOA',
+                _val:   x.cost
+            };
+        }),
         ...(h||[]).map(x=>{
             const isAmc = x.project_name && x.project_name.startsWith('AMC:');
             return {
@@ -1109,6 +1405,21 @@ window.loadDocumentFromHistory = (idx) => {
             const el = document.getElementById(id);
             if (el) el.value = val;
         }
+    } else if (d._type === 'freelancer_agreement') {
+        let details = {};
+        try {
+            details = JSON.parse(d.purpose);
+        } catch(e) {
+            details = { address: d.purpose || '' };
+        }
+        document.getElementById('doc-client-address').value = details.address || '';
+        document.getElementById('fl-pan').value = details.pan || '';
+        document.getElementById('fl-aadhaar').value = details.aadhaar || '';
+        document.getElementById('fl-email').value = details.email || '';
+        document.getElementById('fl-phone').value = details.phone || '';
+        document.getElementById('fl-services').value = d.scope || '';
+        document.getElementById('fl-cost').value = d.cost || 0;
+        document.getElementById('fl-cycle').value = d.payment || 'Monthly';
     } else if (d._type === 'letterhead') {
         const lb = document.getElementById('letter-body');
         if (lb) lb.value = d.message_body || '';
@@ -1176,7 +1487,7 @@ window.deleteDocumentFromHistory = async (idx) => {
     const d = _historyRecords[idx];
     if (!d || !confirm(`Delete ${d._label} for ${d.client_name || 'this client'}?`)) return;
 
-    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : (d._type === 'moa' || d._type === 'amc' ? 'moas' : 'quotes'));
+    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : (d._type === 'moa' || d._type === 'amc' || d._type === 'freelancer_agreement' ? 'moas' : 'quotes'));
     const { error } = await supabase.from(table).delete().eq('id', d.id);
 
     if (error) {
