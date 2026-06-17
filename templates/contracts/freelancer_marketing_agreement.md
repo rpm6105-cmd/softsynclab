@@ -200,6 +200,9 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ## 4. COMPENSATION, PAYMENT & TAXATION
 
+### [OPTION A: FIXED RETAINER / FEE MODEL]
+*(Applicable if engaged on a Monthly, Weekly, or Project-Based Fee model)*
+
 4.1 **Compensation Fee**: The Client shall pay the Freelancer a fee of **₹[Amount]** per **[Weekly/Monthly/Project-Based]** (hereinafter the **"Fee"**) as full consideration for the Services rendered.
 
 4.2 **Invoicing & Payment Terms**: 
@@ -209,6 +212,25 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 4.3 **Taxes and Statutory Obligations**: 
 * The Freelancer shall be solely responsible for all taxes, duties, levies, and statutory contributions arising out of the payments received under this Agreement, including but not limited to Income Tax (under self-assessment), GST (if applicable), and professional taxes.
 * The Client shall deduct Tax Deducted at Source (TDS) at the applicable rate as mandated under the Income Tax Act, 1961, and shall provide the necessary TDS certificate to the Freelancer.
+
+---
+
+### [OPTION B: PERFORMANCE-BASED COMMISSION MODEL]
+*(Applicable if engaged on a Commission-Only basis)*
+
+4.1 The Freelancer shall be engaged on a commission-only basis and shall not be entitled to any fixed salary, monthly retainer, stipend, employee benefits, or guaranteed compensation.
+
+4.2 The Freelancer shall be eligible to receive a commission for customers directly sourced, referred, and converted into paying customers of Softsync Solutions through the Freelancer's marketing and lead generation efforts.
+
+4.3 The commission amount or percentage shall be determined by Softsync Solutions based on the project value, scope of work, profitability, and commercial terms agreed with the customer. The applicable commission shall be communicated to the Freelancer upon successful closure of the project.
+
+4.4 Commission shall become due and payable only after Softsync Solutions has received payment from the customer. No commission shall be payable on quotations, proposals, cancelled projects, refunded payments, bad debts, or unpaid invoices.
+
+4.5 Commission payments shall be released within Seven (7) days from the date of receipt of payment from the customer.
+
+4.6 The Freelancer shall be solely responsible for payment of all applicable taxes, including income tax, GST (if applicable), and any other statutory obligations arising from the commission earned under this Agreement.
+
+4.7 Nothing contained herein shall be construed as creating an obligation on Softsync Solutions to provide a minimum number of leads, projects, assignments, or minimum earnings to the Freelancer.
 
 ---
 

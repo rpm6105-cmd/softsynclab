@@ -1010,8 +1010,18 @@ window.renderLive = () => {
         const flAddress = document.getElementById('doc-client-address')?.value || '[Address]';
         const flPhone = document.getElementById('doc-client-phone')?.value || '[Phone Number]';
         const flEmail = document.getElementById('fl-email')?.value || '[Email]';
-        const flCost = document.getElementById('fl-cost')?.value || '0';
         const flCycle = document.getElementById('fl-cycle')?.value || 'Monthly';
+        
+        const flCostEl = document.getElementById('fl-cost');
+        if (flCostEl) {
+            if (flCycle === 'Performance-Based Commission') {
+                flCostEl.disabled = true;
+                flCostEl.value = '0';
+            } else {
+                flCostEl.disabled = false;
+            }
+        }
+        const flCost = flCostEl?.value || '0';
         const flServicesRaw = document.getElementById('fl-services')?.value || '';
         const flNum = `FLA-${year}-${month}-${rand}`;
 
@@ -1042,7 +1052,7 @@ window.renderLive = () => {
                         <tr><td style="width: 30%; font-weight: 700; border: none; color: ${C.textMid};">Client:</td><td style="border: none; font-weight: 600;">Softsync Solutions (Bangalore, India)</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Freelancer:</td><td style="border: none; font-weight: 600;">${flName}</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Effective Date:</td><td style="border: none; font-weight: 600;">${dateStr}</td></tr>
-                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Compensation:</td><td style="border: none; font-weight: 600;">₹${parseFloat(flCost).toLocaleString('en-IN')} / ${flCycle}</td></tr>
+                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Compensation:</td><td style="border: none; font-weight: 600;">${flCycle === 'Performance-Based Commission' ? 'Performance-Based Commission' : `₹${parseFloat(flCost).toLocaleString('en-IN')} / ${flCycle}`}</td></tr>
                     </table>
                 </div>
 
@@ -1093,9 +1103,33 @@ window.renderLive = () => {
                 </p>
 
                 <h2>4. Compensation & Taxation</h2>
+                ${flCycle === 'Performance-Based Commission' ? `
+                <p style="margin-bottom: 3mm;">
+                    4.1 The Freelancer shall be engaged on a commission-only basis and shall not be entitled to any fixed salary, monthly retainer, stipend, employee benefits, or guaranteed compensation.
+                </p>
+                <p style="margin-bottom: 3mm;">
+                    4.2 The Freelancer shall be eligible to receive a commission for customers directly sourced, referred, and converted into paying customers of Softsync Solutions through the Freelancer's marketing and lead generation efforts.
+                </p>
+                <p style="margin-bottom: 3mm;">
+                    4.3 The commission amount or percentage shall be determined by Softsync Solutions based on the project value, scope of work, profitability, and commercial terms agreed with the customer. The applicable commission shall be communicated to the Freelancer upon successful closure of the project.
+                </p>
+                <p style="margin-bottom: 3mm;">
+                    4.4 Commission shall become due and payable only after Softsync Solutions has received payment from the customer. No commission shall be payable on quotations, proposals, cancelled projects, refunded payments, bad debts, or unpaid invoices.
+                </p>
+                <p style="margin-bottom: 3mm;">
+                    4.5 Commission payments shall be released within Seven (7) days from the date of receipt of payment from the customer.
+                </p>
+                <p style="margin-bottom: 3mm;">
+                    4.6 The Freelancer shall be solely responsible for payment of all applicable taxes, including income tax, GST (if applicable), and any other statutory obligations arising from the commission earned under this Agreement.
+                </p>
+                <p style="margin-bottom: 4mm;">
+                    4.7 Nothing contained herein shall be construed as creating an obligation on Softsync Solutions to provide a minimum number of leads, projects, assignments, or minimum earnings to the Freelancer.
+                </p>
+                ` : `
                 <p style="margin-bottom: 4mm;">
                     4.1 The Client shall pay the Freelancer a fee of <strong>₹${parseFloat(flCost).toLocaleString('en-IN')}</strong> per <strong>${flCycle}</strong>. The Freelancer shall submit invoices weekly/monthly, to be paid within 7 days of approval. The Freelancer is solely responsible for self-assessment income tax, GST, and statutory liabilities. The Client shall deduct TDS as applicable under the Income Tax Act, 1961.
                 </p>
+                `}
 
                 <h2>5. Confidentiality & Non-Disclosure</h2>
                 <p style="margin-bottom: 4mm;">
