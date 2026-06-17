@@ -969,15 +969,15 @@ window.renderLive = () => {
              <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
          </div>`;
     } else if (mode === 'freelancer_agreement') {
-        const flName = document.getElementById('doc-client').value || '[Freelancer Full Name]';
-        const flAddress = document.getElementById('doc-client-address').value || '[Address]';
-        const flPhone = document.getElementById('doc-client-phone').value || '[Phone Number]';
-        const flEmail = document.getElementById('fl-email').value || '[Email]';
-        const flPan = document.getElementById('fl-pan').value || '[PAN Number]';
-        const flAadhaar = document.getElementById('fl-aadhaar').value || '[Aadhaar Number]';
-        const flCost = document.getElementById('fl-cost').value || '0';
-        const flCycle = document.getElementById('fl-cycle').value || 'Monthly';
-        const flServicesRaw = document.getElementById('fl-services').value || '';
+        const flName = document.getElementById('doc-client')?.value || '[Freelancer Full Name]';
+        const flAddress = document.getElementById('doc-client-address')?.value || '[Address]';
+        const flPhone = document.getElementById('doc-client-phone')?.value || '[Phone Number]';
+        const flEmail = document.getElementById('fl-email')?.value || '[Email]';
+        const flPan = document.getElementById('fl-pan')?.value || '[PAN Number]';
+        const flAadhaar = document.getElementById('fl-aadhaar')?.value || '[Aadhaar Number]';
+        const flCost = document.getElementById('fl-cost')?.value || '0';
+        const flCycle = document.getElementById('fl-cycle')?.value || 'Monthly';
+        const flServicesRaw = document.getElementById('fl-services')?.value || '';
         const flNum = `FLA-${year}-${month}-${rand}`;
 
         const servicesLines = flServicesRaw.split('\n').filter(l => l.trim());
@@ -1249,17 +1249,17 @@ window.saveDocument = async () => {
         if(mode==='freelancer_agreement') {
             Object.assign(payload, {
                 purpose: JSON.stringify({
-                    pan: document.getElementById('fl-pan').value,
-                    aadhaar: document.getElementById('fl-aadhaar').value,
-                    email: document.getElementById('fl-email').value,
-                    phone: document.getElementById('fl-phone').value,
-                    address: document.getElementById('doc-client-address').value
+                    pan: document.getElementById('fl-pan')?.value || '',
+                    aadhaar: document.getElementById('fl-aadhaar')?.value || '',
+                    email: document.getElementById('fl-email')?.value || '',
+                    phone: document.getElementById('fl-phone')?.value || '',
+                    address: document.getElementById('doc-client-address')?.value || ''
                 }),
-                scope:   document.getElementById('fl-services').value,
-                cost:    parseFloat(document.getElementById('fl-cost').value||0),
-                payment: document.getElementById('fl-cycle').value,
-                timeline:document.getElementById('doc-due-date').value,
-                support:  document.getElementById('fl-email').value + ' | ' + document.getElementById('fl-phone').value,
+                scope:   document.getElementById('fl-services')?.value || '',
+                cost:    parseFloat(document.getElementById('fl-cost')?.value||0),
+                payment: document.getElementById('fl-cycle')?.value || 'Monthly',
+                timeline:document.getElementById('doc-due-date')?.value || '',
+                support:  (document.getElementById('fl-email')?.value || '') + ' | ' + (document.getElementById('fl-phone')?.value || ''),
                 law:     'Bengaluru, Karnataka'
             });
         }
@@ -1408,18 +1408,28 @@ window.loadDocumentFromHistory = (idx) => {
     } else if (d._type === 'freelancer_agreement') {
         let details = {};
         try {
-            details = JSON.parse(d.purpose);
+            details = JSON.parse(d.purpose) || {};
         } catch(e) {
             details = { address: d.purpose || '' };
         }
-        document.getElementById('doc-client-address').value = details.address || '';
-        document.getElementById('fl-pan').value = details.pan || '';
-        document.getElementById('fl-aadhaar').value = details.aadhaar || '';
-        document.getElementById('fl-email').value = details.email || '';
-        document.getElementById('fl-phone').value = details.phone || '';
-        document.getElementById('fl-services').value = d.scope || '';
-        document.getElementById('fl-cost').value = d.cost || 0;
-        document.getElementById('fl-cycle').value = d.payment || 'Monthly';
+        if (details === null) details = {};
+        const elAddr = document.getElementById('doc-client-address');
+        const elPan = document.getElementById('fl-pan');
+        const elAadhaar = document.getElementById('fl-aadhaar');
+        const elEmail = document.getElementById('fl-email');
+        const elPhone = document.getElementById('fl-phone');
+        const elServices = document.getElementById('fl-services');
+        const elCost = document.getElementById('fl-cost');
+        const elCycle = document.getElementById('fl-cycle');
+
+        if (elAddr) elAddr.value = details.address || '';
+        if (elPan) elPan.value = details.pan || '';
+        if (elAadhaar) elAadhaar.value = details.aadhaar || '';
+        if (elEmail) elEmail.value = details.email || '';
+        if (elPhone) elPhone.value = details.phone || '';
+        if (elServices) elServices.value = d.scope || '';
+        if (elCost) elCost.value = d.cost || 0;
+        if (elCycle) elCycle.value = d.payment || 'Monthly';
     } else if (d._type === 'letterhead') {
         const lb = document.getElementById('letter-body');
         if (lb) lb.value = d.message_body || '';
