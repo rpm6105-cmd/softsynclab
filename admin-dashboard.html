@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Global Error Diagnostics -->
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            alert("⚠️ Uncaught Global Error:\n\n" + message + "\n\nSource: " + source + "\nLine: " + lineno + "\nCol: " + colno + "\n\nStack:\n" + (error ? error.stack : "N/A"));
+            return false;
+        };
+        window.addEventListener('unhandledrejection', function(event) {
+            alert("⚠️ Unhandled Promise Rejection:\n\n" + event.reason + "\n\nStack:\n" + (event.reason ? event.reason.stack : "N/A"));
+        });
+    </script>
+
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
