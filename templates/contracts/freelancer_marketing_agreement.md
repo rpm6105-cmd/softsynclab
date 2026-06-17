@@ -134,7 +134,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ### AND:
 
-**____________________________________**, son/daughter/wife of __________________________, aged about _____ years, residing at __________________________________________________________________________________________ (PAN: ____________________, Aadhaar No: ____________________) (hereinafter referred to as the **"Freelancer"**, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include their heirs, executors, administrators, and permitted assigns) of the **SECOND PART**.
+**____________________________________**, residing at __________________________________________________________________________________________ (hereinafter referred to as the **"Freelancer"**, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include their heirs, executors, administrators, and permitted assigns) of the **SECOND PART**.
 
 *(The Client and the Freelancer shall hereinafter be collectively referred to as the **"Parties"** and individually as a **"Party"**).*
 

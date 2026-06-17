@@ -151,8 +151,6 @@ window.resetForm = () => {
 
     // Freelancer Details
     const flFields = {
-        'fl-pan': '',
-        'fl-aadhaar': '',
         'fl-email': '',
         'fl-phone': '',
         'fl-cost': '15000',
@@ -1005,8 +1003,6 @@ window.renderLive = () => {
         const flAddress = document.getElementById('doc-client-address')?.value || '[Address]';
         const flPhone = document.getElementById('doc-client-phone')?.value || '[Phone Number]';
         const flEmail = document.getElementById('fl-email')?.value || '[Email]';
-        const flPan = document.getElementById('fl-pan')?.value || '[PAN Number]';
-        const flAadhaar = document.getElementById('fl-aadhaar')?.value || '[Aadhaar Number]';
         const flCost = document.getElementById('fl-cost')?.value || '0';
         const flCycle = document.getElementById('fl-cycle')?.value || 'Monthly';
         const flServicesRaw = document.getElementById('fl-services')?.value || '';
@@ -1052,7 +1048,7 @@ window.renderLive = () => {
                 </p>
                 
                 <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
-                    <strong>${flName}</strong>, son/daughter/wife of __________________________, aged about _____ years, residing at <strong>${flAddress}</strong> (PAN: <strong>${flPan}</strong>, Aadhaar No: <strong>${flAadhaar}</strong>) (hereinafter referred to as the <strong>"Freelancer"</strong>) of the <strong>SECOND PART</strong>.
+                    <strong>${flName}</strong>, residing at <strong>${flAddress}</strong> (hereinafter referred to as the <strong>"Freelancer"</strong>) of the <strong>SECOND PART</strong>.
                 </p>
 
                 <p style="margin-bottom: 4mm; font-style: italic;">
@@ -1282,8 +1278,6 @@ window.saveDocument = async () => {
         if(mode==='freelancer_agreement') {
             Object.assign(payload, {
                 purpose: JSON.stringify({
-                    pan: document.getElementById('fl-pan')?.value || '',
-                    aadhaar: document.getElementById('fl-aadhaar')?.value || '',
                     email: document.getElementById('fl-email')?.value || '',
                     phone: document.getElementById('fl-phone')?.value || '',
                     address: document.getElementById('doc-client-address')?.value || ''
@@ -1461,8 +1455,6 @@ window.loadDocumentFromHistory = (idx) => {
         }
         if (details === null) details = {};
         const elAddr = document.getElementById('doc-client-address');
-        const elPan = document.getElementById('fl-pan');
-        const elAadhaar = document.getElementById('fl-aadhaar');
         const elEmail = document.getElementById('fl-email');
         const elPhone = document.getElementById('fl-phone');
         const elServices = document.getElementById('fl-services');
@@ -1470,8 +1462,6 @@ window.loadDocumentFromHistory = (idx) => {
         const elCycle = document.getElementById('fl-cycle');
 
         if (elAddr) elAddr.value = details.address || '';
-        if (elPan) elPan.value = details.pan || '';
-        if (elAadhaar) elAadhaar.value = details.aadhaar || '';
         if (elEmail) elEmail.value = details.email || '';
         if (elPhone) elPhone.value = details.phone || '';
         if (elServices) elServices.value = d.scope || '';
