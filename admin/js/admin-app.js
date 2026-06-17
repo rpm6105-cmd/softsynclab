@@ -204,6 +204,19 @@ window.initAdminApp = async () => {
         } else {
             console.warn('Admin App: #app-layout element not found in DOM');
         }
+
+        // Setup event listeners safely after layout has loaded
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => { e.preventDefault(); switchView(item.dataset.view); });
+        });
+
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                await supabase.auth.signOut();
+                window.location.href = 'admin-login.html';
+            });
+        }
         
         window.resetForm();
         updateUI();
@@ -280,14 +293,7 @@ window.setViewOnlyMode = (enabled) => {
     }
 };
 
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', (e) => { e.preventDefault(); switchView(item.dataset.view); });
-});
-
-document.getElementById('logout-btn').addEventListener('click', async () => {
-    await supabase.auth.signOut();
-    window.location.href = 'admin-login.html';
-});
+// Nav and logout listeners are bound dynamically inside initAdminApp() to prevent top-level DOM reference errors.
 
 window.updateUI = () => {
     const mode = document.getElementById('suite-mode')?.value;
