@@ -167,7 +167,21 @@ window.resetForm = () => {
     renderLive();
 };
 
-document.addEventListener('DOMContentLoaded', async () => {
+const showCriticalError = (err) => {
+    const div = document.createElement('div');
+    div.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);width:90%;max-width:600px;background:#fee2e2;border:1px solid #f87171;color:#991b1b;padding:20px;border-radius:12px;box-shadow:0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;z-index:99999;';
+    div.innerHTML = `
+        <h3 style="margin:0 0 10px 0;font-size:1.1rem;display:flex;align-items:center;gap:8px;">
+            <span style="font-size:1.4rem;">⚠️</span> Critical Initialization Error
+        </h3>
+        <p style="margin:0 0 12px 0;font-size:0.9rem;line-height:1.5;">The Admin Dashboard failed to initialize. This could be due to a connection issue or a configuration error.</p>
+        <div style="background:#fff;border:1px solid #fee2e2;padding:12px;border-radius:8px;font-family:monospace;font-size:0.8rem;overflow-x:auto;max-height:150px;white-space:pre-wrap;">${err.stack || err.message || err}</div>
+        <button onclick="window.location.reload()" style="margin-top:14px;background:#ef4444;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:background 0.2s;">Reload Page</button>
+    `;
+    document.body.appendChild(div);
+};
+
+window.initAdminApp = async () => {
     try {
         console.log('Admin App: Initializing...');
         const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -183,8 +197,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             return; 
         }
 
-        document.getElementById('app-layout').style.display = 'flex';
-        console.log('Admin App: Layout displayed');
+        const appLayout = document.getElementById('app-layout');
+        if (appLayout) {
+            appLayout.style.display = 'flex';
+            console.log('Admin App: Layout displayed');
+        } else {
+            console.warn('Admin App: #app-layout element not found in DOM');
+        }
         
         window.resetForm();
         updateUI();
@@ -198,8 +217,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 50);
     } catch (err) {
         console.error('Admin App: Critical Init Error:', err);
+        showCriticalError(err);
     }
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', window.initAdminApp);
+} else {
+    window.initAdminApp();
+}
 
 // --- Navigation ---
 window.switchView = (viewName) => {
@@ -264,7 +290,7 @@ document.getElementById('logout-btn').addEventListener('click', async () => {
 });
 
 window.updateUI = () => {
-    const mode = document.getElementById('suite-mode').value;
+    const mode = document.getElementById('suite-mode')?.value;
     const preview = document.getElementById('document-preview');
     const itemsEditor = document.getElementById('items-editor');
     const proposalEditor = document.getElementById('proposal-editor');
@@ -275,14 +301,14 @@ window.updateUI = () => {
     const flEditor = document.getElementById('freelancer-editor');
     const subjectField = document.getElementById('subject-field-group');
 
-    itemsEditor.style.display = 'none';
-    proposalEditor.style.display = 'none';
-    letterEditor.style.display = 'none';
-    moaEditor.style.display = 'none';
-    handoverEditor.style.display = 'none';
+    if (itemsEditor) itemsEditor.style.display = 'none';
+    if (proposalEditor) proposalEditor.style.display = 'none';
+    if (letterEditor) letterEditor.style.display = 'none';
+    if (moaEditor) moaEditor.style.display = 'none';
+    if (handoverEditor) handoverEditor.style.display = 'none';
     if (amcEditor) amcEditor.style.display = 'none';
     if (flEditor) flEditor.style.display = 'none';
-    subjectField.style.display = 'none';
+    if (subjectField) subjectField.style.display = 'none';
 
     const clientLabel = document.getElementById('doc-client')?.previousElementSibling;
     const dateLabel = document.getElementById('doc-date')?.previousElementSibling;
@@ -1296,17 +1322,31 @@ window.saveDocument = async () => {
 let _historyRecords = [];
 
 async function loadHistory() {
-    const {data:q}=await supabase.from('quotes').select('*').order('created_at',{ascending:false}).limit(10);
-    const {data:i}=await supabase.from('invoices').select('*').order('created_at',{ascending:false}).limit(10);
-    const {data:p}=await supabase.from('proposals').select('*').order('created_at',{ascending:false}).limit(10);
-    const {data:m}=await supabase.from('moas').select('*').order('created_at',{ascending:false}).limit(10);
-    const {data:h}=await supabase.from('handovers').select('*').order('created_at',{ascending:false}).limit(10);
+    let q = [], i = [], p = [], m = [], h = [];
+    try {
+        const { data: quotesData, error: quotesErr } = await supabase.from('quotes').select('*').order('created_at', { ascending: false }).limit(10);
+        if (quotesErr) console.error('Error fetching quotes:', quotesErr); else q = quotesData || [];
+        
+        const { data: invoicesData, error: invoicesErr } = await supabase.from('invoices').select('*').order('created_at', { ascending: false }).limit(10);
+        if (invoicesErr) console.error('Error fetching invoices:', invoicesErr); else i = invoicesData || [];
+        
+        const { data: proposalsData, error: proposalsErr } = await supabase.from('proposals').select('*').order('created_at', { ascending: false }).limit(10);
+        if (proposalsErr) console.error('Error fetching proposals:', proposalsErr); else p = proposalsData || [];
+        
+        const { data: moasData, error: moasErr } = await supabase.from('moas').select('*').order('created_at', { ascending: false }).limit(10);
+        if (moasErr) console.error('Error fetching moas:', moasErr); else m = moasData || [];
+        
+        const { data: handoversData, error: handoversErr } = await supabase.from('handovers').select('*').order('created_at', { ascending: false }).limit(10);
+        if (handoversErr) console.error('Error fetching handovers:', handoversErr); else h = handoversData || [];
+    } catch (dbErr) {
+        console.error('Admin App: Database query error:', dbErr);
+    }
 
     _historyRecords = [
-        ...(q||[]).map(x=>({...x, _type:'quotation',  _label:'Quote',    _val:x.price})),
-        ...(i||[]).map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
-        ...(p||[]).map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
-        ...(m||[]).map(x => {
+        ...q.map(x=>({...x, _type:'quotation',  _label:'Quote',    _val:x.price})),
+        ...i.map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
+        ...p.map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
+        ...m.map(x => {
             let isFreelancer = false;
             try {
                 if (x.purpose && x.purpose.startsWith('{')) {
@@ -1323,7 +1363,7 @@ async function loadHistory() {
                 _val:   x.cost
             };
         }),
-        ...(h||[]).map(x=>{
+        ...h.map(x=>{
             const isAmc = x.project_name && x.project_name.startsWith('AMC:');
             return {
                 ...x,
