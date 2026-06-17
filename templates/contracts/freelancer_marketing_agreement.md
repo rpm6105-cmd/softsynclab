@@ -215,7 +215,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ---
 
-### [OPTION B: PERFORMANCE-BASED COMMISSION MODEL]
+### [OPTION B: COMMISSION-BASED COMPENSATION MODEL]
 *(Applicable if engaged on a Commission-Only basis)*
 
 4.1 The Freelancer shall be engaged on a commission-only basis and shall not be entitled to any fixed salary, monthly retainer, stipend, employee benefits, or guaranteed compensation.

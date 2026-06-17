@@ -1014,7 +1014,7 @@ window.renderLive = () => {
         
         const flCostEl = document.getElementById('fl-cost');
         if (flCostEl) {
-            if (flCycle === 'Performance-Based Commission') {
+            if (flCycle === 'Commission-Based Compensation') {
                 flCostEl.disabled = true;
                 flCostEl.value = '0';
             } else {
@@ -1052,7 +1052,7 @@ window.renderLive = () => {
                         <tr><td style="width: 30%; font-weight: 700; border: none; color: ${C.textMid};">Client:</td><td style="border: none; font-weight: 600;">Softsync Solutions (Bangalore, India)</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Freelancer:</td><td style="border: none; font-weight: 600;">${flName}</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Effective Date:</td><td style="border: none; font-weight: 600;">${dateStr}</td></tr>
-                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Compensation:</td><td style="border: none; font-weight: 600;">${flCycle === 'Performance-Based Commission' ? 'Performance-Based Commission' : `₹${parseFloat(flCost).toLocaleString('en-IN')} / ${flCycle}`}</td></tr>
+                        <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Compensation:</td><td style="border: none; font-weight: 600;">${flCycle === 'Commission-Based Compensation' ? 'Commission-Based Compensation (Payable on Successfully Closed and Paid Projects)' : `₹${parseFloat(flCost).toLocaleString('en-IN')} / ${flCycle}`}</td></tr>
                     </table>
                 </div>
 
@@ -1103,7 +1103,7 @@ window.renderLive = () => {
                 </p>
 
                 <h2>4. Compensation & Taxation</h2>
-                ${flCycle === 'Performance-Based Commission' ? `
+                ${flCycle === 'Commission-Based Compensation' ? `
                 <p style="margin-bottom: 3mm;">
                     4.1 The Freelancer shall be engaged on a commission-only basis and shall not be entitled to any fixed salary, monthly retainer, stipend, employee benefits, or guaranteed compensation.
                 </p>
