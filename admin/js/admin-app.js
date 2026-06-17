@@ -1228,6 +1228,7 @@ window.renderLive = () => {
             ${wrapInTableLayout(getHeaderHTML('FREELANCER AGREEMENT', '#' + flNum, dateStr), contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
+    }
     } catch (err) {
         console.error('Render Error:', err);
         if (preview) {
