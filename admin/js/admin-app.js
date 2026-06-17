@@ -52,6 +52,13 @@ const sig = `
         <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder, Softsync Solutions</p>
     </div>`;
 
+const sigLeft = `
+    <div style="text-align:left;margin-top:2px;margin-bottom:2px;">
+        <p style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:${C.navy};margin:0 0 2px;line-height:1.1;">Rohith P.M.</p>
+        <div style="width:120px;height:2px;background:${GRADIENT};margin:0 0 5px 0;"></div>
+        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder, Softsync Solutions</p>
+    </div>`;
+
 /* ── FOOTER BAR ── */
 const footer = `
     <div style="background:${C.navyDark};padding:12px 18mm;display:flex;justify-content:space-between;align-items:center;">
@@ -1118,13 +1125,13 @@ window.renderLive = () => {
                 <div class="no-break" style="margin-top: 10mm; padding-top: 5mm; border-top: 1px solid ${C.border};">
                     <table style="width: 100%; border: none; margin-top: 5mm;">
                         <tr style="border: none;">
-                            <td style="width: 50%; border: none; padding: 0;">
-                                <strong>For SOFTSYNC SOLUTIONS</strong><br><br><br>
-                                Signature: _______________________<br><br>
+                            <td style="width: 50%; border: none; padding: 0; vertical-align: top;">
+                                <strong>For SOFTSYNC SOLUTIONS</strong><br><br>
+                                ${sigLeft}
                                 Name: <strong>Rohith PM</strong><br>
                                 Title: <strong>Proprietor</strong>
                             </td>
-                            <td style="width: 50%; border: none; padding: 0;">
+                            <td style="width: 50%; border: none; padding: 0; vertical-align: top;">
                                 <strong>THE FREELANCER</strong><br><br><br>
                                 Signature: _______________________<br><br>
                                 Name: <strong>${flName}</strong><br>
@@ -1199,6 +1206,13 @@ window.renderLive = () => {
                         <strong>Initial Grant Acknowledgment:</strong> I acknowledge receiving access to the accounts above for my duties and agree to maintain password hygiene.
                         <br><br>
                         Freelancer Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; Date: _________________
+                    </p>
+                    <hr style="border: none; border-top: 1px solid ${C.border}; margin: 8mm 0;">
+                    <p style="font-weight: 600; font-size: 0.82rem; margin-top: 6mm;">
+                        <strong>Termination & Revocation Sign-off (For Office Use Only):</strong><br>
+                        I, Rohith PM, confirm that all access permissions, login keys, and sub-account seats granted to the Freelancer have been fully revoked, and all credentials have been changed.
+                        <br><br>
+                        Client Representative Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; Date: _________________
                     </p>
                 </div>
 
@@ -1280,7 +1294,8 @@ window.saveDocument = async () => {
                 purpose: JSON.stringify({
                     email: document.getElementById('fl-email')?.value || '',
                     phone: document.getElementById('fl-phone')?.value || '',
-                    address: document.getElementById('doc-client-address')?.value || ''
+                    address: document.getElementById('doc-client-address')?.value || '',
+                    isFreelancer: true
                 }),
                 scope:   document.getElementById('fl-services')?.value || '',
                 cost:    parseFloat(document.getElementById('fl-cost')?.value||0),
@@ -1352,7 +1367,7 @@ async function loadHistory() {
             try {
                 if (x.purpose && x.purpose.startsWith('{')) {
                     const parsed = JSON.parse(x.purpose);
-                    if (parsed.pan !== undefined || parsed.aadhaar !== undefined) {
+                    if (parsed.pan !== undefined || parsed.aadhaar !== undefined || parsed.isFreelancer === true || parsed.email !== undefined) {
                         isFreelancer = true;
                     }
                 }
