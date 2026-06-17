@@ -1051,7 +1051,7 @@ window.renderLive = () => {
                 </p>
 
                 <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
-                    <strong>SOFTSYNC SOLUTIONS</strong>, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, <strong>Mr. Rohith PM</strong> (hereinafter referred to as the <strong>"Client"</strong> or the <strong>"Company"</strong>) of the <strong>FIRST PART</strong>;
+                    <strong>SOFTSYNC SOLUTIONS</strong>, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, <strong>Mr. Rohith P M</strong> (hereinafter referred to as the <strong>"Client"</strong> or the <strong>"Company"</strong>) of the <strong>FIRST PART</strong>;
                 </p>
                 
                 <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
@@ -1079,7 +1079,7 @@ window.renderLive = () => {
                     ${servicesListHTML || '<li style="color:#94a3b8;font-style:italic;">No services specified</li>'}
                 </ul>
                 <p style="margin-bottom: 4mm;">
-                    1.2 <strong>Limitation of Authority:</strong> The Freelancer is engaged solely for the execution of the marketing tasks outlined above. The Freelancer <strong>is not authorized</strong> to make commitments, sign contracts, negotiate pricing, offer discounts, or represent the Company legally without express prior written approval from Mr. Rohith PM.
+                    1.2 <strong>Limitation of Authority:</strong> The Freelancer is engaged solely for the execution of the marketing tasks outlined above. The Freelancer <strong>is not authorized</strong> to make commitments, sign contracts, negotiate pricing, offer discounts, or represent the Company legally without express prior written approval from Mr. Rohith P M.
                 </p>
 
                 <h2>2. Independent Contractor Relationship</h2>
@@ -1128,7 +1128,7 @@ window.renderLive = () => {
                             <td style="width: 50%; border: none; padding: 0; vertical-align: top;">
                                 <strong>For SOFTSYNC SOLUTIONS</strong><br><br>
                                 ${sigLeft}
-                                Name: <strong>Rohith PM</strong><br>
+                                Name: <strong>Rohith P M</strong><br>
                                 Title: <strong>Founder & Proprietor</strong>
                             </td>
                             <td style="width: 50%; border: none; padding: 0; vertical-align: top;">
@@ -1210,7 +1210,7 @@ window.renderLive = () => {
                     <hr style="border: none; border-top: 1px solid ${C.border}; margin: 8mm 0;">
                     <p style="font-weight: 600; font-size: 0.82rem; margin-top: 6mm;">
                         <strong>Termination & Revocation Sign-off (For Office Use Only):</strong><br>
-                        I, Rohith PM, confirm that all access permissions, login keys, and sub-account seats granted to the Freelancer have been fully revoked, and all credentials have been changed.
+                        I, Rohith P M, confirm that all access permissions, login keys, and sub-account seats granted to the Freelancer have been fully revoked, and all credentials have been changed.
                         <br><br>
                         Client Representative Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp; Date: _________________
                     </p>

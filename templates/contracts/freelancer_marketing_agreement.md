@@ -96,7 +96,7 @@
         <td style="width: 30%; font-weight: 600; color: #64748b; padding: 6px 0; vertical-align: top; border: none;">CLIENT:</td>
         <td style="color: #334155; padding: 6px 0; font-weight: 500; border: none;">
           <strong>Softsync Solutions</strong><br>
-          (Proprietorship Firm represented by Proprietor, Mr. Rohith PM)<br>
+          (Proprietorship Firm represented by Proprietor, Mr. Rohith P M)<br>
           Bangalore, Karnataka, India
         </td>
       </tr>
@@ -130,7 +130,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ### BY AND BETWEEN:
 
-**SOFTSYNC SOLUTIONS**, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, **Mr. Rohith PM** (hereinafter referred to as the **"Client"** or the **"Company"**, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include its successors, administrators, and permitted assigns) of the **FIRST PART**;
+**SOFTSYNC SOLUTIONS**, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, **Mr. Rohith P M** (hereinafter referred to as the **"Client"** or the **"Company"**, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include its successors, administrators, and permitted assigns) of the **FIRST PART**;
 
 ### AND:
 
@@ -345,7 +345,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
     <td style="width: 50%; border: none;">
       <strong>For SOFTSYNC SOLUTIONS</strong><br><br><br>
       Signature: _______________________<br><br>
-      Name: <strong>Rohith PM</strong><br>
+      Name: <strong>Rohith P M</strong><br>
       Title: <strong>Founder & Proprietor</strong><br>
       Date: ____________________________
     </td>
@@ -421,7 +421,7 @@ Freelancer Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 *This schedule lists the credentials, tools, and access permissions granted to the Freelancer for marketing execution. Access is subject to Section 7 of the Agreement.*
 
-* **Client Representative Authorizing Access**: Mr. Rohith PM (Proprietor)
+* **Client Representative Authorizing Access**: Mr. Rohith P M (Proprietor)
 * **Freelancer Name**: ______________________________________
 
 | Account / System / Access | Purpose | Date Granted | Method of Access | Authorized Scope / Restrictions | Date Revoked (For office use) |
@@ -429,7 +429,7 @@ Freelancer Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 | **GSuite/Google Workspace**<br>*(e.g., outreach@softsyncsolutions.in)* | Outbound marketing emails, prospect communications, Google Drive. | | Direct Login | strictly limited to marketing communications. Do not use for personal accounts or registrations. | |
 | **LinkedIn Sales Navigator** / Account | Contacting leads, prospect lists, outreach. | | Assigned Seat / Credentials | For lead generation campaigns only. Maintain professional communication standards. | |
 | **CRM / Lead Database** | Managing qualified leads, importing target lists. | | User Account Invitation | Export/Download of the full database is strictly prohibited. | |
-| **Social Media Profiles**<br>*(LinkedIn / Twitter)* | Brand postings and content uploads. | | Assigned Credentials / Tool Access | Content must be approved in writing by Rohith PM before posting. | |
+| **Social Media Profiles**<br>*(LinkedIn / Twitter)* | Brand postings and content uploads. | | Assigned Credentials / Tool Access | Content must be approved in writing by Rohith P M before posting. | |
 | **Lead Generation Tools**<br>*(e.g., Apollo.io, Lusha, Hunter)* | Finding emails, exporting qualified prospect lists. | | Sub-Account Seat | Subject to credit limits. No sharing of account access. | |
 | **Marketing Assets Folder**<br>*(Google Drive)* | Accessing logos, graphics, case study documents, and brochures. | | Shared Link (View/Comment) | Sharing link with external third parties is strictly prohibited. | |
 
@@ -445,7 +445,7 @@ I, _______________________________ (Freelancer), acknowledge that I have receive
 ---
 
 **Termination & Revocation Sign-off (For Office Use Only)**:
-I, Rohith PM, confirm that all access permissions, login keys, and sub-account seats granted to the Freelancer have been fully revoked, and all credentials have been changed.
+I, Rohith P M, confirm that all access permissions, login keys, and sub-account seats granted to the Freelancer have been fully revoked, and all credentials have been changed.
 
 * Client Representative Signature: ___________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: _________________
 
@@ -454,10 +454,10 @@ I, Rohith PM, confirm that all access permissions, login keys, and sub-account s
 # CONFIDENTIALITY & NON-DISCLOSURE ACKNOWLEDGMENT (SCHEDULE C)
 *(To be signed separately and returned to the Client)*
 
-I, __________________________________________________ (Name of Freelancer), in connection with my engagement as a Freelancer with **SOFTSYNC SOLUTIONS** (a sole proprietorship firm managed by Mr. Rohith PM), hereby solemnly declare and acknowledge that:
+I, __________________________________________________ (Name of Freelancer), in connection with my engagement as a Freelancer with **SOFTSYNC SOLUTIONS** (a sole proprietorship firm managed by Mr. Rohith P M), hereby solemnly declare and acknowledge that:
 
 1. **Access to Confidential Data**: I understand that during my engagement, I will be trusted with critical, proprietary, and confidential business assets including, but not limited to, prospect lead lists, client contact details, email templates, marketing plans, corporate workflows, software configurations, and internal business correspondence.
-2. **Confidentiality Commitment**: I agree to hold all such information in strict confidence. I will not copy, download, export, distribute, share, or disclose any confidential materials to any third party (including friends, colleagues, or other freelance clients) without the prior written consent of Mr. Rohith PM.
+2. **Confidentiality Commitment**: I agree to hold all such information in strict confidence. I will not copy, download, export, distribute, share, or disclose any confidential materials to any third party (including friends, colleagues, or other freelance clients) without the prior written consent of Mr. Rohith P M.
 3. **Purpose of Use**: I will use the information and assets provided to me solely for performing the marketing tasks explicitly requested of me by Softsync Solutions. I will not use this data for personal gain, freelance projects outside of the Company, or to build an independent pipeline.
 4. **Data Security**: I will keep all passwords, login codes, CRM access keys, and email accounts secure. I will never share credentials or delegate access to a third party. I will immediately report any security leakage or password compromises.
 5. **Cessation of Access**: Upon the end of my contract, I will immediately cease all access to the Client's systems, log out of all marketing profiles, and permanently delete any spreadsheets, email templates, or prospect lists stored on my personal computer or cloud accounts.
