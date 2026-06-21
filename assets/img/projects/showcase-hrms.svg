@@ -22,7 +22,7 @@
   <circle cx="156" cy="126" r="11" fill="#ef4444"/>
   <circle cx="191" cy="126" r="11" fill="#f59e0b"/>
   <circle cx="226" cy="126" r="11" fill="#22c55e"/>
-  <text x="286" y="136" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">Softsync HRMS</text>
+  <text x="286" y="136" fill="#e2e8f0" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="700">SoftSync HRMS</text>
   <text x="1260" y="136" fill="#93c5fd" font-family="Inter, Arial, sans-serif" font-size="18">Apr payroll cycle</text>
   <rect x="110" y="168" width="240" height="650" fill="#111827"/>
   <text x="154" y="236" fill="#64748b" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700">WORKSPACE</text>

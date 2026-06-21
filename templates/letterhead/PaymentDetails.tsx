@@ -13,7 +13,7 @@ export function PaymentDetails() {
             </div>
             <div className="flex justify-between">
               <span className="text-[14px] text-gray-600">Account Name:</span>
-              <span className="text-[14px] font-medium text-gray-900">Softsync Solutions LLC</span>
+              <span className="text-[14px] font-medium text-gray-900">SoftSync Lab LLC</span>
             </div>
             <div className="flex justify-between">
               <span className="text-[14px] text-gray-600">Account Number:</span>
@@ -43,7 +43,7 @@ export function PaymentDetails() {
             </div>
             <div className="flex justify-between">
               <span className="text-[14px] text-gray-600">Venmo:</span>
-              <span className="text-[14px] font-medium text-gray-900">@SoftsyncSolutions</span>
+              <span className="text-[14px] font-medium text-gray-900">@SoftSyncLab</span>
             </div>
           </div>
         </div>

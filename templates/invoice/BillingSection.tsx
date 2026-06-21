@@ -18,7 +18,7 @@ export function BillingSection() {
             From
           </h3>
           <div className="space-y-1">
-            <p className="text-[18px] font-semibold text-gray-900">Softsync Solutions</p>
+            <p className="text-[18px] font-semibold text-gray-900">SoftSync Lab</p>
             <p className="text-[15px] text-gray-700">123 Business Avenue, Suite 100</p>
             <p className="text-[15px] text-gray-700">San Francisco, CA 94102</p>
             <p className="text-[15px] text-gray-600">contact@softsync.io</p>

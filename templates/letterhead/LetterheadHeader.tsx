@@ -11,7 +11,7 @@ export function LetterheadHeader() {
           <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center overflow-hidden">
             <ImageWithFallback
               src="/src/imports/Screenshot_2026-04-10_at_12.25.03 PM.png"
-              alt="Softsync Solutions Logo"
+              alt="SoftSync Lab Logo"
               className="w-full h-full object-cover"
             />
           </div>
@@ -19,7 +19,7 @@ export function LetterheadHeader() {
 
         <div className="text-right space-y-0.5">
           <p className="text-[15px] font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Softsync Solutions
+            SoftSync Lab
           </p>
           <p className="text-[12px] text-gray-600">contact@softsync.io</p>
           <p className="text-[12px] text-gray-600">+1 (555) 987-6543</p>

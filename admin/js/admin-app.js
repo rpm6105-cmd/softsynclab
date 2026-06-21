@@ -8,7 +8,7 @@ const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
 // --- State ---
 let activeItems = [];
 const company = {
-    name: 'Softsync Solutions',
+    name: 'SoftSync Lab',
     address: 'Pushpak Nagar, Navi Mumbai, 410221',
     email: 'rohith@softsyncsolutions.in',
     phone: '7259956572',
@@ -49,14 +49,14 @@ const sig = `
     <div style="text-align:right;">
         <p style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:${C.navy};margin:0 0 2px;line-height:1.1;">Rohith P.M.</p>
         <div style="width:120px;height:2px;background:${GRADIENT};margin:0 0 5px auto;"></div>
-        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder & Proprietor, Softsync Solutions</p>
+        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder & Proprietor, SoftSync Lab</p>
     </div>`;
 
 const sigLeft = `
     <div style="text-align:left;margin-top:2px;margin-bottom:2px;">
         <p style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:${C.navy};margin:0 0 2px;line-height:1.1;">Rohith P.M.</p>
         <div style="width:120px;height:2px;background:${GRADIENT};margin:0 0 5px 0;"></div>
-        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder & Proprietor, Softsync Solutions</p>
+        <p style="font-size:0.58rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:${C.textLight};">Founder & Proprietor, SoftSync Lab</p>
     </div>`;
 
 /* ── FOOTER BAR ── */
@@ -1049,7 +1049,7 @@ window.renderLive = () => {
                         <h2 style="margin: 5px 0 10px; font-size: 1.4rem; color: ${C.navy}; border-bottom: none; padding-bottom: 0;">FREELANCER MARKETING SERVICES AGREEMENT</h2>
                     </div>
                     <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem;">
-                        <tr><td style="width: 30%; font-weight: 700; border: none; color: ${C.textMid};">Client:</td><td style="border: none; font-weight: 600;">Softsync Solutions (Bangalore, India)</td></tr>
+                        <tr><td style="width: 30%; font-weight: 700; border: none; color: ${C.textMid};">Client:</td><td style="border: none; font-weight: 600;">SoftSync Lab (Bangalore, India)</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Freelancer:</td><td style="border: none; font-weight: 600;">${flName}</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Effective Date:</td><td style="border: none; font-weight: 600;">${dateStr}</td></tr>
                         <tr><td style="font-weight: 700; border: none; color: ${C.textMid};">Compensation:</td><td style="border: none; font-weight: 600;">${flCycle === 'Commission-Based Compensation' ? 'Commission-Based Compensation (Payable on Successfully Closed and Paid Projects)' : `₹${parseFloat(flCost).toLocaleString('en-IN')} / ${flCycle}`}</td></tr>
@@ -1061,7 +1061,7 @@ window.renderLive = () => {
                 </p>
 
                 <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
-                    <strong>SOFTSYNC SOLUTIONS</strong>, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, <strong>Mr. Rohith P M</strong> (hereinafter referred to as the <strong>"Client"</strong> or the <strong>"Company"</strong>) of the <strong>FIRST PART</strong>;
+                    <strong>SOFTSYNC LAB</strong>, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, <strong>Mr. Rohith P M</strong> (hereinafter referred to as the <strong>"Client"</strong> or the <strong>"Company"</strong>) of the <strong>FIRST PART</strong>;
                 </p>
                 
                 <p style="margin-bottom: 4mm; padding-left: 4mm; border-left: 2px solid ${C.violetMid};">
@@ -1108,13 +1108,13 @@ window.renderLive = () => {
                     4.1 The Freelancer shall be engaged on a commission-only basis and shall not be entitled to any fixed salary, monthly retainer, stipend, employee benefits, or guaranteed compensation.
                 </p>
                 <p style="margin-bottom: 3mm;">
-                    4.2 The Freelancer shall be eligible to receive a commission for customers directly sourced, referred, and converted into paying customers of Softsync Solutions through the Freelancer's marketing and lead generation efforts.
+                    4.2 The Freelancer shall be eligible to receive a commission for customers directly sourced, referred, and converted into paying customers of SoftSync Lab through the Freelancer's marketing and lead generation efforts.
                 </p>
                 <p style="margin-bottom: 3mm;">
-                    4.3 The commission amount or percentage shall be determined by Softsync Solutions based on the project value, scope of work, profitability, and commercial terms agreed with the customer. The applicable commission shall be communicated to the Freelancer upon successful closure of the project.
+                    4.3 The commission amount or percentage shall be determined by SoftSync Lab based on the project value, scope of work, profitability, and commercial terms agreed with the customer. The applicable commission shall be communicated to the Freelancer upon successful closure of the project.
                 </p>
                 <p style="margin-bottom: 3mm;">
-                    4.4 Commission shall become due and payable only after Softsync Solutions has received payment from the customer. No commission shall be payable on quotations, proposals, cancelled projects, refunded payments, bad debts, or unpaid invoices.
+                    4.4 Commission shall become due and payable only after SoftSync Lab has received payment from the customer. No commission shall be payable on quotations, proposals, cancelled projects, refunded payments, bad debts, or unpaid invoices.
                 </p>
                 <p style="margin-bottom: 3mm;">
                     4.5 Commission payments shall be released within Seven (7) days from the date of receipt of payment from the customer.
@@ -1123,7 +1123,7 @@ window.renderLive = () => {
                     4.6 The Freelancer shall be solely responsible for payment of all applicable taxes, including income tax, GST (if applicable), and any other statutory obligations arising from the commission earned under this Agreement.
                 </p>
                 <p style="margin-bottom: 4mm;">
-                    4.7 Nothing contained herein shall be construed as creating an obligation on Softsync Solutions to provide a minimum number of leads, projects, assignments, or minimum earnings to the Freelancer.
+                    4.7 Nothing contained herein shall be construed as creating an obligation on SoftSync Lab to provide a minimum number of leads, projects, assignments, or minimum earnings to the Freelancer.
                 </p>
                 ` : `
                 <p style="margin-bottom: 4mm;">
@@ -1133,22 +1133,22 @@ window.renderLive = () => {
 
                 <h2>5. Confidentiality & Non-Disclosure</h2>
                 <p style="margin-bottom: 4mm;">
-                    5.1 The Freelancer shall keep strictly confidential all customer info, prospect databases, pricing sheets, marketing strategies, credentials, source code, and internal communications of Softsync Solutions. This obligation survives termination for a period of <strong>3 (three) years</strong>.
+                    5.1 The Freelancer shall keep strictly confidential all customer info, prospect databases, pricing sheets, marketing strategies, credentials, source code, and internal communications of SoftSync Lab. This obligation survives termination for a period of <strong>3 (three) years</strong>.
                 </p>
 
                 <h2>6. Intellectual Property Rights</h2>
                 <p style="margin-bottom: 4mm;">
-                    6.1 All templates, graphics, reports, leads databases, and deliverables created during the engagement (the <strong>"Work Product"</strong>) shall be deemed <strong>"work made for hire"</strong> and shall remain the exclusive property of Softsync Solutions.
+                    6.1 All templates, graphics, reports, leads databases, and deliverables created during the engagement (the <strong>"Work Product"</strong>) shall be deemed <strong>"work made for hire"</strong> and shall remain the exclusive property of SoftSync Lab.
                 </p>
 
                 <h2>7. Access, Security & Limitations</h2>
                 <p style="margin-bottom: 4mm;">
-                    7.1 Access credentials remain the property of Softsync Solutions. The Freelancer shall not share passwords, grant third-party access, or access banking, hosting (Vercel/Supabase), domain registrars, or financial accounts. All access must be immediately revoked upon termination, and any copies of data on personal devices permanently deleted.
+                    7.1 Access credentials remain the property of SoftSync Lab. The Freelancer shall not share passwords, grant third-party access, or access banking, hosting (Vercel/Supabase), domain registrars, or financial accounts. All access must be immediately revoked upon termination, and any copies of data on personal devices permanently deleted.
                 </p>
 
                 <h2>8. Non-Solicitation</h2>
                 <p style="margin-bottom: 4mm;">
-                    8.1 For <strong>12 months</strong> following termination, the Freelancer shall not solicit Softsync Solutions customers, leads, employees, or contractors, or use the company's proprietary databases for personal gain.
+                    8.1 For <strong>12 months</strong> following termination, the Freelancer shall not solicit SoftSync Lab customers, leads, employees, or contractors, or use the company's proprietary databases for personal gain.
                 </p>
 
                 <h2>9. Governing Law & Jurisdiction</h2>
@@ -1160,7 +1160,7 @@ window.renderLive = () => {
                     <table style="width: 100%; border: none; margin-top: 5mm;">
                         <tr style="border: none;">
                             <td style="width: 50%; border: none; padding: 0; vertical-align: top;">
-                                <strong>For SOFTSYNC SOLUTIONS</strong><br><br>
+                                <strong>For SOFTSYNC LAB</strong><br><br>
                                 ${sigLeft}
                                 Name: <strong>Rohith P M</strong><br>
                                 Title: <strong>Founder & Proprietor</strong>
@@ -1186,7 +1186,7 @@ window.renderLive = () => {
                         <br>
                         2. <strong>Confidentiality:</strong> Strict non-disclosure of lists, leads, credentials, and internal chat logs. Survives for 3 years.
                         <br>
-                        3. <strong>Intellectual Property:</strong> Softsync Solutions holds exclusive rights to all campaign deliverables and work products.
+                        3. <strong>Intellectual Property:</strong> SoftSync Lab holds exclusive rights to all campaign deliverables and work products.
                         <br>
                         4. <strong>Non-Solicitation:</strong> Cannot solicit clients, leads, or team members for 12 months post-termination.
                         <br>
@@ -1257,7 +1257,7 @@ window.renderLive = () => {
                     <h2 style="text-align: center; border: none; margin-bottom: 6mm;">SCHEDULE C</h2>
                     <h3 style="text-align: center; font-size: 1.1rem; font-weight: 800; margin-top: 0; margin-bottom: 8mm; color: ${C.navy};">CONFIDENTIALITY & NON-DISCLOSURE ACKNOWLEDGMENT</h3>
                     <p style="margin-bottom: 4mm;">
-                        I, <strong>${flName}</strong>, hereby declare that I will keep all lead lists, software credentials, source codes, and communications of Softsync Solutions strictly confidential. I will not copy or transfer proprietary databases to personal storage. Upon termination, I will immediately delete all digital duplicates from my devices and certify the same in writing. Any breach of these terms entitles Softsync Solutions to seek immediate termination and legal action for damages in Bengaluru, India.
+                        I, <strong>${flName}</strong>, hereby declare that I will keep all lead lists, software credentials, source codes, and communications of SoftSync Lab strictly confidential. I will not copy or transfer proprietary databases to personal storage. Upon termination, I will immediately delete all digital duplicates from my devices and certify the same in writing. Any breach of these terms entitles SoftSync Lab to seek immediate termination and legal action for damages in Bengaluru, India.
                     </p>
                     <div style="margin-top: 12mm; font-size: 0.82rem;">
                         <strong>Freelancer Signature:</strong> ______________________________________<br><br>

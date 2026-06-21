@@ -95,7 +95,7 @@
       <tr>
         <td style="width: 30%; font-weight: 600; color: #64748b; padding: 6px 0; vertical-align: top; border: none;">CLIENT:</td>
         <td style="color: #334155; padding: 6px 0; font-weight: 500; border: none;">
-          <strong>Softsync Solutions</strong><br>
+          <strong>SoftSync Lab</strong><br>
           (Proprietorship Firm represented by Proprietor, Mr. Rohith P M)<br>
           Bangalore, Karnataka, India
         </td>
@@ -116,7 +116,7 @@
   </div>
 
   <div style="margin-top: 100px; font-size: 12px; color: #94a3b8; font-weight: 500;">
-    <p>SOFTSYNC SOLUTIONS © 2026. ALL RIGHTS RESERVED.</p>
+    <p>SOFTSYNC LAB © 2026. ALL RIGHTS RESERVED.</p>
     <p style="margin-top: 5px;">Prepared for PDF Export & Digital Execution</p>
   </div>
 
@@ -130,7 +130,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ### BY AND BETWEEN:
 
-**SOFTSYNC SOLUTIONS**, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, **Mr. Rohith P M** (hereinafter referred to as the **"Client"** or the **"Company"**, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include its successors, administrators, and permitted assigns) of the **FIRST PART**;
+**SOFTSYNC LAB**, a sole proprietorship firm having its principal place of business at Bangalore, Karnataka, India, acting through its Proprietor, **Mr. Rohith P M** (hereinafter referred to as the **"Client"** or the **"Company"**, which expression shall, unless repugnant to the context or meaning thereof, be deemed to mean and include its successors, administrators, and permitted assigns) of the **FIRST PART**;
 
 ### AND:
 
@@ -166,7 +166,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 1.2 **Standard of Work**: The Freelancer shall perform the Services with the highest standard of professional care, skill, diligence, and ethical standards, in accordance with applicable professional practices and industry norms.
 
 1.3 **Limitation of Authority**: The Freelancer is engaged solely for the execution of the marketing tasks outlined above. The Freelancer **is not authorized** to:
-* Make any representation, commitment, or warranty on behalf of Softsync Solutions.
+* Make any representation, commitment, or warranty on behalf of SoftSync Lab.
 * Negotiate pricing, discounts, terms of sale, or contract terms with prospects.
 * Sign agreements, execution documents, or bind the Company legally in any manner whatsoever.
 * Represent themselves as an officer, partner, employee, or legal agent of the Company.
@@ -220,17 +220,17 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 4.1 The Freelancer shall be engaged on a commission-only basis and shall not be entitled to any fixed salary, monthly retainer, stipend, employee benefits, or guaranteed compensation.
 
-4.2 The Freelancer shall be eligible to receive a commission for customers directly sourced, referred, and converted into paying customers of Softsync Solutions through the Freelancer's marketing and lead generation efforts.
+4.2 The Freelancer shall be eligible to receive a commission for customers directly sourced, referred, and converted into paying customers of SoftSync Lab through the Freelancer's marketing and lead generation efforts.
 
-4.3 The commission amount or percentage shall be determined by Softsync Solutions based on the project value, scope of work, profitability, and commercial terms agreed with the customer. The applicable commission shall be communicated to the Freelancer upon successful closure of the project.
+4.3 The commission amount or percentage shall be determined by SoftSync Lab based on the project value, scope of work, profitability, and commercial terms agreed with the customer. The applicable commission shall be communicated to the Freelancer upon successful closure of the project.
 
-4.4 Commission shall become due and payable only after Softsync Solutions has received payment from the customer. No commission shall be payable on quotations, proposals, cancelled projects, refunded payments, bad debts, or unpaid invoices.
+4.4 Commission shall become due and payable only after SoftSync Lab has received payment from the customer. No commission shall be payable on quotations, proposals, cancelled projects, refunded payments, bad debts, or unpaid invoices.
 
 4.5 Commission payments shall be released within Seven (7) days from the date of receipt of payment from the customer.
 
 4.6 The Freelancer shall be solely responsible for payment of all applicable taxes, including income tax, GST (if applicable), and any other statutory obligations arising from the commission earned under this Agreement.
 
-4.7 Nothing contained herein shall be construed as creating an obligation on Softsync Solutions to provide a minimum number of leads, projects, assignments, or minimum earnings to the Freelancer.
+4.7 Nothing contained herein shall be construed as creating an obligation on SoftSync Lab to provide a minimum number of leads, projects, assignments, or minimum earnings to the Freelancer.
 
 ---
 
@@ -242,7 +242,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 * Marketing strategies, campaigns, design assets, and analytics.
 * Business plans, operational metrics, pricing models, and financial reports.
 * Proprietary software, source codes, access credentials, API keys, hosting structures, and technical documentation.
-* Email threads, slack messages, and internal communications of Softsync Solutions.
+* Email threads, slack messages, and internal communications of SoftSync Lab.
 
 5.2 **Obligations of Non-Disclosure**: The Freelancer agrees and covenants that they shall:
 * Keep all Confidential Information strictly secret and confidential.
@@ -261,7 +261,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ## 6. INTELLECTUAL PROPERTY RIGHTS
 
-6.1 **Work Product Ownership**: The Freelancer agrees that all work product, including but not limited to email templates, campaign scripts, content copy, graphics, reports, databases, spreadsheets, contact lists, landing pages, and other deliverables created, written, or designed by the Freelancer (either individually or jointly) during the course of rendering Services under this Agreement (collectively, the **"Work Product"**), shall be deemed to be **"work made for hire"** and shall be the exclusive property of **Softsync Solutions**.
+6.1 **Work Product Ownership**: The Freelancer agrees that all work product, including but not limited to email templates, campaign scripts, content copy, graphics, reports, databases, spreadsheets, contact lists, landing pages, and other deliverables created, written, or designed by the Freelancer (either individually or jointly) during the course of rendering Services under this Agreement (collectively, the **"Work Product"**), shall be deemed to be **"work made for hire"** and shall be the exclusive property of **SoftSync Lab**.
 
 6.2 **Assignment of Rights**: To the extent that any Work Product does not qualify as "work made for hire" by operation of law, the Freelancer hereby irrevocably and unconditionally assigns, transfers, and conveys to the Client, all worldwide rights, titles, and interests (including copyright, trademark, patent, and database rights) in such Work Product, without any additional compensation. The Freelancer waives all moral rights in the Work Product.
 
@@ -271,7 +271,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ## 7. ACCESS AND SECURITY EXPECTATIONS
 
-7.1 **Ownership of Credentials**: Any email accounts, social media profiles (including LinkedIn profiles created/managed for the Company), database access keys, CRM accounts, API keys, or software credentials provided to the Freelancer by the Client (collectively, **"Access Credentials"**) remain the absolute property of **Softsync Solutions**.
+7.1 **Ownership of Credentials**: Any email accounts, social media profiles (including LinkedIn profiles created/managed for the Company), database access keys, CRM accounts, API keys, or software credentials provided to the Freelancer by the Client (collectively, **"Access Credentials"**) remain the absolute property of **SoftSync Lab**.
 
 7.2 **Prohibition on Sharing**: The Freelancer shall:
 * Keep all Access Credentials highly secure.
@@ -287,11 +287,11 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ## 8. NON-SOLICITATION AND COVENANTS
 
-8.1 **Non-Solicitation of Customers**: The Freelancer covenants that during the term of this Agreement and for a period of **12 (twelve) months** immediately following its termination, the Freelancer shall not directly or indirectly contact, solicit, or attempt to do business with any client, lead, or active prospect of Softsync Solutions for their own benefit or for the benefit of any third-party competitor.
+8.1 **Non-Solicitation of Customers**: The Freelancer covenants that during the term of this Agreement and for a period of **12 (twelve) months** immediately following its termination, the Freelancer shall not directly or indirectly contact, solicit, or attempt to do business with any client, lead, or active prospect of SoftSync Lab for their own benefit or for the benefit of any third-party competitor.
 
-8.2 **Non-Solicitation of Personnel**: During the term and for **12 (twelve) months** post-termination, the Freelancer shall not solicit, hire, induce, or attempt to influence any employee, consultant, or independent contractor of Softsync Solutions to leave their association with the Client.
+8.2 **Non-Solicitation of Personnel**: During the term and for **12 (twelve) months** post-termination, the Freelancer shall not solicit, hire, induce, or attempt to influence any employee, consultant, or independent contractor of SoftSync Lab to leave their association with the Client.
 
-8.3 **Data Protection**: The Freelancer shall not under any circumstance use the Client's prospect databases, email lists, or leads lists for personal gain, freelance projects outside of Softsync Solutions, or to build a personal sales pipeline.
+8.3 **Data Protection**: The Freelancer shall not under any circumstance use the Client's prospect databases, email lists, or leads lists for personal gain, freelance projects outside of SoftSync Lab, or to build a personal sales pipeline.
 
 ---
 
@@ -299,7 +299,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 9.1 **Reporting Covenants**: The Freelancer agrees to submit written weekly status and activity reports to the Client (via email or the designated tracking platform) detailing marketing metrics, leads contacted, responses received, and campaigns launched.
 
-9.2 **Professional Conduct**: The Freelancer shall conduct all outreach, emails, and LinkedIn interactions in a highly professional, ethical, and polite manner. The Freelancer shall not send spam, use deceptive subject lines, or engage in aggressive sales practices that could damage the brand reputation of Softsync Solutions.
+9.2 **Professional Conduct**: The Freelancer shall conduct all outreach, emails, and LinkedIn interactions in a highly professional, ethical, and polite manner. The Freelancer shall not send spam, use deceptive subject lines, or engage in aggressive sales practices that could damage the brand reputation of SoftSync Lab.
 
 9.3 **Legal Compliance**: The Freelancer shall strictly comply with all applicable Indian laws and global regulations regarding marketing communications, electronic messaging, and data privacy, including but not limited to the Information Technology Act, 2000, and the Digital Personal Data Protection (DPDP) Act, 2023 (as applicable to data handling).
 
@@ -317,7 +317,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 
 ## 11. INDEMNIFICATION AND LIABILITY
 
-11.1 **Indemnity**: The Freelancer agrees to indemnify, defend, and hold harmless Softsync Solutions, its Proprietor, and its affiliates from and against any and all claims, damages, liabilities, losses, costs, or expenses (including reasonable legal fees) arising out of or resulting from:
+11.1 **Indemnity**: The Freelancer agrees to indemnify, defend, and hold harmless SoftSync Lab, its Proprietor, and its affiliates from and against any and all claims, damages, liabilities, losses, costs, or expenses (including reasonable legal fees) arising out of or resulting from:
 * Any breach of Section 5 (Confidentiality) or Section 7 (Access and Security).
 * Infringement of third-party intellectual property rights by the Freelancer's Work Product.
 * Any gross negligence, fraud, or willful misconduct by the Freelancer in the performance of the Services.
@@ -365,7 +365,7 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 <table class="signature-table" style="width: 100%; border: none;">
   <tr>
     <td style="width: 50%; border: none;">
-      <strong>For SOFTSYNC SOLUTIONS</strong><br><br><br>
+      <strong>For SOFTSYNC LAB</strong><br><br><br>
       Signature: _______________________<br><br>
       Name: <strong>Rohith P M</strong><br>
       Title: <strong>Founder & Proprietor</strong><br>
@@ -411,13 +411,13 @@ This Freelancer Marketing Services Agreement (hereinafter referred to as the **"
 * **Duration**: Your non-disclosure obligations remain legally active during your work and survive for **3 (three) years** after the agreement is terminated.
 
 ### 3. Intellectual Property Assignment (Section 6)
-* All templates, graphics, reports, leads data, and campaign copies you build under this agreement are the absolute property of **Softsync Solutions**.
+* All templates, graphics, reports, leads data, and campaign copies you build under this agreement are the absolute property of **SoftSync Lab**.
 * You waive all claims to these assets and cannot reuse them for personal freelance projects or other clients.
 
 ### 4. Non-Solicitation Covenants (Section 8)
 * For **12 months** after your contract ends, you are prohibited from:
-  - Soliciting or contacting Softsync Solutions clients or leads for your own business or competing agencies.
-  - Soliciting or hiring Softsync Solutions employees or contractors.
+  - Soliciting or contacting SoftSync Lab clients or leads for your own business or competing agencies.
+  - Soliciting or hiring SoftSync Lab employees or contractors.
   - Using any lists or databases compiled during your work here for outside activities.
 
 ### 5. Access and System Hygiene (Section 7 & 12)
@@ -476,14 +476,14 @@ I, Rohith P M, confirm that all access permissions, login keys, and sub-account 
 # CONFIDENTIALITY & NON-DISCLOSURE ACKNOWLEDGMENT (SCHEDULE C)
 *(To be signed separately and returned to the Client)*
 
-I, __________________________________________________ (Name of Freelancer), in connection with my engagement as a Freelancer with **SOFTSYNC SOLUTIONS** (a sole proprietorship firm managed by Mr. Rohith P M), hereby solemnly declare and acknowledge that:
+I, __________________________________________________ (Name of Freelancer), in connection with my engagement as a Freelancer with **SOFTSYNC LAB** (a sole proprietorship firm managed by Mr. Rohith P M), hereby solemnly declare and acknowledge that:
 
 1. **Access to Confidential Data**: I understand that during my engagement, I will be trusted with critical, proprietary, and confidential business assets including, but not limited to, prospect lead lists, client contact details, email templates, marketing plans, corporate workflows, software configurations, and internal business correspondence.
 2. **Confidentiality Commitment**: I agree to hold all such information in strict confidence. I will not copy, download, export, distribute, share, or disclose any confidential materials to any third party (including friends, colleagues, or other freelance clients) without the prior written consent of Mr. Rohith P M.
-3. **Purpose of Use**: I will use the information and assets provided to me solely for performing the marketing tasks explicitly requested of me by Softsync Solutions. I will not use this data for personal gain, freelance projects outside of the Company, or to build an independent pipeline.
+3. **Purpose of Use**: I will use the information and assets provided to me solely for performing the marketing tasks explicitly requested of me by SoftSync Lab. I will not use this data for personal gain, freelance projects outside of the Company, or to build an independent pipeline.
 4. **Data Security**: I will keep all passwords, login codes, CRM access keys, and email accounts secure. I will never share credentials or delegate access to a third party. I will immediately report any security leakage or password compromises.
 5. **Cessation of Access**: Upon the end of my contract, I will immediately cease all access to the Client's systems, log out of all marketing profiles, and permanently delete any spreadsheets, email templates, or prospect lists stored on my personal computer or cloud accounts.
-6. **Understanding of Consequences**: I acknowledge that any breach of this Acknowledgment or the confidentiality terms in the main Agreement will cause irreparable damage to Softsync Solutions. I understand that the Company reserves the right to terminate my services immediately, seek civil injunctions, and file legal suits for damages in Bengaluru, Karnataka, for any breach.
+6. **Understanding of Consequences**: I acknowledge that any breach of this Acknowledgment or the confidentiality terms in the main Agreement will cause irreparable damage to SoftSync Lab. I understand that the Company reserves the right to terminate my services immediately, seek civil injunctions, and file legal suits for damages in Bengaluru, Karnataka, for any breach.
 
 This Acknowledgment is executed by me freely and voluntarily.
 

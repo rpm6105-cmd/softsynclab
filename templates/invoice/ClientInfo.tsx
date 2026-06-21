@@ -18,7 +18,7 @@ export function ClientInfo() {
           Prepared By
         </h3>
         <div className="space-y-1.5">
-          <p className="font-semibold text-[18px] text-gray-900">Softsync Solutions</p>
+          <p className="font-semibold text-[18px] text-gray-900">SoftSync Lab</p>
           <p className="text-[15px] text-gray-600">Sarah Johnson</p>
           <p className="text-[15px] text-gray-600">Senior Solutions Architect</p>
           <p className="text-[15px] text-gray-600">sarah@softsyncsolutions.com</p>

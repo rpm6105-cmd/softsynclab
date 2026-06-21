@@ -47,7 +47,7 @@ export function ProposalFooter() {
       </div>
       <div className="text-center pt-8 border-t border-gray-200">
         <p className="text-[12px] text-gray-400">
-          © 2026 Softsync Solutions. All rights reserved. | Professional SaaS Development Services
+          © 2026 SoftSync Lab. All rights reserved. | Professional SaaS Development Services
         </p>
       </div>
     </div>

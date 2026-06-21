@@ -1,5 +1,5 @@
 // logo-patch.js  —  Drop this in your project root and load it in admin-dashboard.html
-// BEFORE admin-app.js. It embeds the Softsync logo as base64 so document
+// BEFORE admin-app.js. It embeds the SoftSync logo as base64 so document
 // previews (quotation / invoice / proposal / letterhead) always render correctly
 // regardless of the server path for assets/images/logo-s.png.
 
