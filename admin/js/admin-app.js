@@ -34,8 +34,8 @@ const C = {
 };
 
 const GRADIENT = 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)';
-const LOGO = 'assets/images/Logo.svg';
-const LOGO_ICON = 'assets/images/Logo.svg';
+const LOGO = 'assets/images/company-logo-icon.png';
+const LOGO_ICON = 'assets/images/company-logo-icon.png';
 
 const BANK = {
     bank: 'ICICI Bank',
