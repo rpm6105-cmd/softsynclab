@@ -402,9 +402,7 @@ const getHeaderHTML = (title, docNumber, dateStr) => {
         <div style="position:absolute;inset:0;background:linear-gradient(135deg, ${C.blueLight} 0%, ${C.violetLight} 100%);opacity:0.4;"></div>
         <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
             <div style="display:flex;align-items:center;gap:15px;">
-                <div style="width:60px;height:60px;border-radius:14px;background:${GRADIENT};display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
-                    <img src="${LOGO_ICON}" style="width:38px;height:auto;filter:brightness(0) invert(1);">
-                </div>
+                <img src="${LOGO_ICON}" style="width:42px;height:42px;object-fit:contain;">
                 <div>
                     <h1 style="font-size:1.6rem;font-weight:800;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;line-height:1.2;">${company.name}</h1>
                     <p style="font-size:0.8rem;color:${C.textMid};margin:2px 0 0;letter-spacing:0.02em;font-weight:500;">SaaS Development Agency</p>
