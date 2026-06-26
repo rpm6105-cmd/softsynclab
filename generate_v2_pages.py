@@ -616,7 +616,7 @@ about_content = """
             <h2 style="font-size: 1.6rem; margin-bottom: 1.5rem; text-align: center; font-family: 'Outfit', sans-serif;">Technical Leadership</h2>
             <div style="display: flex; justify-content: center;">
                 <div class="team-card" style="width: 100%; border: none; padding: 0; box-shadow: none;">
-                    <img src="./assets/images/rohith-photo.jpg" alt="Rohith P M" width="180" height="180" style="width:180px; height:180px; border-radius: 20px;">
+                    <img src="./assets/images/rohith-photo.jpg" alt="Rohith P M" width="180" height="180" style="width:180px; height:180px; border-radius: 20px; object-fit: cover; object-position: top center;">
                     <h3 style="font-family:'Outfit',sans-serif; margin-bottom:0.25rem; font-size: 1.3rem;">Rohith P M</h3>
                     <p style="color:var(--accent); font-size:0.88rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:1rem;">Founder & CEO</p>
                     <p style="font-size:0.92rem; color:var(--text-dim); line-height:1.7; max-width: 480px; margin: 0 auto;">Technical architect coordinating systems integration, database designs, custom application builds, and operations audits for SME clients.</p>
