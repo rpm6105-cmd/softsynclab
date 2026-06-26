@@ -1,5 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Root and Static Pages -->
   <url>
     <loc>https://softsyncsolutions.in/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/about.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/contact.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service Pages -->
+  <url>
+    <loc>https://softsyncsolutions.in/services/hrms.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/crm.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/payroll.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/inventory.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/erp.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/workflow-automation.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/business-automation.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/services/custom-software.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Case Studies -->
+  <url>
+    <loc>https://softsyncsolutions.in/projects/go-solar-hrms.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/projects/hrms.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/projects/compliance.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/projects/solar.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog Listing and Articles -->
+  <url>
+    <loc>https://softsyncsolutions.in/blog/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/why-smes-need-custom-software.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/crm-vs-excel.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/hrms-benefits.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/erp-vs-crm.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/one-time-software-vs-subscription.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/workflow-automation-guide.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/inventory-management-best-practices.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/digital-transformation-for-smes.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/construction-software-guide.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://softsyncsolutions.in/blog/manufacturing-erp-guide.html</loc>
+    <priority>0.75</priority>
   </url>
 </urlset>
