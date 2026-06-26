@@ -102,7 +102,7 @@ img {
 .section-label {
     display: inline-flex;
     align-items: center;
-    color: var(--accent);
+    color: #0f766e;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 0.82rem;
@@ -254,7 +254,7 @@ textarea:focus-visible {
 }
 
 .nav-links a.active {
-    color: var(--accent);
+    color: #0f766e;
     font-weight: 600;
 }
 
@@ -276,7 +276,7 @@ textarea:focus-visible {
 
 .nav-links a.nav-demo {
     background: rgba(13, 148, 136, 0.08);
-    color: var(--accent);
+    color: #0f766e;
     padding: 0.35rem 0.85rem;
     border-radius: 50px;
     border: 1px solid rgba(13, 148, 136, 0.2);
@@ -774,7 +774,7 @@ textarea:focus-visible {
 
 .project-tags span {
     font-size: 0.68rem;
-    color: var(--accent);
+    color: #0f766e;
     font-weight: 700;
     padding: 0.28rem 0.62rem;
     border-radius: 999px;
@@ -963,7 +963,7 @@ textarea:focus-visible {
     padding: 0.32rem 0.78rem;
     font-size: 0.66rem;
     font-weight: 600;
-    color: var(--accent);
+    color: #0f766e;
     text-transform: uppercase;
     letter-spacing: 0.9px;
     margin-bottom: 1.45rem;
