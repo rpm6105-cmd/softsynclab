@@ -752,7 +752,7 @@ contact_content = """
                         <textarea style="padding:0.75rem 1rem; border-radius:10px; border:1px solid rgba(15,23,42,0.12); font-size:0.88rem; min-height:120px; resize:vertical; font-family:inherit;" id="page-msg" name="message" placeholder="Describe the current process, what tools fail, and the outcome you want."></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-vibrant" style="width:100%; justify-content:center; text-align:center; padding:1.1rem; font-size:1rem; font-weight:700;">Submit Consultation Request</button>
+                    <button type="submit" class="btn btn-vibrant" style="width:100%; justify-content:center; text-align:center; padding:1.1rem; font-size:1rem; font-weight:700;">Get Your Automation Plan &rarr;</button>
                     <p class="form-status" id="page-form-status" aria-live="polite" style="font-size:0.85rem; text-align:center; margin:0;"></p>
                 </form>
             </div>
