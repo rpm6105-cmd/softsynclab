@@ -246,8 +246,8 @@
     const pageForm = document.getElementById('contact-form-page');
     const pageStatus = document.getElementById('page-form-status');
 
-    if(pageForm) {{
-        pageForm.addEventListener('submit', function(e) {{
+    if(pageForm) {
+        pageForm.addEventListener('submit', function(e) {
             e.preventDefault();
             pageStatus.textContent = 'Submitting your inquiry...';
             pageStatus.style.color = 'var(--text)';
@@ -256,31 +256,31 @@
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
 
-            fetch('https://api.web3forms.com/submit', {{
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                headers: {{
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                }},
+                },
                 body: json
-            }})
-            .then(async (response) => {{
+            })
+            .then(async (response) => {
                 let res = await response.json();
-                if (response.status == 200) {{
+                if (response.status == 200) {
                     pageStatus.textContent = "Thank you! Inquiry sent successfully. Our team will email you within 24 hours.";
                     pageStatus.style.color = '#10b981';
                     pageForm.reset();
-                }} else {{
+                } else {
                     pageStatus.textContent = res.message || "Failed to submit. Please contact us via WhatsApp.";
                     pageStatus.style.color = '#ef4444';
-                }}
-            }})
-            .catch(error => {{
+                }
+            })
+            .catch(error => {
                 pageStatus.textContent = "Network error. Please try again or message us on WhatsApp.";
                 pageStatus.style.color = '#ef4444';
-            }});
-        }});
-    }}
+            });
+        });
+    }
 </script>
 
 
