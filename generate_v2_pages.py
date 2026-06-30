@@ -125,6 +125,7 @@ def get_layout(title, description, content_html, schema_json, root_path, active_
                 <li><a href="{root_path}index.html#services" class="{active_solutions}">Solutions</a></li>
                 <li><a href="{root_path}index.html#industries" class="{active_industries}">Industries</a></li>
                 <li><a href="{root_path}index.html#projects" class="{active_projects}">Projects</a></li>
+                <li><a href="{root_path}index.html#demos">Demos</a></li>
                 <li><a href="{root_path}blog/" class="{active_blog}">Blog</a></li>
                 <li><a href="{root_path}about.html" class="{active_about}">About</a></li>
                 <li><a href="{root_path}contact.html" class="btn btn-sm" style="background:var(--accent); color:#fff; font-weight:700; border:none; box-shadow:0 0 16px rgba(13,148,136,0.3);">Contact</a></li>
