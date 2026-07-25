@@ -706,7 +706,7 @@ contact_content = """
                         </div>
                         <div>
                             <p style="color:rgba(15,23,42,0.4); font-size:0.75rem; text-transform:uppercase; font-weight:700; margin-bottom:0.2rem;">Business Hours</p>
-                            <p style="color:var(--text-dim); font-weight:500;">Mon - Fri: 10:00 AM - 7:00 PM IST (Mumbai)</p>
+                            <p style="color:var(--text-dim); font-weight:500;">Mon - Fri: 10:00 AM - 7:00 PM IST </p>
                         </div>
                     </div>
                 </div>
