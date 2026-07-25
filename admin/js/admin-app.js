@@ -12,7 +12,7 @@ const company = {
     address: 'T Dasarahalli, Bengaluru, 560057',
     email: 'rohith@softsyncsolutions.in',
     phone: '7259956572',
-    director: 'Rohith P.M.'
+    director: 'Rohith P.M.',
     gstIn: '29BWYPR4301Q1ZF'
 };
 
