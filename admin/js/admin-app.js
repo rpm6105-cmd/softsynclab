@@ -9,7 +9,7 @@ const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
 let activeItems = [];
 const company = {
     name: 'SoftSync Lab',
-    address: 'Pushpak Nagar, Navi Mumbai, 410221',
+    address: 'T Dasarahalli, Bengaluru, 560057',
     email: 'rohith@softsyncsolutions.in',
     phone: '7259956572',
     director: 'Rohith P.M.'
@@ -133,10 +133,10 @@ window.resetForm = () => {
         'moa-purpose': `This Agreement outlines the terms and conditions under which the Service Provider will deliver a customized HRMS & Payroll Software Solution to the Client.`,
         'moa-scope': `* Employee Management System\n* Attendance Tracking\n* Payroll Processing\n* Compliance Management\n* Basic Reporting Dashboard`,
         'moa-cost': '90000',
-        'moa-payment': `* 50% advance payment before project initiation\n* 30% upon completion of development\n* 20% upon final delivery/go-live`,
+        'moa-payment': `* 50% advance payment before project initiation\n* 25% upon completion of development\n* 25% upon final delivery/go-live`,
         'moa-timeline': `Estimated timeline: 3–5 weeks from the date of advance payment`,
         'moa-support': `30 days of free post-delivery support included\nPost-support period: AMC (Annual Maintenance Contract) can be opted separately`,
-        'moa-law': `Mumbai, Maharashtra`
+        'moa-law': `Bengaluru, Karnataka`
     };
     for (const [id, val] of Object.entries(moaFields)) {
         const el = document.getElementById(id);
