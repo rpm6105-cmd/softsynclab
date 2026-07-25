@@ -13,6 +13,7 @@ const company = {
     email: 'rohith@softsyncsolutions.in',
     phone: '7259956572',
     director: 'Rohith P.M.'
+    gstIn: '29BWYPR4301Q1ZF'
 };
 
 /* ── BRAND PALETTE (upgraded) ── */
@@ -503,6 +504,7 @@ window.renderLive = () => {
                     <div style="font-size:1.1rem;font-weight:800;color:${C.textDark};margin-bottom:6px;">${company.name}</div>
                     <div style="font-size:0.8rem;color:${C.textMid};line-height:1.6;max-width:240px;">${company.address}</div>
                     <div style="font-size:0.8rem;color:${C.textMid};margin-top:4px;">${company.email}</div>
+                    <div style="font-size:0.8rem;color:${C.textMid};margin-top:4px;">GSTIN: ${company.gstIn}</div>
                 </div>
                 <div style="padding:8mm 18mm;">
                     <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:10px;">${isInv ? 'Billed To' : 'Quotation For'}</div>
@@ -531,38 +533,25 @@ window.renderLive = () => {
                     </table>
                 </div>
 
-                <!-- TOTALS SECTION -->
+                     <!-- TOTALS SECTION -->
                 <div style="display:flex;justify-content:flex-end;margin-top:4mm;">
                     <div style="width:340px;background:${C.offWhite};border-radius:16px;padding:24px;border:1px solid ${C.border};">
                         <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
                             <span style="font-size:0.9rem;color:${C.textMid};">Subtotal</span>
                             <span style="font-size:0.95rem;font-weight:700;color:${C.textDark};">₹${subtotal.toLocaleString('en-IN')}</span>
                         </div>
+                        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+                            <span style="font-size:0.9rem;color:${C.textMid};">IGST (18%)</span>
+                            <span style="font-size:0.95rem;font-weight:700;color:${C.textDark};">₹${(subtotal * 0.18).toLocaleString('en-IN')}</span>
+                        </div>
                         <div style="height:1px;background:${C.border};margin-bottom:12px;"></div>
                         <div style="display:flex;justify-content:space-between;align-items:center;background:${isInv ? C.navy : GRADIENT};margin:12px -24px -24px -24px;padding:20px 24px;border-radius:0 0 16px 16px;box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
                             <span style="font-size:1.1rem;font-weight:800;color:white;">Grand Total</span>
-                            <span style="font-size:1.5rem;font-weight:900;color:white;">₹${subtotal.toLocaleString('en-IN')}</span>
+                            <span style="font-size:1.5rem;font-weight:900;color:white;">₹${(subtotal * 1.18).toLocaleString('en-IN')}</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="no-break">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:4mm;">
-                        <div style="flex:1;">
-                            <div style="padding:18px;background:${isInv ? '#eff6ff' : C.violetLight};border-radius:14px;border:1px solid ${isInv ? 'rgba(37,99,235,0.1)' : 'rgba(124,58,237,0.1)'};max-width:420px;">
-                                <p style="font-size:0.75rem;color:${isInv ? '#1e40af' : C.violet};line-height:1.7;margin:0;">
-                                    ${isInv ? 'Thank you for your payment. This invoice is sent as a receipt.' : `
-                                    <span style="font-weight:900;text-transform:uppercase;letter-spacing:0.05em;">Important:</span><br>
-                                    This quotation is valid for 14 days. Prices are subject to change based on final requirements.
-                                    `}
-                                </p>
-                            </div>
-                        </div>
-                        <div style="width:200px;text-align:right;">
-                            ${sig}
-                        </div>
-                    </div>
-
+                
                     <!-- PAYMENT DETAILS -->
                     <div style="margin-top:4mm;padding-top:4mm;border-top:1px solid ${C.border};">
                         <h3 style="font-size:1.1rem;font-weight:800;color:${C.navyDark};margin-bottom:15px;display:flex;align-items:center;gap:10px;">
