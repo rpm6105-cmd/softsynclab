@@ -406,7 +406,7 @@ const getHeaderHTML = (title, docNumber, dateStr) => {
                 <img src="${LOGO_ICON}" style="width:42px;height:42px;object-fit:contain;">
                 <div>
                     <h1 style="font-size:1.6rem;font-weight:800;background:${GRADIENT};-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;line-height:1.2;">${company.name}</h1>
-                    <p style="font-size:0.8rem;color:${C.textMid};margin:2px 0 0;letter-spacing:0.02em;font-weight:500;">SaaS Development Agency</p>
+                    <p style="font-size:0.8rem;color:${C.textMid};margin:2px 0 0;letter-spacing:0.02em;font-weight:500;">SaaS Development Company</p>
                 </div>
             </div>
             <div style="text-align:right;">
