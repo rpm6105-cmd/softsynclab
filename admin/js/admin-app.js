@@ -1487,7 +1487,7 @@ window.loadDocumentFromHistory = (idx) => {
             'moa-payment': d.payment || '',
             'moa-timeline':d.timeline|| '',
             'moa-support': d.support  || '',
-            'moa-law':     d.law     || 'Mumbai, Maharashtra',
+            'moa-law':     d.law     || 'Bengaluru, Karnataka',
         };
         for (const [id, val] of Object.entries(fields)) {
             const el = document.getElementById(id);
