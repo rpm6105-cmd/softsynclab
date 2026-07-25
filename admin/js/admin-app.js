@@ -473,22 +473,17 @@ window.renderLive = () => {
            QUOTATION & INVOICE
         ══════════════════════════════════════════════ */
         if (mode === 'quotation' || mode === 'invoice') {
-            const isInv       = mode === 'invoice';
-            const label       = isInv ? 'TAX INVOICE' : 'QUOTATION';
-            const accentColor = isInv ? '#1e40af' : '#7c3aed'; // Formal Blue vs Vibrant Violet
-            const statusLabel = isInv ? 'PENDING'   : 'DRAFT';
-            const headerBg    = isInv ? '#f8fafc' : '#f5f3ff';
-            const headerBorder = isInv ? `1px solid ${C.border}` : `2px solid ${C.violetMid}`;
+            const isInv = mode === 'invoice';
+            const label = isInv ? 'TAX INVOICE' : 'QUOTATION';
 
             let subtotal = 0;
             const rows = activeItems.map((item, idx) => {
                 const lt = item.qty * item.rate; subtotal += lt;
-                return `<tr style="border-bottom:1px solid ${C.border};">
-                    <td style="padding:12px 14px;font-size:0.75rem;color:${C.textMid};vertical-align:top;">${idx + 1}</td>
-                    <td style="padding:12px 8px;font-size:0.85rem;color:${C.textDark};font-weight:500;line-height:1.4;">${item.desc}</td>
-                    <td style="padding:12px 8px;font-size:0.85rem;color:${C.textMid};text-align:center;">${item.qty}</td>
-                    <td style="padding:12px 8px;font-size:0.85rem;color:${C.textMid};text-align:right;">₹${item.rate.toLocaleString('en-IN')}</td>
-                    <td style="padding:12px 14px;font-size:0.85rem;font-weight:700;color:${C.textDark};text-align:right;">₹${lt.toLocaleString('en-IN')}</td>
+                return `<tr>
+                    <td style="padding:10px;border-bottom:1px solid #e2e8f0;font-size:9.5pt;color:#334155;width:50%;">${item.desc}</td>
+                    <td class="center" style="padding:10px;border-bottom:1px solid #e2e8f0;font-size:9.5pt;color:#334155;text-align:center;width:15%;">${item.qty}</td>
+                    <td class="right" style="padding:10px;border-bottom:1px solid #e2e8f0;font-size:9.5pt;color:#334155;text-align:right;width:18%;">₹${item.rate.toLocaleString('en-IN')}</td>
+                    <td class="right" style="padding:10px;border-bottom:1px solid #e2e8f0;font-size:9.5pt;color:#334155;font-weight:600;text-align:right;width:17%;">₹${lt.toLocaleString('en-IN')}</td>
                 </tr>`;
             }).join('');
 
@@ -496,83 +491,102 @@ window.renderLive = () => {
                 ? `#${mode === 'invoice' ? 'INV' : 'QT'}-${window._currentHistoryDoc.id}`
                 : `#${isInv ? invNum : qtNum}`;
 
+            /* ── Custom header matching Python WeasyPrint style ── */
+            const qtHeaderHTML = `
+            <div class="print-header" style="position:relative;background:#ffffff;padding:16mm 16mm 12mm;border-bottom:2px solid #0f172a;">
+                <table style="width:100%;border-collapse:collapse;">
+                    <tr>
+                        <td style="vertical-align:top;text-align:left;width:55%;padding:0;border:none;">
+                            <div style="font-size:20pt;font-weight:bold;color:#0f172a;letter-spacing:-0.3px;line-height:1.1;margin:0;">${company.name}</div>
+                            <div style="font-size:8.5pt;color:#1e40af;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;">Intelligent Business Automation & Software Development</div>
+                        </td>
+                        <td style="vertical-align:top;text-align:right;width:45%;padding:0;border:none;">
+                            <div style="font-size:16pt;font-weight:bold;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin:0 0 4px 0;">${label}</div>
+                            <div style="font-size:9pt;color:#475569;line-height:1.35;">${isInv ? 'Invoice No' : 'Quotation No'}: <span style="font-weight:bold;color:#0f172a;">${docNum}</span></div>
+                            <div style="font-size:9pt;color:#475569;line-height:1.35;">Date: <span style="font-weight:bold;color:#0f172a;">${dateStr}</span></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>`;
+
             const contentHTML = `
-            <!-- BILLING INFO -->
-            <div style="display:grid;grid-template-columns:1fr 1fr;background:${C.offWhite};border-bottom:1px solid ${C.border};">
-                <div style="padding:8mm 18mm;border-right:1px solid ${C.border};">
-                    <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:10px;">Issued By</div>
-                    <div style="font-size:1.1rem;font-weight:800;color:${C.textDark};margin-bottom:6px;">${company.name}</div>
-                    <div style="font-size:0.8rem;color:${C.textMid};line-height:1.6;max-width:240px;">${company.address}</div>
-                    <div style="font-size:0.8rem;color:${C.textMid};margin-top:4px;">${company.email}</div>
-                    <div style="font-size:0.8rem;color:${C.textMid};margin-top:4px;">GSTIN: ${company.gstIn}</div>
-                </div>
-                <div style="padding:8mm 18mm;">
-                    <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.15em;color:${C.textLight};margin-bottom:10px;">${isInv ? 'Billed To' : 'Quotation For'}</div>
-                    <div style="font-size:1.1rem;font-weight:800;color:${C.textDark};margin-bottom:6px;">${client}</div>
-                    <div style="font-size:0.8rem;color:${C.textMid};line-height:1.6;">${addr}</div>
-                    ${phone ? `<div style="font-size:0.8rem;color:${C.textMid};margin-top:4px;">${phone}</div>` : ''}
-                </div>
-            </div>
+            <div style="padding:0 16mm;">
 
-            <!-- LINE ITEMS -->
-            <div style="padding:6mm 18mm;background:${C.white};">
-                <div style="border-radius:14px;border:1px solid ${C.border};overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.03);">
-                    <table style="width:100%;border-collapse:collapse;">
-                        <thead>
-                            <tr style="background:${isInv ? C.navy : GRADIENT};">
-                                <th style="padding:16px;font-size:0.75rem;font-weight:800;color:white;text-align:left;width:30px;text-transform:uppercase;letter-spacing:0.05em;">#</th>
-                                <th style="padding:16px 8px;font-size:0.75rem;font-weight:800;color:white;text-align:left;text-transform:uppercase;letter-spacing:0.05em;">Description</th>
-                                <th style="padding:16px 8px;font-size:0.75rem;font-weight:800;color:white;text-align:center;width:50px;text-transform:uppercase;letter-spacing:0.05em;">Qty</th>
-                                <th style="padding:16px 8px;font-size:0.75rem;font-weight:800;color:white;text-align:right;width:100px;text-transform:uppercase;letter-spacing:0.05em;">Rate</th>
-                                <th style="padding:16px 16px;font-size:0.75rem;font-weight:800;color:white;text-align:right;width:120px;text-transform:uppercase;letter-spacing:0.05em;">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${rows || `<tr><td colspan="5" style="padding:60px;text-align:center;color:${C.textLight};font-size:0.95rem;font-style:italic;background:${C.offWhite};">No items listed. Add services to generate ${isInv ? 'invoice' : 'quote'}.</td></tr>`}
-                        </tbody>
-                    </table>
-                </div>
-
-                     <!-- TOTALS SECTION -->
-                <div style="display:flex;justify-content:flex-end;margin-top:4mm;">
-                    <div style="width:340px;background:${C.offWhite};border-radius:16px;padding:24px;border:1px solid ${C.border};">
-                        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-                            <span style="font-size:0.9rem;color:${C.textMid};">Subtotal</span>
-                            <span style="font-size:0.95rem;font-weight:700;color:${C.textDark};">₹${subtotal.toLocaleString('en-IN')}</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-                            <span style="font-size:0.9rem;color:${C.textMid};">IGST (18%)</span>
-                            <span style="font-size:0.95rem;font-weight:700;color:${C.textDark};">₹${(subtotal * 0.18).toLocaleString('en-IN')}</span>
-                        </div>
-                        <div style="height:1px;background:${C.border};margin-bottom:12px;"></div>
-                        <div style="display:flex;justify-content:space-between;align-items:center;background:${isInv ? C.navy : GRADIENT};margin:12px -24px -24px -24px;padding:20px 24px;border-radius:0 0 16px 16px;box-shadow:0 -4px 12px rgba(0,0,0,0.05);">
-                            <span style="font-size:1.1rem;font-weight:800;color:white;">Grand Total</span>
-                            <span style="font-size:1.5rem;font-weight:900;color:white;">₹${(subtotal * 1.18).toLocaleString('en-IN')}</span>
-                        </div>
-                    </div>
-                </div>
-                
-                    <!-- PAYMENT DETAILS -->
-                    <div style="margin-top:4mm;padding-top:4mm;border-top:1px solid ${C.border};">
-                        <h3 style="font-size:1.1rem;font-weight:800;color:${C.navyDark};margin-bottom:15px;display:flex;align-items:center;gap:10px;">
-                            <div style="width:5px;height:22px;background:${isInv ? C.navy : GRADIENT};border-radius:3px;"></div>
-                            Bank Transfer Details
-                        </h3>
-                        <div style="background:${C.offWhite};border:1px solid ${C.border};border-radius:16px;padding:20px;max-width:540px;">
-                            <div style="font-size:0.8rem;color:${C.textMid};display:grid;grid-template-columns:1fr 1.2fr;gap:10px;">
-                                <div style="display:flex;justify-content:space-between;padding-right:15px;border-right:1px solid ${C.border};"><span>Bank Name</span><span style="font-weight:700;color:${C.textDark};">${BANK.bank}</span></div>
-                                <div style="display:flex;justify-content:space-between;padding-left:15px;"><span>Account Holder</span><span style="font-weight:700;color:${C.textDark};">${BANK.holder}</span></div>
-                                <div style="display:flex;justify-content:space-between;padding-right:15px;border-right:1px solid ${C.border};"><span>IFSC Code</span><span style="font-weight:700;color:${C.textDark};">${BANK.ifsc}</span></div>
-                                <div style="display:flex;justify-content:space-between;padding-left:15px;"><span>Account Number</span><span style="font-weight:700;color:${C.textDark};">${BANK.acc}</span></div>
+                <!-- PARTIES TABLE -->
+                <table style="width:100%;border-collapse:separate;border-spacing:12px 0;margin-left:-12px;margin-right:-12px;margin-bottom:20px;">
+                    <tr>
+                        <td style="width:50%;vertical-align:top;background:#f8fafc;border:1px solid #cbd5e1;border-radius:4px;padding:12px 14px;">
+                            <div style="font-size:8pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;margin-bottom:6px;border-bottom:1px solid #cbd5e1;padding-bottom:3px;">Issued By</div>
+                            <div style="font-size:11pt;font-weight:bold;color:#0f172a;margin-bottom:3px;">${company.name}</div>
+                            <div style="font-size:8.5pt;color:#334155;line-height:1.45;">
+                                ${company.address}<br>
+                                Email: ${company.email}<br>
+                                <strong>GSTIN:</strong> ${company.gstIn}
                             </div>
-                        </div>
-                    </div>
+                        </td>
+                        <td style="width:50%;vertical-align:top;background:#f8fafc;border:1px solid #cbd5e1;border-radius:4px;padding:12px 14px;">
+                            <div style="font-size:8pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;margin-bottom:6px;border-bottom:1px solid #cbd5e1;padding-bottom:3px;">${isInv ? 'Billed To' : 'Quotation For'}</div>
+                            <div style="font-size:11pt;font-weight:bold;color:#0f172a;margin-bottom:3px;">${client}</div>
+                            <div style="font-size:8.5pt;color:#334155;line-height:1.45;">
+                                ${addr || '[Client Address]'}
+                                ${phone ? `<br>${phone}` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- ITEMS TABLE -->
+                <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+                    <thead>
+                        <tr style="background:#0f172a;">
+                            <th style="padding:8px 10px;font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.5px;color:#ffffff;text-align:left;width:50%;">Description</th>
+                            <th style="padding:8px 10px;font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.5px;color:#ffffff;text-align:center;width:15%;">Qty</th>
+                            <th style="padding:8px 10px;font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.5px;color:#ffffff;text-align:right;width:18%;">Rate</th>
+                            <th style="padding:8px 10px;font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.5px;color:#ffffff;text-align:right;width:17%;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows || `<tr><td colspan="4" style="padding:40px;text-align:center;color:#94a3b8;font-size:9.5pt;font-style:italic;background:#f8fafc;">No items listed. Add services to generate ${isInv ? 'invoice' : 'quote'}.</td></tr>`}
+                    </tbody>
+                </table>
+
+                <!-- BOTTOM SECTION: Bank + Summary -->
+                <table style="width:100%;border-collapse:collapse;margin-top:10px;margin-bottom:20px;">
+                    <tr>
+                        <!-- Bank Details -->
+                        <td style="width:55%;vertical-align:top;background:#f0f9ff;border:1px solid #bae6fd;border-radius:4px;padding:12px 14px;">
+                            <div style="font-size:8.5pt;font-weight:bold;text-transform:uppercase;color:#0369a1;letter-spacing:0.5px;margin-bottom:8px;border-bottom:1px solid #bae6fd;padding-bottom:4px;">Bank Transfer Details</div>
+                            <table style="width:100%;border-collapse:collapse;font-size:8.5pt;color:#1e293b;">
+                                <tr><td style="padding:3px 0;color:#475569;width:40%;">Bank Name:</td><td style="padding:3px 0;font-weight:bold;color:#0f172a;">${BANK.bank}</td></tr>
+                                <tr><td style="padding:3px 0;color:#475569;">Account Holder:</td><td style="padding:3px 0;font-weight:bold;color:#0f172a;">${BANK.holder}</td></tr>
+                                <tr><td style="padding:3px 0;color:#475569;">Account Number:</td><td style="padding:3px 0;font-weight:bold;color:#0f172a;">${BANK.acc}</td></tr>
+                                <tr><td style="padding:3px 0;color:#475569;">IFSC Code:</td><td style="padding:3px 0;font-weight:bold;color:#0f172a;">${BANK.ifsc}</td></tr>
+                            </table>
+                        </td>
+                        <td style="width:5%;"></td>
+                        <!-- Summary -->
+                        <td style="width:40%;vertical-align:top;padding-left:20px;">
+                            <table style="width:100%;border-collapse:collapse;font-size:9.5pt;">
+                                <tr><td style="padding:6px 0;border-bottom:1px solid #e2e8f0;color:#475569;">Subtotal:</td><td style="padding:6px 0;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:bold;color:#0f172a;">₹${subtotal.toLocaleString('en-IN')}</td></tr>
+                                <tr><td style="padding:6px 0;border-bottom:1px solid #e2e8f0;color:#475569;">IGST (18%):</td><td style="padding:6px 0;border-bottom:1px solid #e2e8f0;text-align:right;font-weight:bold;color:#0f172a;">₹${(subtotal * 0.18).toLocaleString('en-IN')}</td></tr>
+                                <tr style="border-top:2px solid #0f172a;border-bottom:2px solid #0f172a;">
+                                    <td style="padding:8px 0;font-size:11pt;color:#0f172a;font-weight:bold;">Grand Total:</td>
+                                    <td style="padding:8px 0;text-align:right;font-size:12pt;font-weight:bold;color:#1e40af;">₹${(subtotal * 1.18).toLocaleString('en-IN')}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- FOOTER BANNER -->
+                <div style="margin-top:40px;text-align:center;border-top:1px solid #e2e8f0;padding-top:10px;font-size:8.5pt;color:#64748b;letter-spacing:0.5px;">
+                    <span style="color:#1e40af;font-weight:bold;">WWW.SOFTSYNCSOLUTIONS.IN</span> &nbsp;|&nbsp; TRUSTED PARTNER IN DIGITAL TRANSFORMATION
                 </div>
             </div>`;
 
             document.getElementById('document-preview').innerHTML = `
-            <div class="a4-page dynamic-height single-page" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
-                ${wrapInTableLayout(getHeaderHTML(label, docNum, dateStr), contentHTML)}
+            <div class="a4-page dynamic-height single-page" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:20mm;">
+                ${wrapInTableLayout(qtHeaderHTML, contentHTML)}
                 <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
             </div>`;
     } else if (mode === 'proposal') {
@@ -695,11 +709,9 @@ window.renderLive = () => {
         const law        = document.getElementById('moa-law').value;
 
         const moaSection = (num, title, content) => `
-            <div class="no-break" style="margin-bottom:6mm;">
-                <h3 style="font-size:0.9rem;font-weight:800;color:${C.navyDark};margin-bottom:3mm;text-transform:uppercase;letter-spacing:0.05em;display:flex;gap:8px;">
-                    <span>${num}.</span> <span>${title}</span>
-                </h3>
-                <div style="font-size:0.85rem;color:${C.textDark};line-height:1.6;padding-left:8mm;white-space:pre-wrap;">${content}</div>
+            <div class="no-break" style="margin-bottom:10px;">
+                <div style="font-size:9.5pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px;border-left:3px solid #2563eb;padding-left:8px;">${num}. ${title}</div>
+                <div style="font-size:9.5pt;color:#334155;line-height:1.5;padding-left:11px;white-space:pre-wrap;">${content}</div>
             </div>`;
 
         const moaNum = window._currentHistoryDoc && window._currentHistoryDoc._type === 'moa'
@@ -707,65 +719,131 @@ window.renderLive = () => {
             : `#MOA-${year}-${month}-${rand}`;
 
         const contentHTML = `
-            <!-- WATERMARK / ACCENT -->
-            <div style="position:absolute;top:0;right:0;width:100mm;height:100mm;background:radial-gradient(circle at top right, ${C.blueLight} 0%, transparent 70%);opacity:0.4;z-index:0;"></div>
+            <div style="padding:0 16mm;">
 
-            <div style="position:relative;z-index:1;padding:10mm 18mm 0;">
-                <!-- PARTIES -->
-                <div style="font-size:0.85rem;color:${C.textDark};line-height:1.8;margin-bottom:10mm;background:${C.offWhite};padding:6mm;border-radius:12px;border:1px solid ${C.border};">
-                    This Memorandum of Agreement (“Agreement”) is entered into on **${dateStr}**, by and between:
-                    <br><br>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-                        <div>
-                            <strong style="color:${C.navy};">Service Provider:</strong><br>
-                            <span style="font-weight:700;">${company.name}</span><br>
-                            ${company.address}
-                        </div>
-                        <div>
-                            <strong style="color:${C.navy};">Client:</strong><br>
-                            <span style="font-weight:700;">${client}</span><br>
-                            ${addr || '[Client Address]'}
-                        </div>
-                    </div>
+                <!-- PARTIES TABLE -->
+                <table style="width:100%;border-collapse:separate;border-spacing:12px 0;margin-left:-12px;margin-right:-12px;margin-bottom:14px;">
+                    <tr>
+                        <td style="width:48%;vertical-align:top;background:#f8fafc;border:1px solid #cbd5e1;border-radius:4px;padding:12px 14px;">
+                            <div style="font-size:8pt;font-weight:700;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;margin-bottom:5px;border-bottom:1px solid #cbd5e1;padding-bottom:3px;">Service Provider</div>
+                            <div style="font-size:11pt;font-weight:700;color:#0f172a;margin-bottom:2px;">${company.name}</div>
+                            <div style="font-size:9pt;color:#475569;line-height:1.4;">${company.address}<br>Karnataka, India<br>www.softsyncsolutions.in</div>
+                        </td>
+                        <td style="width:4%;"></td>
+                        <td style="width:48%;vertical-align:top;background:#f8fafc;border:1px solid #cbd5e1;border-radius:4px;padding:12px 14px;">
+                            <div style="font-size:8pt;font-weight:700;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;margin-bottom:5px;border-bottom:1px solid #cbd5e1;padding-bottom:3px;">Client</div>
+                            <div style="font-size:11pt;font-weight:700;color:#0f172a;margin-bottom:2px;">${client}</div>
+                            <div style="font-size:9pt;color:#475569;line-height:1.4;">${addr || '[Client Address]'}</div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- PREAMBLE -->
+                <div style="font-size:9.5pt;color:#334155;padding:0 0 10px 0;border-bottom:1px solid #e2e8f0;margin-bottom:14px;">
+                    This Memorandum of Agreement ("Agreement") is entered into on <strong>${dateStr}</strong>, by and between <strong>${company.name}</strong> ("Service Provider") and <strong>${client}</strong> ("Client").
                 </div>
-
-                <div style="height:1px;background:${C.border};margin-bottom:8mm;"></div>
 
                 <!-- SECTIONS -->
                 ${moaSection('1', 'Purpose', purpose)}
-                ${moaSection('2', 'Scope of Work', scope)}
-                ${moaSection('3', 'Project Cost', `Total Project Cost: **₹${parseFloat(cost).toLocaleString('en-IN')}** (as per quotation)\nTaxes (if applicable): Extra`)}
+
+                <div class="no-break" style="margin-bottom:10px;">
+                    <div style="font-size:9.5pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px;border-left:3px solid #2563eb;padding-left:8px;">2. Scope of Work</div>
+                    <div style="font-size:9.5pt;color:#334155;line-height:1.5;padding-left:11px;">
+                        The software solution will encompass the following core modules:
+                        <ul style="margin:4px 0;padding-left:18px;">
+                            ${scope.split('\n').filter(l => l.trim()).map(line => {
+                                const t = line.replace(/^[\*\-•]\s*/, '').trim();
+                                return `<li style="margin-bottom:3px;">${t}</li>`;
+                            }).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- PROJECT COST — highlight box -->
+                <div class="no-break" style="margin-bottom:10px;">
+                    <div style="font-size:9.5pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px;border-left:3px solid #2563eb;padding-left:8px;">3. Project Cost</div>
+                    <div style="margin-left:11px;padding:8px 12px;background:#eff6ff;border-left:3px solid #2563eb;border-radius:0 4px 4px 0;">
+                        <span style="font-size:10pt;color:#1e293b;">Total Project Cost: </span>
+                        <span style="font-size:11pt;font-weight:700;color:#1e40af;">₹${parseFloat(cost).toLocaleString('en-IN')}</span>
+                        <span style="font-size:9pt;color:#1e293b;"> (as per quotation)</span>
+                        <br><small style="color:#94a3b8;">* Taxes (if applicable): Extra as per statutory regulations.</small>
+                    </div>
+                </div>
+
                 ${moaSection('4', 'Payment Terms', payment)}
                 ${moaSection('5', 'Implementation Timeline', timeline)}
-                ${moaSection('6', 'Client Responsibilities', `The Client agrees to:\n* Provide accurate requirements and data on time\n* Assign a point of contact for coordination\n* Review and approve deliverables promptly`)}
-                ${moaSection('7', 'Support & Maintenance', support)}
-                ${moaSection('8', 'Data Security & Confidentiality', `Both parties agree to maintain confidentiality of all shared data and not disclose it to any third party without prior consent.`)}
-                ${moaSection('9', 'Intellectual Property', `The final software developed for the Client will be usable by the Client. Core framework/technology remains the intellectual property of the Service Provider.`)}
-                ${moaSection('10', 'Termination', `Either party may terminate this agreement with written notice if terms are not fulfilled or payments are delayed. Advance payments are non-refundable once work has commenced.`)}
-                ${moaSection('11', 'Limitation of Liability', `The Service Provider shall not be liable for any indirect losses or issues arising due to incorrect data provided by the Client.`)}
-                ${moaSection('12', 'Governing Law', `This Agreement shall be governed by the laws of India, and jurisdiction shall be ${law}.`)}
-                
-                <!-- ACCEPTANCE -->
-                <div class="no-break" style="margin-top:12mm;padding-top:8mm;border-top:1.5px solid ${C.navy};padding-bottom:12mm;">
-                    <h3 style="font-size:0.9rem;font-weight:900;text-transform:uppercase;margin-bottom:8mm;color:${C.navyDark};">13. Acceptance</h3>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40mm;">
-                        <div>
-                            <div style="font-size:0.8rem;font-weight:800;margin-bottom:12mm;color:${C.textMid};">For ${company.name}</div>
-                            ${sig}
-                        </div>
-                        <div>
-                            <div style="font-size:0.8rem;font-weight:800;margin-bottom:20mm;color:${C.textMid};">For ${client}</div>
-                            <div style="border-top:1px solid ${C.textLight};padding-top:4px;">
-                                <div style="font-size:0.7rem;color:${C.textLight};text-transform:uppercase;">Authorized Signatory</div>
-                            </div>
-                        </div>
+
+                <div class="no-break" style="margin-bottom:10px;">
+                    <div style="font-size:9.5pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px;border-left:3px solid #2563eb;padding-left:8px;">6. Client Responsibilities</div>
+                    <div style="font-size:9.5pt;color:#334155;line-height:1.5;padding-left:11px;">
+                        The Client agrees to fulfill the following:
+                        <ul style="margin:4px 0;padding-left:18px;">
+                            <li style="margin-bottom:3px;">Provide accurate requirements, master data, and necessary assets on time.</li>
+                            <li style="margin-bottom:3px;">Assign a dedicated point of contact for daily coordination.</li>
+                            <li style="margin-bottom:3px;">Review and approve project deliverables and milestones promptly.</li>
+                        </ul>
                     </div>
+                </div>
+
+                ${moaSection('7', 'Support & Maintenance', support)}
+                ${moaSection('8', 'Data Security & Confidentiality', `Both parties agree to maintain strict confidentiality regarding all shared proprietary data, business processes, and project details, and shall not disclose any confidential information to third parties without prior written consent.`)}
+                ${moaSection('9', 'Intellectual Property', `The final software solution developed specifically for the Client will be fully usable by the Client. Underlying core frameworks, reusable modules, and foundational technologies remain the exclusive intellectual property of the Service Provider.`)}
+                ${moaSection('10', 'Termination', `Either party may terminate this Agreement with written notice if contractual obligations are not fulfilled or payments are unreasonably delayed. Advance payments are non-refundable once developmental work has commenced.`)}
+                ${moaSection('11', 'Limitation of Liability', `The Service Provider shall not be liable for any indirect, incidental, or consequential losses, delays, or system errors resulting from inaccurate or incomplete data provided by the Client.`)}
+                ${moaSection('12', 'Governing Law & Jurisdiction', `This Agreement shall be governed by and construed in accordance with the laws of India. The exclusive legal jurisdiction for any disputes shall be ${law}.`)}
+
+                <!-- ACCEPTANCE & SIGNATURES -->
+                <div class="no-break" style="margin-top:16px;padding-top:12px;border-top:1.5px solid #0f172a;padding-bottom:12mm;">
+                    <div style="font-size:10pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid #0f172a;padding-bottom:4px;margin-bottom:12px;">13. Acceptance & Execution</div>
+                    <p style="margin-bottom:12px;font-size:9pt;color:#475569;">
+                        IN WITNESS WHEREOF, the parties hereto have executed this Memorandum of Agreement as of the date first written above.
+                    </p>
+                    <table style="width:100%;border-collapse:collapse;">
+                        <tr>
+                            <td style="width:46%;vertical-align:top;background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:10px;">
+                                <div style="font-size:8pt;font-weight:700;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;">For ${company.name}</div>
+                                <div style="height:40px;border-bottom:1px dashed #cbd5e1;margin-bottom:8px;"></div>
+                                ${sigLeft}
+                            </td>
+                            <td style="width:8%;"></td>
+                            <td style="width:46%;vertical-align:top;background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;padding:10px;">
+                                <div style="font-size:8pt;font-weight:700;text-transform:uppercase;color:#94a3b8;margin-bottom:4px;">For ${client}</div>
+                                <div style="height:40px;border-bottom:1px dashed #cbd5e1;margin-bottom:8px;"></div>
+                                <div style="border-top:1px solid #94a3b8;padding-top:4px;margin-top:auto;">
+                                    <div style="font-size:7.5pt;color:#94a3b8;text-transform:uppercase;font-weight:600;">Authorized Signatory</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- FOOTER BANNER -->
+                <div style="margin-top:16px;text-align:center;border-top:1px solid #e2e8f0;padding-top:8px;font-size:8pt;color:#94a3b8;letter-spacing:0.5px;">
+                    <span style="color:#2563eb;font-weight:600;">WWW.SOFTSYNCSOLUTIONS.IN</span> &nbsp;|&nbsp; TRUSTED PARTNER IN DIGITAL TRANSFORMATION
                 </div>
             </div>`;
 
+        /* ── Custom MOA header matching Python WeasyPrint style ── */
+        const moaHeaderHTML = `
+        <div class="print-header" style="position:relative;background:#ffffff;padding:16mm 16mm 12mm;border-bottom:2px solid #0f172a;">
+            <table style="width:100%;border-collapse:collapse;">
+                <tr>
+                    <td style="vertical-align:top;text-align:left;width:55%;padding:0;border:none;">
+                        <div style="font-size:20pt;font-weight:bold;color:#0f172a;letter-spacing:-0.3px;line-height:1.1;margin:0;">${company.name}</div>
+                        <div style="font-size:8.5pt;color:#1e40af;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;">Intelligent Business Automation & Software Development</div>
+                    </td>
+                    <td style="vertical-align:top;text-align:right;width:45%;padding:0;border:none;">
+                        <div style="font-size:16pt;font-weight:bold;color:#0f172a;text-transform:uppercase;letter-spacing:1px;margin:0 0 4px 0;">MEMORANDUM OF AGREEMENT</div>
+                        <div style="font-size:9pt;color:#475569;line-height:1.35;">MOA No: <span style="font-weight:bold;color:#0f172a;">${moaNum}</span></div>
+                        <div style="font-size:9pt;color:#475569;line-height:1.35;">Date: <span style="font-weight:bold;color:#0f172a;">${dateStr}</span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>`;
+
         document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:${C.white};font-family:'Inter',sans-serif;padding-bottom:24mm;">
-            ${wrapInTableLayout(getHeaderHTML('MEMORANDUM OF AGREEMENT', moaNum, dateStr), contentHTML)}
+        <div class="a4-page dynamic-height" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(moaHeaderHTML, contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'handover') {
