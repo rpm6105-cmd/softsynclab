@@ -311,6 +311,7 @@ window.updateUI = () => {
     const handoverEditor = document.getElementById('handover-editor');
     const amcEditor = document.getElementById('amc-editor');
     const flEditor = document.getElementById('freelancer-editor');
+    const clausesEditor = document.getElementById('clauses-editor');
     const subjectField = document.getElementById('subject-field-group');
 
     if (itemsEditor) itemsEditor.style.display = 'none';
@@ -320,6 +321,7 @@ window.updateUI = () => {
     if (handoverEditor) handoverEditor.style.display = 'none';
     if (amcEditor) amcEditor.style.display = 'none';
     if (flEditor) flEditor.style.display = 'none';
+    if (clausesEditor) clausesEditor.style.display = 'none';
     if (subjectField) subjectField.style.display = 'none';
 
     const clientLabel = document.getElementById('doc-client')?.previousElementSibling;
@@ -343,9 +345,11 @@ window.updateUI = () => {
         preview.className = 'preview-wrapper theme-cyan';
     } else if (mode === 'quotation') {
         itemsEditor.style.display = 'block';
+        clausesEditor.style.display = 'block';
         preview.className = 'preview-wrapper theme-cyan';
     } else if (mode === 'invoice') {
         itemsEditor.style.display = 'block';
+        clausesEditor.style.display = 'block';
         preview.className = 'preview-wrapper theme-indigo';
     } else if (mode === 'moa') {
         moaEditor.style.display = 'block';
@@ -475,6 +479,7 @@ window.renderLive = () => {
         if (mode === 'quotation' || mode === 'invoice') {
             const isInv = mode === 'invoice';
             const label = isInv ? 'TAX INVOICE' : 'QUOTATION';
+            const clauses = document.getElementById('doc-clauses')?.value || '';
 
             let subtotal = 0;
             const rows = activeItems.map((item, idx) => {
@@ -577,6 +582,13 @@ window.renderLive = () => {
                         </td>
                     </tr>
                 </table>
+
+                ${clauses ? `
+                <!-- TERMS & CLAUSES -->
+                <div style="margin-top:24px;">
+                    <div style="font-size:8.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:0.5px;color:#0f172a;margin-bottom:8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Terms & Conditions</div>
+                    <div style="font-size:8.5pt;color:#334155;line-height:1.6;white-space:pre-wrap;">${clauses}</div>
+                </div>` : ''}
 
                 <!-- FOOTER BANNER -->
                 <div style="margin-top:40px;text-align:center;border-top:1px solid #e2e8f0;padding-top:10px;font-size:8.5pt;color:#64748b;letter-spacing:0.5px;">

@@ -680,6 +680,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div id="line-items-container"></div>
                         <button class="btn btn-ghost" style="width:100%;border-style:dashed;margin-top:4px;font-size:0.8rem;" onclick="addLineItem()">+ Add Item</button>
                     </div>
+
+                    <div class="card" id="clauses-editor" style="display:none;">
+                        <h3>Terms &amp; Clauses</h3>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <textarea id="doc-clauses" class="form-input" style="height:100px;" oninput="renderLive()" placeholder="e.g. 1. This quotation is valid for 14 days...&#10;2. Prices are subject to change based on final scope...&#10;3. Payment terms: 50% advance, 50% on delivery..."></textarea>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="preview-pane">
