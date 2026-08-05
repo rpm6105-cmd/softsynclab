@@ -519,6 +519,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <option value="handover">Project Handover</option>
                         <option value="amc">New AMC Agreement</option>
                         <option value="freelancer_agreement">Freelancer Agreement</option>
+                        <option value="internship_offer">Internship Offer Letter</option>
+                        <option value="certificate">Internship Completion Certificate</option>
                     </select>
                     <button class="btn btn-ghost" onclick="window.resetForm()">🆕 New Document</button>
                     <button class="btn btn-ghost" onclick="window.saveDocument()">💾 Save & Sync</button>
@@ -666,6 +668,128 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="form-group" style="margin-bottom:0;">
                             <label>Scope of Services</label>
                             <textarea id="fl-services" class="form-input" style="height:100px;" oninput="renderLive()">* Email marketing campaigns&#10;* LinkedIn outreach and lead generation&#10;* Social media marketing&#10;* Content creation for marketing purposes&#10;* Prospect research&#10;* Lead qualification&#10;* Marketing reporting and analytics&#10;* Other mutually agreed marketing activities</textarea>
+                        </div>
+                    </div>
+
+                    <div class="card" id="internship-editor" style="display:none;">
+                        <h3>Internship Offer Details</h3>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Offer Letter No.</label>
+                                <input type="text" id="io-num" class="form-input" placeholder="e.g. SSL-INT-2026-001" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Internship Position</label>
+                                <input type="text" id="io-position" class="form-input" placeholder="e.g. Software Development Intern" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>College Name</label>
+                                <input type="text" id="io-college" class="form-input" placeholder="e.g. XYZ College of Engineering" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                <input type="text" id="io-dept" class="form-input" placeholder="e.g. Computer Science" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>University</label>
+                                <input type="text" id="io-university" class="form-input" placeholder="e.g. Visvesvaraya Technological University" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Mode</label>
+                                <select id="io-mode" class="form-input" onchange="renderLive()">
+                                    <option value="Remote">Remote</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                    <option value="Onsite">Onsite</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" id="io-start" class="form-input" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" id="io-end" class="form-input" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Duration</label>
+                                <input type="text" id="io-duration" class="form-input" placeholder="e.g. 3 Months" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Reporting Manager</label>
+                                <input type="text" id="io-manager" class="form-input" placeholder="e.g. Rohith P.M." oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Working Hours</label>
+                                <input type="text" id="io-hours" class="form-input" placeholder="e.g. 10 AM - 6 PM IST" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Stipend</label>
+                            <input type="text" id="io-stipend" class="form-input" placeholder="e.g. ₹8,000/month or Unpaid" oninput="renderLive()">
+                        </div>
+                        <div class="form-group">
+                            <label>Responsibilities (one per line)</label>
+                            <textarea id="io-responsibilities" class="form-input" style="height:100px;" oninput="renderLive()">* Learn Full Stack Development&#10;* Build Live Projects&#10;* Attend Weekly Reviews&#10;* Complete Assigned Tasks&#10;* Maintain Confidentiality</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Learning Objectives / Outcomes (one per line)</label>
+                            <textarea id="io-outcomes" class="form-input" style="height:90px;" oninput="renderLive()">* Next.js&#10;* React&#10;* GitHub&#10;* APIs&#10;* AI Development&#10;* Software Deployment</textarea>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label>Terms &amp; Conditions (one per line)</label>
+                            <textarea id="io-clauses" class="form-input" style="height:80px;" oninput="renderLive()">1. Internship does not guarantee employment.&#10;2. Maintain confidentiality of all company data.&#10;3. Complete all assigned modules on time.&#10;4. Company reserves the right to terminate the internship with notice.</textarea>
+                        </div>
+                    </div>
+
+                    <div class="card" id="certificate-editor" style="display:none;">
+                        <h3>Certificate Details</h3>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Certificate Number</label>
+                                <input type="text" id="cert-num" class="form-input" placeholder="e.g. SSL-CERT-2026-001" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Internship Position</label>
+                                <input type="text" id="cert-position" class="form-input" placeholder="e.g. Software Development Internship" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" id="cert-start" class="form-input" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" id="cert-end" class="form-input" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Duration</label>
+                                <input type="text" id="cert-duration" class="form-input" placeholder="e.g. 3 Months" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Mentor Name</label>
+                                <input type="text" id="cert-mentor" class="form-input" placeholder="e.g. Rohith P.M." oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Issue Date</label>
+                                <input type="date" id="cert-issue" class="form-input" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Performance Grade (optional)</label>
+                                <input type="text" id="cert-grade" class="form-input" placeholder="e.g. A+ / Outstanding" oninput="renderLive()">
+                            </div>
                         </div>
                     </div>
 

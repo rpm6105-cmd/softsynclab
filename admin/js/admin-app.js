@@ -169,6 +169,46 @@ window.resetForm = () => {
         const el = document.getElementById(id);
         if (el) el.value = val;
     }
+
+    // Internship Offer Letter
+    const nowY = new Date().getFullYear();
+    const ioFields = {
+        'io-num': `SSL-INT-${nowY}-001`,
+        'io-position': 'Software Development Intern',
+        'io-college': '',
+        'io-dept': '',
+        'io-university': '',
+        'io-mode': 'Remote',
+        'io-start': '',
+        'io-end': '',
+        'io-duration': '3 Months',
+        'io-manager': 'Rohith P.M.',
+        'io-hours': '10:00 AM - 6:00 PM IST',
+        'io-stipend': 'Unpaid',
+        'io-responsibilities': `* Learn Full Stack Development\n* Build Live Projects\n* Attend Weekly Reviews\n* Complete Assigned Tasks\n* Maintain Confidentiality`,
+        'io-outcomes': `* Next.js\n* React\n* GitHub\n* APIs\n* AI Development\n* Software Deployment`,
+        'io-clauses': `1. Internship does not guarantee employment.\n2. Maintain confidentiality of all company data.\n3. Complete all assigned modules on time.\n4. Company reserves the right to terminate the internship with notice.`
+    };
+    for (const [id, val] of Object.entries(ioFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
+
+    // Completion Certificate
+    const certFields = {
+        'cert-num': `SSL-CERT-${nowY}-001`,
+        'cert-position': 'Software Development Internship',
+        'cert-start': '',
+        'cert-end': '',
+        'cert-duration': '3 Months',
+        'cert-mentor': 'Rohith P.M.',
+        'cert-issue': '',
+        'cert-grade': ''
+    };
+    for (const [id, val] of Object.entries(certFields)) {
+        const el = document.getElementById(id);
+        if (el) el.value = val;
+    }
     
     renderLive();
 };
@@ -311,6 +351,8 @@ window.updateUI = () => {
     const handoverEditor = document.getElementById('handover-editor');
     const amcEditor = document.getElementById('amc-editor');
     const flEditor = document.getElementById('freelancer-editor');
+    const internshipEditor = document.getElementById('internship-editor');
+    const certificateEditor = document.getElementById('certificate-editor');
     const clausesEditor = document.getElementById('clauses-editor');
     const subjectField = document.getElementById('subject-field-group');
 
@@ -321,6 +363,8 @@ window.updateUI = () => {
     if (handoverEditor) handoverEditor.style.display = 'none';
     if (amcEditor) amcEditor.style.display = 'none';
     if (flEditor) flEditor.style.display = 'none';
+    if (internshipEditor) internshipEditor.style.display = 'none';
+    if (certificateEditor) certificateEditor.style.display = 'none';
     if (clausesEditor) clausesEditor.style.display = 'none';
     if (subjectField) subjectField.style.display = 'none';
 
@@ -369,6 +413,19 @@ window.updateUI = () => {
         if (dueLabel) dueLabel.innerText = 'Start Date';
         if (addrLabel) addrLabel.innerText = 'Freelancer Address';
         if (phoneLabel) phoneLabel.innerText = 'Freelancer Phone';
+    } else if (mode === 'internship_offer') {
+        if (internshipEditor) internshipEditor.style.display = 'block';
+        preview.className = 'preview-wrapper theme-cyan';
+        if (clientLabel) clientLabel.innerText = 'Student Name';
+        if (dateLabel) dateLabel.innerText = 'Offer Date';
+        if (dueLabel) dueLabel.innerText = 'Valid Till';
+        if (addrLabel) addrLabel.innerText = 'Student Address';
+        if (phoneLabel) phoneLabel.innerText = 'Student Phone';
+    } else if (mode === 'certificate') {
+        if (certificateEditor) certificateEditor.style.display = 'block';
+        preview.className = 'preview-wrapper theme-gold';
+        if (clientLabel) clientLabel.innerText = 'Student Name';
+        if (dateLabel) dateLabel.innerText = 'Issue Date';
     }
     renderLive();
 };
@@ -1349,6 +1406,263 @@ window.renderLive = () => {
             ${wrapInTableLayout(getHeaderHTML('FREELANCER AGREEMENT', '#' + flNum, dateStr), contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
+    } else if (mode === 'internship_offer') {
+        const ioNum  = document.getElementById('io-num').value || `SSL-INT-${year}-001`;
+        const ioPos  = document.getElementById('io-position').value;
+        const ioCollege  = document.getElementById('io-college').value;
+        const ioDept     = document.getElementById('io-dept').value;
+        const ioUniv     = document.getElementById('io-university').value;
+        const ioMode     = document.getElementById('io-mode').value;
+        const ioStart    = document.getElementById('io-start').value;
+        const ioEnd      = document.getElementById('io-end').value;
+        const ioDur      = document.getElementById('io-duration').value;
+        const ioManager  = document.getElementById('io-manager').value;
+        const ioHours    = document.getElementById('io-hours').value;
+        const ioStipend  = document.getElementById('io-stipend').value;
+        const ioRespRaw  = document.getElementById('io-responsibilities').value || '';
+        const ioOutRaw   = document.getElementById('io-outcomes').value || '';
+        const ioClausesRaw = document.getElementById('io-clauses').value || '';
+
+        const fmtDate = (v) => {
+            const d = new Date(v);
+            return isNaN(d) ? (v || '—') : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        };
+
+        const ioStartStr = fmtDate(ioStart);
+        const ioEndStr   = fmtDate(ioEnd);
+
+        const respLines = ioRespRaw.split('\n').filter(l => l.trim());
+        const respHTML = respLines.map(line => {
+            const t = line.replace(/^[\*\-•✔]\s*/, '').trim();
+            return `<tr>
+                <td style="padding:4px 0;font-size:9pt;color:#334155;"><span style="color:#16a34a;font-weight:bold;">✔</span> ${t}</td>
+            </tr>`;
+        }).join('');
+
+        const outLines = ioOutRaw.split('\n').filter(l => l.trim());
+        const outHTML = outLines.map(line => {
+            const t = line.replace(/^[\*\-•]\s*/, '').trim();
+            return `<tr>
+                <td style="padding:3px 0;font-size:9pt;color:#334155;"><span style="color:#1e40af;font-weight:bold;">•</span> ${t}</td>
+            </tr>`;
+        }).join('');
+
+        const clauseLines = ioClausesRaw.split('\n').filter(l => l.trim());
+        const clausesHTML = clauseLines.map(line => {
+            const t = line.replace(/^\d+\.\s*/, '').trim();
+            const num = (clauseLines.indexOf(line) + 1);
+            return `<tr>
+                <td style="padding:3px 0;font-size:9pt;color:#334155;"><strong>${num}.</strong> ${t}</td>
+            </tr>`;
+        }).join('');
+
+        const ioHeaderHTML = `
+        <div class="print-header" style="position:relative;background:#ffffff;padding:14mm 16mm 10mm;border-bottom:2px solid #0f172a;">
+            <table style="width:100%;border-collapse:collapse;">
+                <tr>
+                    <td style="vertical-align:top;text-align:left;width:55%;padding:0;border:none;">
+                        <div style="font-size:19pt;font-weight:bold;color:#0f172a;letter-spacing:-0.3px;line-height:1.1;margin:0;">${company.name}</div>
+                        <div style="font-size:8pt;color:#1e40af;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;">Intelligent Business Automation for SMEs</div>
+                    </td>
+                    <td style="vertical-align:top;text-align:right;width:45%;padding:0;border:none;">
+                        <div style="font-size:15pt;font-weight:bold;color:#0f172a;text-transform:uppercase;letter-spacing:2px;margin:0 0 4px 0;">Offer Letter</div>
+                        <div style="font-size:9pt;color:#475569;line-height:1.35;">Offer ID: <span style="font-weight:bold;color:#0f172a;">${ioNum}</span></div>
+                        <div style="font-size:9pt;color:#475569;line-height:1.35;">Date: <span style="font-weight:bold;color:#0f172a;">${dateStr}</span></div>
+                    </td>
+                </tr>
+            </table>
+        </div>`;
+
+        const contentHTML = `
+            <div style="padding:0 16mm;">
+
+                <!-- GREETING -->
+                <div style="margin:6mm 0 6mm 0;">
+                    <div style="font-size:10pt;color:#334155;line-height:1.8;">
+                        Dear <strong style="color:#0f172a;">${client}</strong>,<br>
+                        We are pleased to offer you the position of <strong style="color:#0f172a;">${ioPos}</strong> at <strong style="color:#0f172a;">${company.name}</strong>.
+                    </div>
+                </div>
+
+                <!-- INTERNSHIP DETAILS TABLE -->
+                <table style="width:100%;border-collapse:separate;border-spacing:0;margin-bottom:6mm;">
+                    <tr>
+                        <td colspan="2" style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:2px solid #0f172a;padding:0 0 6px 0;margin-bottom:4px;">Internship Details</td>
+                    </tr>
+                    <tr>
+                        <td style="width:50%;vertical-align:top;padding:8px 10px 0 0;">
+                            <table style="width:100%;border-collapse:collapse;">
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;width:40%;">Name</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${client}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">College</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioCollege || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Department</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioDept || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">University</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioUniv || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Duration</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioDur || '—'}</td></tr>
+                            </table>
+                        </td>
+                        <td style="width:50%;vertical-align:top;padding:8px 0 0 10px;">
+                            <table style="width:100%;border-collapse:collapse;">
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;width:40%;">Mode</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioMode || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Reporting Manager</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioManager || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Working Hours</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioHours || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Stipend</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioStipend || '—'}</td></tr>
+                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Period</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioStartStr} — ${ioEndStr}</td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- RESPONSIBILITIES -->
+                ${respHTML ? `
+                <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;">
+                    <tr><td style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Responsibilities</td></tr>
+                    ${respHTML}
+                </table>` : ''}
+
+                <!-- LEARNING OUTCOMES -->
+                ${outHTML ? `
+                <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;">
+                    <tr><td style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Learning Outcome</td></tr>
+                    <tr><td style="padding:6px 0 0 0;font-size:9pt;color:#334155;line-height:1.6;">During your internship you will gain hands-on experience in:</td></tr>
+                    ${outHTML}
+                </table>` : ''}
+
+                <!-- TERMS & CONDITIONS -->
+                ${clausesHTML ? `
+                <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;">
+                    <tr><td style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Terms &amp; Conditions</td></tr>
+                    ${clausesHTML}
+                </table>` : ''}
+
+                <!-- ACCEPTANCE -->
+                <div class="no-break" style="margin-top:8mm;padding-top:8mm;border-top:1.5px solid #0f172a;">
+                    <div style="font-size:10pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Accepted By</div>
+                    <table style="width:100%;border-collapse:collapse;margin-top:8mm;">
+                        <tr>
+                            <td style="width:50%;text-align:left;vertical-align:bottom;">
+                                <div style="height:12mm;"></div>
+                                <div style="border-top:1px solid #94a3b8;padding-top:3px;font-size:8pt;color:#64748b;text-transform:uppercase;font-weight:600;">Student Signature</div>
+                                <div style="font-size:8pt;color:#94a3b8;margin-top:2px;">${client}</div>
+                            </td>
+                            <td style="width:50%;text-align:right;vertical-align:bottom;">
+                                ${sigLeft.replace('text-align:left', 'text-align:left').replace('margin-top:2px', 'margin-top:2px')}
+                                <div style="border-top:1px solid #94a3b8;padding-top:3px;font-size:8pt;color:#64748b;text-transform:uppercase;font-weight:600;text-align:right;">Company Signature</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- FOOTER BANNER -->
+                <div style="margin-top:40px;text-align:center;border-top:1px solid #e2e8f0;padding-top:8px;font-size:8pt;color:#94a3b8;letter-spacing:0.5px;">
+                    <span style="color:#1e40af;font-weight:600;">WWW.SOFTSYNCSOLUTIONS.IN</span> &nbsp;|&nbsp; TRUSTED PARTNER IN DIGITAL TRANSFORMATION
+                </div>
+            </div>`;
+
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:24mm;">
+            ${wrapInTableLayout(ioHeaderHTML, contentHTML)}
+            <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
+        </div>`;
+    } else if (mode === 'certificate') {
+        const certNum  = document.getElementById('cert-num').value || `SSL-CERT-${year}-001`;
+        const certPos  = document.getElementById('cert-position').value;
+        const certStart = document.getElementById('cert-start').value;
+        const certEnd   = document.getElementById('cert-end').value;
+        const certDur   = document.getElementById('cert-duration').value;
+        const certMentor = document.getElementById('cert-mentor').value;
+        const certIssue = document.getElementById('cert-issue').value;
+        const certGrade = document.getElementById('cert-grade').value;
+
+        const fmtDate = (v) => {
+            const d = new Date(v);
+            return isNaN(d) ? (v || '—') : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        };
+        const certStartStr = fmtDate(certStart);
+        const certEndStr   = fmtDate(certEnd);
+        const certIssueStr = fmtDate(certIssue);
+
+        const verifyUrl = `https://softsyncsolutions.in/verify?cert=${encodeURIComponent(certNum)}`;
+        const studentName = client || 'Student Name';
+
+        const contentHTML = `
+        <div style="background:linear-gradient(135deg,#b8860b 0%,#f5d78e 18%,#d4af37 38%,#fff3c4 50%,#d4af37 62%,#f5d78e 82%,#b8860b 100%);padding:6px;">
+            <div style="border:1.5px solid #d4af37;background:#fffef9;position:relative;overflow:hidden;min-height:252mm;">
+                <!-- WATERMARK -->
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;">
+                    <div style="font-size:52pt;font-weight:800;color:rgba(184,134,11,0.07);letter-spacing:6px;text-align:center;line-height:1.15;">SOFTSYNC<br>LAB</div>
+                </div>
+                <div style="position:relative;z-index:1;padding:14mm 14mm 10mm;">
+
+                    <!-- LOGO + COMPANY -->
+                    <div style="text-align:center;margin-bottom:5mm;">
+                        <div style="width:52px;height:52px;border-radius:50%;border:2px solid #d4af37;background:#fffef9;display:flex;align-items:center;justify-content:center;margin:0 auto 2mm auto;overflow:hidden;">
+                            <img src="${LOGO}" style="width:44px;height:44px;object-fit:contain;">
+                        </div>
+                        <div style="font-size:14pt;font-weight:800;color:#0f172a;letter-spacing:1px;">${company.name.toUpperCase()}</div>
+                        <div style="font-size:7pt;color:#1e40af;text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-top:1mm;">Intelligent Business Automation for SMEs</div>
+                    </div>
+
+                    <!-- TITLE -->
+                    <div style="text-align:center;margin-bottom:5mm;">
+                        <div style="font-size:19pt;font-weight:800;color:#b8860b;text-transform:uppercase;letter-spacing:3px;">Certificate of Completion</div>
+                        <div style="width:70mm;height:1.5px;background:linear-gradient(90deg,transparent,#d4af37,transparent);margin:3mm auto 0;"></div>
+                    </div>
+
+                    <!-- BODY -->
+                    <div style="text-align:center;font-size:9.5pt;color:#475569;line-height:1.9;">
+                        This certificate is proudly presented to
+                    </div>
+                    <div style="text-align:center;margin:3mm 0;">
+                        <div style="font-family:'Great Vibes',cursive;font-size:28pt;color:#0f172a;">${studentName}</div>
+                        <div style="width:55mm;height:1px;background:#cbd5e1;margin:1mm auto 0;"></div>
+                    </div>
+                    <div style="text-align:center;font-size:9.5pt;color:#475569;line-height:1.9;">
+                        for successfully completing the<br>
+                        <strong style="font-size:12pt;color:#0f172a;">${certPos}</strong><br>
+                        at<br>
+                        <strong style="font-size:11.5pt;color:#0f172a;">SoftSync Lab</strong><br>
+                        from <strong style="color:#0f172a;">${certStartStr}</strong> to <strong style="color:#0f172a;">${certEndStr}</strong>
+                        ${certDur ? ` <span style="color:#94a3b8;">(${certDur})</span>` : ''}
+                        ${certGrade ? `<br>with a performance grade of <strong style="color:#0f172a;">${certGrade}</strong>` : ''}
+                    </div>
+                    <div style="text-align:center;font-size:9pt;color:#64748b;line-height:1.8;margin:4mm 8mm 0;">
+                        During the internship, the intern demonstrated dedication, professionalism and successfully completed assigned projects in software development and business automation. We appreciate the valuable contribution and wish them continued success.
+                    </div>
+
+                    <!-- SIGNATURE / QR / SEAL -->
+                    <table style="width:100%;border-collapse:collapse;margin-top:10mm;">
+                        <tr>
+                            <td style="width:33%;text-align:left;vertical-align:bottom;">
+                                <div style="font-family:'Great Vibes',cursive;font-size:18pt;color:#0f172a;line-height:1.1;">Rohith P.M.</div>
+                                <div style="border-top:1px solid #0f172a;padding-top:2px;font-size:7pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.5px;max-width:110px;">${certMentor || 'Rohith P.M.'}, Mentor</div>
+                            </td>
+                            <td style="width:34%;text-align:center;vertical-align:middle;">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=${verifyUrl}" style="width:88px;height:88px;display:block;margin:0 auto;">
+                                <div style="font-size:6.5pt;color:#64748b;margin-top:1mm;text-align:center;">Scan to Verify</div>
+                            </td>
+                            <td style="width:33%;text-align:right;vertical-align:bottom;">
+                                <div style="width:64px;height:64px;border-radius:50%;border:2px solid #b8860b;background:#fffef9;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 0 0 auto;">
+                                    <div style="font-size:5pt;font-weight:800;color:#b8860b;letter-spacing:1px;text-align:center;line-height:1.4;">SOFTSYNC<br>LAB</div>
+                                    <div style="font-size:4.5pt;color:#b8860b;margin-top:1px;letter-spacing:1px;">★★★★★</div>
+                                </div>
+                                <div style="font-size:6.5pt;font-weight:700;color:#b8860b;text-transform:uppercase;letter-spacing:0.5px;margin-top:1.5mm;text-align:right;">Company Seal</div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- CERTIFICATE NO / FOOTER -->
+                    <div style="margin-top:6mm;text-align:center;border-top:1px solid #e2e8f0;padding-top:2.5mm;">
+                        <span style="font-size:8pt;color:#0f172a;font-weight:700;">Certificate No: ${certNum}</span>
+                        <span style="font-size:8pt;color:#94a3b8;">&nbsp;&nbsp;|&nbsp;&nbsp; Issued on ${certIssueStr}</span>
+                        <span style="font-size:8pt;color:#94a3b8;">&nbsp;&nbsp;|&nbsp;&nbsp; www.softsyncsolutions.in</span>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        document.getElementById('document-preview').innerHTML = `
+        <div class="a4-page dynamic-height" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:0;">
+            ${contentHTML}
+        </div>`;
     }
     } catch (err) {
         console.error('Render Error:', err);
@@ -1384,7 +1698,7 @@ window.saveDocument = async () => {
         if(mode === 'quotation' || mode === 'letterhead') {
             payload.service=subject;
         }
-        if(mode !== 'moa' && mode !== 'handover' && mode !== 'amc' && mode !== 'freelancer_agreement') {
+        if(mode !== 'moa' && mode !== 'handover' && mode !== 'amc' && mode !== 'freelancer_agreement' && mode !== 'internship_offer' && mode !== 'certificate') {
             payload.items=activeItems;
         }
         if(mode==='letterhead') payload.message_body = document.getElementById('letter-body').value;
@@ -1436,9 +1750,52 @@ window.saveDocument = async () => {
                 notes:         document.getElementById('ho-notes').value,
             });
         }
-        if(mode!=='invoice' && mode!=='moa' && mode!=='handover' && mode!=='amc' && mode!=='freelancer_agreement') payload.price=amount;
+        if(mode==='internship_offer') {
+            Object.assign(payload, {
+                purpose: JSON.stringify({
+                    type: 'internship_offer',
+                    num: document.getElementById('io-num')?.value || '',
+                    position: document.getElementById('io-position')?.value || '',
+                    college: document.getElementById('io-college')?.value || '',
+                    dept: document.getElementById('io-dept')?.value || '',
+                    university: document.getElementById('io-university')?.value || '',
+                    mode: document.getElementById('io-mode')?.value || '',
+                    start: document.getElementById('io-start')?.value || '',
+                    end: document.getElementById('io-end')?.value || '',
+                    duration: document.getElementById('io-duration')?.value || '',
+                    manager: document.getElementById('io-manager')?.value || '',
+                    hours: document.getElementById('io-hours')?.value || '',
+                    stipend: document.getElementById('io-stipend')?.value || '',
+                    responsibilities: document.getElementById('io-responsibilities')?.value || '',
+                    outcomes: document.getElementById('io-outcomes')?.value || '',
+                    clauses: document.getElementById('io-clauses')?.value || '',
+                    address: document.getElementById('doc-client-address')?.value || '',
+                    phone: document.getElementById('doc-client-phone')?.value || ''
+                }),
+                scope: document.getElementById('io-position')?.value || '',
+                cost: 0
+            });
+        }
+        if(mode==='certificate') {
+            Object.assign(payload, {
+                purpose: JSON.stringify({
+                    type: 'certificate',
+                    num: document.getElementById('cert-num')?.value || '',
+                    position: document.getElementById('cert-position')?.value || '',
+                    start: document.getElementById('cert-start')?.value || '',
+                    end: document.getElementById('cert-end')?.value || '',
+                    duration: document.getElementById('cert-duration')?.value || '',
+                    mentor: document.getElementById('cert-mentor')?.value || '',
+                    issue: document.getElementById('cert-issue')?.value || '',
+                    grade: document.getElementById('cert-grade')?.value || ''
+                }),
+                scope: document.getElementById('cert-position')?.value || '',
+                cost: 0
+            });
+        }
+        if(mode!=='invoice' && mode!=='moa' && mode!=='handover' && mode!=='amc' && mode!=='freelancer_agreement' && mode!=='internship_offer' && mode!=='certificate') payload.price=amount;
     }
-    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'handovers', freelancer_agreement:'moas' };
+    const tableMap = { quotation:'quotes', invoice:'invoices', proposal:'proposals', moa:'moas', letterhead:'quotes', handover:'handovers', amc:'handovers', freelancer_agreement:'moas', internship_offer:'moas', certificate:'moas' };
     const table = tableMap[mode] || 'quotes';
     const { error } = await supabase.from(table).insert([payload]);
     if (error) alert("Sync Error: "+error.message);
@@ -1474,19 +1831,22 @@ async function loadHistory() {
         ...i.map(x=>({...x, _type:'invoice',    _label:'Invoice',  _val:x.amount})),
         ...p.map(x=>({...x, _type:'proposal',   _label:'Proposal', _val:x.project_cost})),
         ...m.map(x => {
-            let isFreelancer = false;
+            let type = 'moa';
+            let label = 'MOA';
             try {
                 if (x.purpose && x.purpose.startsWith('{')) {
                     const parsed = JSON.parse(x.purpose);
-                    if (parsed.pan !== undefined || parsed.aadhaar !== undefined || parsed.isFreelancer === true || parsed.email !== undefined) {
-                        isFreelancer = true;
+                    if (parsed.type === 'internship_offer') { type = 'internship_offer'; label = 'Offer Letter'; }
+                    else if (parsed.type === 'certificate') { type = 'certificate'; label = 'Certificate'; }
+                    else if (parsed.pan !== undefined || parsed.aadhaar !== undefined || parsed.isFreelancer === true || parsed.email !== undefined) {
+                        type = 'freelancer_agreement'; label = 'Freelancer';
                     }
                 }
             } catch(e) {}
             return {
                 ...x,
-                _type:  isFreelancer ? 'freelancer_agreement' : 'moa',
-                _label: isFreelancer ? 'Freelancer' : 'MOA',
+                _type:  type,
+                _label: label,
                 _val:   x.cost
             };
         }),
@@ -1593,6 +1953,47 @@ window.loadDocumentFromHistory = (idx) => {
         if (elServices) elServices.value = d.scope || '';
         if (elCost) elCost.value = d.cost || 0;
         if (elCycle) elCycle.value = d.payment || 'Monthly';
+    } else if (d._type === 'internship_offer' || d._type === 'certificate') {
+        let details = {};
+        try {
+            details = JSON.parse(d.purpose) || {};
+        } catch(e) {
+            details = {};
+        }
+        if (details === null) details = {};
+        const elAddr = document.getElementById('doc-client-address');
+        const elPhone = document.getElementById('doc-client-phone');
+        if (elAddr) elAddr.value = details.address || '';
+        if (elPhone) elPhone.value = details.phone || '';
+        const fields = {
+            'io-num':        details.num || '',
+            'io-position':   details.position || d.scope || '',
+            'io-college':    details.college || '',
+            'io-dept':       details.dept || '',
+            'io-university': details.university || '',
+            'io-mode':       details.mode || '',
+            'io-start':      details.start || '',
+            'io-end':        details.end || '',
+            'io-duration':   details.duration || '',
+            'io-manager':    details.manager || '',
+            'io-hours':      details.hours || '',
+            'io-stipend':    details.stipend || '',
+            'io-responsibilities': details.responsibilities || '',
+            'io-outcomes':   details.outcomes || '',
+            'io-clauses':    details.clauses || '',
+            'cert-num':      details.num || '',
+            'cert-position': details.position || d.scope || '',
+            'cert-start':    details.start || '',
+            'cert-end':      details.end || '',
+            'cert-duration': details.duration || '',
+            'cert-mentor':   details.mentor || '',
+            'cert-issue':    details.issue || '',
+            'cert-grade':    details.grade || '',
+        };
+        for (const [id, val] of Object.entries(fields)) {
+            const el = document.getElementById(id);
+            if (el) el.value = val;
+        }
     } else if (d._type === 'letterhead') {
         const lb = document.getElementById('letter-body');
         if (lb) lb.value = d.message_body || '';
@@ -1660,7 +2061,7 @@ window.deleteDocumentFromHistory = async (idx) => {
     const d = _historyRecords[idx];
     if (!d || !confirm(`Delete ${d._label} for ${d.client_name || 'this client'}?`)) return;
 
-    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : (d._type === 'moa' || d._type === 'amc' || d._type === 'freelancer_agreement' ? 'moas' : 'quotes'));
+    const table = d._type === 'invoice' ? 'invoices' : (d._type === 'proposal' ? 'proposals' : d._type === 'handover' ? 'handovers' : (d._type === 'moa' || d._type === 'amc' || d._type === 'freelancer_agreement' || d._type === 'internship_offer' || d._type === 'certificate' ? 'moas' : 'quotes'));
     const { error } = await supabase.from(table).delete().eq('id', d.id);
 
     if (error) {
