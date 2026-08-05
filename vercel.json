@@ -87,6 +87,10 @@
       "destination": "/favicon-48x48.png"
     },
     {
+      "source": "/verify",
+      "destination": "/verify.html"
+    },
+    {
       "source": "/dashboard",
       "has": [
         {

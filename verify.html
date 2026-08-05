@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Certificate Verification | SoftSync Lab</title>
+    <meta name="description" content="Verify the authenticity of a SoftSync Lab internship certificate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css?v=1.3">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="./favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon-192x192.png">
+    <style>
+        .verify-wrap {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 1.5rem 4rem;
+        }
+        .verify-card {
+            width: 100%;
+            max-width: 720px;
+            background: #ffffff;
+            border: 1px solid rgba(15, 23, 42, 0.07);
+            border-radius: 28px;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 8px 40px rgba(15, 23, 42, 0.06);
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .verify-card { padding: 2rem 1.25rem; }
+        }
+        .verify-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        .verify-status.valid {
+            background: rgba(13, 148, 136, 0.1);
+            color: #0f766e;
+        }
+        .verify-status.invalid {
+            background: rgba(239, 68, 68, 0.1);
+            color: #dc2626;
+        }
+        .verify-status.loading {
+            background: rgba(15, 23, 42, 0.06);
+            color: #64748b;
+        }
+        .verify-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            background: #fffef9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+        }
+        .verify-logo img { width: 52px; height: 52px; object-fit: contain; }
+        .verify-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        .verify-sub {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .verify-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #0f172a;
+            line-height: 1.15;
+            margin: 0.5rem 0 0.25rem;
+        }
+        .verify-details {
+            background: #f8fafc;
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        .verify-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+            font-size: 0.92rem;
+        }
+        .verify-row:last-child { border-bottom: none; }
+        .verify-row span:first-child {
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.74rem;
+            letter-spacing: 0.5px;
+            padding-top: 2px;
+            flex-shrink: 0;
+        }
+        .verify-row span:last-child {
+            color: #0f172a;
+            font-weight: 600;
+            text-align: right;
+        }
+        .verify-copy {
+            color: #94a3b8;
+            font-size: 0.82rem;
+            line-height: 1.7;
+            margin-top: 1.5rem;
+        }
+        .verify-num {
+            font-weight: 700;
+            color: #b8860b;
+            letter-spacing: 0.5px;
+        }
+        .verify-seal {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 2px solid #b8860b;
+            background: #fffef9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem auto 0;
+        }
+        .verify-seal span:first-child {
+            font-size: 6.5pt;
+            font-weight: 800;
+            color: #b8860b;
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .verify-seal span:last-child {
+            font-size: 6pt;
+            color: #b8860b;
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+        .verify-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #fff;
+            font-weight: 700;
+            padding: 0.85rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .verify-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(13, 148, 136, 0.3); }
+    </style>
+</head>
+<body>
+    <main>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container navbar-container">
+            <a href="./index.html" class="logo" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+                <img src="./assets/images/company-logo-icon.png" alt="" width="38" height="38" style="height:38px;width:auto;" fetchpriority="high" decoding="sync">
+                <span style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg, #2563eb 0%, #00d2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;">SoftSync Lab</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="./index.html#services">Solutions</a></li>
+                <li><a href="./index.html#industries">Industries</a></li>
+                <li><a href="./index.html#projects">Projects</a></li>
+                <li><a href="./blog/">Blog</a></li>
+                <li><a href="./contact.html" class="btn btn-sm" style="background:var(--accent); color:#fff; font-weight:700; border:none; box-shadow:0 0 16px rgba(13,148,136,0.3);">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="verify-wrap">
+        <div class="verify-card" id="verify-card">
+            <div class="verify-status loading">Checking…</div>
+            <div class="verify-logo"><img src="./assets/images/company-logo-icon.png" alt="SoftSync Lab"></div>
+            <div class="verify-title">Certificate Verification</div>
+            <div class="verify-sub" id="verify-sub">Verifying certificate details against our records…</div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <p>&copy; 2026 SoftSync Lab. All Rights Reserved. <span style="margin-left: 0.5rem; color: rgba(15,23,42,0.4);">| India-based team</span></p>
+                <div class="social-links" style="display: flex; gap: 1.5rem; align-items: center; font-size: 0.9rem;">
+                    <a href="https://www.linkedin.com/company/softsynclab/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.4rem; color: rgba(15,23,42,0.5); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(15,23,42,0.5)'">LinkedIn</a>
+                    <a href="https://www.instagram.com/softsynclab?igsh=MWN2M3d4cGc1OGNnNQ==" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.4rem; color: rgba(15,23,42,0.5); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(15,23,42,0.5)'">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/main.js?v=1.1"></script>
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+        import { SUPABASE_CONFIG } from './admin/js/config.js';
+
+        const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
+            auth: { persistSession: false, autoRefreshToken: false }
+        });
+
+        const card = document.getElementById('verify-card');
+        const statusEl = card.querySelector('.verify-status');
+        const subEl = document.getElementById('verify-sub');
+
+        const escapeHtml = (v) => String(v ?? '').replace(/[&<>"']/g, c => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        })[c]);
+
+        const fmtDate = (v) => {
+            if (!v) return '—';
+            const d = new Date(v);
+            return isNaN(d) ? escapeHtml(v) : d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        };
+
+        const renderRow = (label, value) => `
+            <div class="verify-row">
+                <span>${label}</span>
+                <span>${value || '—'}</span>
+            </div>`;
+
+        const renderValid = (rec) => {
+            const p = rec.purpose || {};
+            card.innerHTML = `
+                <div class="verify-status valid">&#10003; Verified</div>
+                <div class="verify-logo"><img src="./assets/images/company-logo-icon.png" alt="SoftSync Lab"></div>
+                <div class="verify-title">Certificate Verified</div>
+                <div class="verify-sub">This certificate was issued by SoftSync Lab and is genuine.</div>
+                <div class="verify-name">${escapeHtml(rec.client_name || '')}</div>
+                <div class="verify-details">
+                    ${renderRow('Position', escapeHtml(p.position || ''))}
+                    ${renderRow('Duration', escapeHtml(p.duration || (p.start && p.end ? fmtDate(p.start) + ' to ' + fmtDate(p.end) : '')))}
+                    ${renderRow('Period', p.start ? fmtDate(p.start) + ' &rarr; ' + fmtDate(p.end) : '—')}
+                    ${renderRow('Grade', escapeHtml(p.grade || ''))}
+                    ${renderRow('Mentor', escapeHtml(p.mentor || ''))}
+                    ${renderRow('Issued', fmtDate(p.issue))}
+                </div>
+                <div class="verify-seal"><span>SOFTSYNC<br>LAB</span><span>&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="verify-copy">Certificate No: <span class="verify-num">${escapeHtml(p.num || rec.num || '')}</span></p>
+                <a href="./contact.html" class="verify-btn">Contact SoftSync Lab</a>`;
+        };
+
+        const renderInvalid = (msg) => {
+            card.innerHTML = `
+                <div class="verify-status invalid">&#10007; Not Found</div>
+                <div class="verify-logo"><img src="./assets/images/company-logo-icon.png" alt="SoftSync Lab"></div>
+                <div class="verify-title">Certificate Not Found</div>
+                <div class="verify-sub">${msg || 'No matching certificate record was found in our database. This certificate may be invalid or altered.'}</div>
+                <p class="verify-copy">If you believe this is an error, please contact us with your certificate number.</p>
+                <a href="./contact.html" class="verify-btn">Contact SoftSync Lab</a>`;
+        };
+
+        const certNum = new URLSearchParams(window.location.search).get('cert');
+        if (!certNum) {
+            statusEl.className = 'verify-status invalid';
+            statusEl.textContent = '\u2717 Not Provided';
+            subEl.innerHTML = 'No certificate number was provided. Please scan the QR code on the certificate.';
+        } else {
+            await (async () => {
+            try {
+                const { data, error } = await supabase.rpc('verify_certificate', { p_cert: certNum });
+                if (error) throw error;
+                if (data && data.length > 0) {
+                    renderValid(data[0]);
+                } else {
+                    renderInvalid();
+                }
+            } catch (err) {
+                console.error('Verify error:', err && (err.message || err.code) ? (err.message || err.code) : err);
+                renderInvalid('We could not complete the verification at this time. Please try again later.');
+            }
+            })();
+        }
+    </script>
+</body>
+</html>
