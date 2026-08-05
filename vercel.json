@@ -91,6 +91,16 @@
       "destination": "/verify.html"
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "interns.softsyncsolutions.in"
+        }
+      ],
+      "destination": "/interns.html"
+    },
+    {
       "source": "/dashboard",
       "has": [
         {
