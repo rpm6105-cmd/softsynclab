@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>Intern Projects | SoftSync Lab</title>
+    <meta name="description" content="Projects built by SoftSync Lab business automation interns.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://softsyncsolutions.in/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="https://softsyncsolutions.in/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://softsyncsolutions.in/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://softsyncsolutions.in/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://softsyncsolutions.in/favicon-192x192.png">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --accent: #0d9488;
+            --accent-warm: #f59e0b;
+            --bg-dark: #f8fafc;
+            --bg-light: #ffffff;
+            --surface: #ffffff;
+            --surface-light: #f1f5f9;
+            --text: #0f172a;
+            --text-dim: #475569;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #0d9488 0%, #4f46e5 52%, #f59e0b 120%);
+            --gradient-vibrant: linear-gradient(135deg, #0d9488 0%, #4f46e5 46%, #c084fc 76%, #f59e0b 115%);
+            --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.1);
+            --glass: rgba(255, 255, 255, 0.75);
+            --border: rgba(15, 23, 42, 0.08);
+            --halo-cyan: rgba(13, 148, 136, 0.18);
+            --halo-indigo: rgba(79, 70, 229, 0.14);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        html { scroll-padding-top: 96px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at 16% 8%, rgba(13, 148, 136, 0.06), transparent 35rem),
+                radial-gradient(circle at 84% 2%, rgba(79, 70, 229, 0.08), transparent 40rem),
+                linear-gradient(180deg, #ffffff 0%, #f8fafc 40%, #f1f5f9 100%);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(15, 23, 42, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
+            background-size: 72px 72px;
+            -webkit-mask-image: radial-gradient(circle at 50% 0%, black, transparent 68%);
+            mask-image: radial-gradient(circle at 50% 0%, black, transparent 68%);
+        }
+        h1, h2, h3, h4, .logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            padding: 0.9rem 0;
+            min-height: 82px;
+            z-index: 1000;
+            transition: 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(18px) saturate(160%);
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+        }
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 48px;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            border-radius: 999px;
+            padding: 0.48rem 0.72rem 0.48rem 0.92rem;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(18px) saturate(150%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 4px 24px rgba(15, 23, 42, 0.07);
+        }
+        .logo { font-size: 1.45rem; font-weight: 800; line-height: 1; }
+        .nav-links { display: flex; gap: 1.9rem; align-items: center; }
+        .nav-links a { font-weight: 500; color: var(--text-dim); font-size: 0.96rem; transition: color 0.2s ease; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a:not(.btn) { position: relative; padding: 0.25rem 0; }
+        .nav-toggle {
+            display: none;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.05);
+            padding: 0;
+            margin: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .nav-toggle span { display: block; width: 18px; height: 2px; border-radius: 999px; background: var(--text); }
+
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            padding: 1rem 2.35rem;
+            border-radius: 50px;
+            font-weight: 800;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+            letter-spacing: -0.01em;
+            overflow: hidden;
+        }
+        .btn-sm { padding: 0.6rem 1.5rem; font-size: 0.875rem; }
+
+        .interns-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(79,70,229,0.05) 0%, #ffffff 100%);
+        }
+        .interns-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.75rem; }
+        .interns-hero p { color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+        .interns-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(13,148,136,0.1);
+            color: #0f766e;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            margin-bottom: 1.5rem;
+        }
+        .interns-grid { padding: 0 0 5rem; }
+        .interns-grid-inner { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+        .intern-card {
+            background: #fff;
+            border: 1px solid rgba(15,23,42,0.07);
+            border-radius: 20px;
+            padding: 1.5rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 16px rgba(15,23,42,0.04);
+            transition: 0.25s;
+        }
+        .intern-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15,23,42,0.08); }
+        .intern-card .info { min-width: 0; }
+        .intern-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .intern-card .project { color: var(--text-dim); font-size: 0.88rem; }
+        .intern-link {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: 0.25s;
+        }
+        .intern-link:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(13,148,136,0.3); }
+        .interns-empty { text-align: center; color: var(--text-dim); padding: 4rem 1.5rem; }
+        .interns-note {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .footer { padding: 4rem 0 3rem; border-top: 1px solid var(--border); }
+        .footer-bottom { color: var(--text-dim); font-size: 0.9rem; text-align: center; }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 12px);
+                left: 1rem;
+                right: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.25rem;
+                border: 1px solid rgba(15, 23, 42, 0.1);
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.97);
+                backdrop-filter: blur(18px) saturate(150%);
+                box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12);
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: inline-flex; }
+        }
+        @media (max-width: 600px) {
+            .intern-card { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container navbar-container">
+            <a href="https://softsyncsolutions.in/" class="logo" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+                <img src="https://softsyncsolutions.in/assets/images/company-logo-icon.png" alt="" width="38" height="38" style="height:38px;width:auto;" fetchpriority="high" decoding="sync">
+                <span style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg, #2563eb 0%, #00d2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;">SoftSync Lab</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="https://softsyncsolutions.in/#services">Solutions</a></li>
+                <li><a href="https://softsyncsolutions.in/#projects">Projects</a></li>
+                <li><a href="https://softsyncsolutions.in/blog/">Blog</a></li>
+                <li><a href="https://softsyncsolutions.in/about.html">About</a></li>
+                <li><a href="https://softsyncsolutions.in/contact.html" class="btn btn-sm" style="background:var(--accent); color:#fff; font-weight:700; border:none; box-shadow:0 0 16px rgba(13,148,136,0.3);">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="interns-hero">
+        <div class="container">
+            <div class="interns-badge">&#9679; Business Automation Internship</div>
+            <h1>Projects by Our Interns</h1>
+            <p>Real web apps built by engineering students during the SoftSync Lab business automation internship.</p>
+        </div>
+    </section>
+
+    <section class="interns-grid">
+        <div class="interns-grid-inner">
+            <p class="interns-note">
+                Each project below replaces a messy spreadsheet with a clean, working web app
+                for a real small business.
+            </p>
+            <div id="interns-list"><!-- student cards render here --></div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <p>&copy; 2026 SoftSync Lab. All Rights Reserved. <span style="margin-left: 0.5rem; color: rgba(15,23,42,0.4);">| India-based team</span></p>
+                <div class="social-links" style="display: flex; gap: 1.5rem; align-items: center; font-size: 0.9rem;">
+                    <a href="https://www.linkedin.com/company/softsynclab/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.4rem; color: rgba(15,23,42,0.5); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(15,23,42,0.5)'">LinkedIn</a>
+                    <a href="https://www.instagram.com/softsynclab?igsh=MWN2M3d4cGc1OGNnNQ==" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.4rem; color: rgba(15,23,42,0.5); text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='rgba(15,23,42,0.5)'">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const navLinksContainer = document.querySelector('.nav-links');
+        const navToggle = document.getElementById('nav-toggle');
+        navToggle?.setAttribute('aria-expanded', 'false');
+
+        let scrollTicking = false;
+        const updateScrollState = () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+            scrollTicking = false;
+        };
+        const requestScrollState = () => {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            window.requestAnimationFrame(updateScrollState);
+        };
+        window.addEventListener('scroll', requestScrollState, { passive: true });
+        updateScrollState();
+
+        if (navToggle && navLinksContainer) {
+            navToggle.addEventListener('click', () => {
+                const isOpen = navLinksContainer.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', String(isOpen));
+            });
+        }
+
+        // ================================================================
+        //  ADD A STUDENT PROJECT HERE
+        //  Copy the { ... } block below, paste it inside the [ ] list,
+        //  and change the three values. That's it.
+        // ================================================================
+        const INTERNS = [
+            {
+                name: "Example Student",
+                project: "Inventory App for a Retail Shop",
+                url: "https://example-project.vercel.app"
+            }
+        ];
+
+        // Render — no need to edit below this line.
+        const listEl = document.getElementById('interns-list');
+        if (INTERNS.length === 0) {
+            listEl.innerHTML = '<div class="interns-empty">No projects published yet — the first batch is working on it.</div>';
+        } else {
+            listEl.innerHTML = INTERNS.map(i => `
+                <div class="intern-card">
+                    <div class="info">
+                        <h3>${i.name}</h3>
+                        <div class="project">${i.project}</div>
+                    </div>
+                    <a href="${i.url}" target="_blank" rel="noopener noreferrer" class="intern-link">View Project</a>
+                </div>`).join('');
+        }
+    </script>
+</body>
+</html>
