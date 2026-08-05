@@ -91,7 +91,7 @@
       "destination": "/verify.html"
     },
     {
-      "source": "/",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
