@@ -52,17 +52,6 @@
       "has": [
         {
           "type": "host",
-          "value": "interns.softsyncsolutions.in"
-        }
-      ],
-      "destination": "/interns.html",
-      "permanent": false
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
           "value": "admin.softsyncsolutions.in"
         }
       ],
@@ -100,6 +89,16 @@
     {
       "source": "/verify",
       "destination": "/verify.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "interns.softsyncsolutions.in"
+        }
+      ],
+      "destination": "/interns.html"
     },
     {
       "source": "/dashboard",
