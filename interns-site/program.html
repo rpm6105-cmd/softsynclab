@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
-    <title>Intern Projects | SoftSync Lab</title>
-    <meta name="description" content="Projects built by SoftSync Lab business automation interns.">
+    <title>Internship Program | SoftSync Lab</title>
+    <meta name="description" content="The 4-week Business Automation Internship at SoftSync Lab — what you'll build, the weekly plan, and what you get at the end.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -142,14 +142,14 @@
         }
         .btn-sm { padding: 0.6rem 1.5rem; font-size: 0.875rem; }
 
-        .interns-hero {
-            padding: 8rem 0 4rem;
+        .program-hero {
+            padding: 8rem 0 3rem;
             text-align: center;
             background: linear-gradient(180deg, rgba(79,70,229,0.05) 0%, #ffffff 100%);
         }
-        .interns-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.75rem; }
-        .interns-hero p { color: var(--text-dim); max-width: 600px; margin: 0 auto; }
-        .interns-badge {
+        .program-hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.75rem; }
+        .program-hero p { color: var(--text-dim); max-width: 620px; margin: 0 auto; }
+        .program-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
@@ -163,46 +163,104 @@
             border-radius: 999px;
             margin-bottom: 1.5rem;
         }
-        .interns-grid { padding: 0 0 5rem; }
-        .interns-grid-inner { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
-        .intern-card {
+
+        .program-body {
+            padding: 2rem 0 5rem;
+        }
+        .program-body-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .prog-card {
             background: #fff;
             border: 1px solid rgba(15,23,42,0.07);
             border-radius: 20px;
-            padding: 1.5rem 1.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.25rem;
-            margin-bottom: 1rem;
+            padding: 2rem 2.25rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 2px 16px rgba(15,23,42,0.04);
-            transition: 0.25s;
         }
-        .intern-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(15,23,42,0.08); }
-        .intern-card .info { min-width: 0; }
-        .intern-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.1rem; margin-bottom: 0.25rem; }
-        .intern-card .project { color: var(--text-dim); font-size: 0.88rem; }
-        .intern-link {
-            flex-shrink: 0;
+        .prog-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .prog-card h2 .n {
             background: linear-gradient(135deg, var(--accent), var(--primary));
             color: #fff;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .prog-card ul { list-style: none; }
+        .prog-card ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: var(--text-dim);
+        }
+        .prog-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .prog-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+        .prog-table th, .prog-table td {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(15,23,42,0.06);
+            font-size: 0.92rem;
+            vertical-align: top;
+        }
+        .prog-table th {
+            background: rgba(79,70,229,0.05);
             font-weight: 700;
-            font-size: 0.85rem;
-            padding: 0.6rem 1.25rem;
-            border-radius: 999px;
-            text-decoration: none;
-            transition: 0.25s;
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            border-radius: 10px 10px 0 0;
         }
-        .intern-link:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(13,148,136,0.3); }
-        .interns-empty { text-align: center; color: var(--text-dim); padding: 4rem 1.5rem; }
-        .interns-note {
-            max-width: 700px;
-            margin: 0 auto 3rem;
+        .prog-table td { color: var(--text-dim); }
+        .prog-table tr td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+
+        .prog-cta {
             text-align: center;
-            color: #94a3b8;
-            font-size: 0.85rem;
-            line-height: 1.7;
+            padding: 3rem 0 4rem;
         }
+        .prog-cta .btn-apply {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            background: var(--gradient-vibrant);
+            background-size: 200% auto;
+            color: var(--white);
+            padding: 1.1rem 3rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            box-shadow: 0 18px 48px rgba(79, 70, 229, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+            transition: 0.5s ease;
+        }
+        .prog-cta .btn-apply:hover {
+            background-position: right center;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 24px 70px rgba(16, 185, 129, 0.35), 0 18px 48px rgba(79, 70, 229, 0.36);
+        }
+        .prog-cta p { color: var(--text-dim); margin-top: 1rem; font-size: 0.9rem; }
 
         .footer { padding: 4rem 0 3rem; border-top: 1px solid var(--border); }
         .footer-bottom { color: var(--text-dim); font-size: 0.9rem; text-align: center; }
@@ -225,9 +283,8 @@
             }
             .nav-links.open { display: flex; }
             .nav-toggle { display: inline-flex; }
-        }
-        @media (max-width: 600px) {
-            .intern-card { flex-direction: column; text-align: center; }
+            .prog-card { padding: 1.5rem 1.25rem; }
+            .prog-table tr td:first-child { white-space: normal; }
         }
     </style>
 </head>
@@ -235,14 +292,14 @@
     <main>
     <nav class="navbar scrolled" id="navbar">
         <div class="container navbar-container">
-            <a href="https://softsyncsolutions.in/" class="logo" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
+            <a href="./" class="logo" style="display:flex;align-items:center;gap:0.75rem;text-decoration:none;">
                 <img src="https://softsyncsolutions.in/assets/images/company-logo-icon.png" alt="" width="38" height="38" style="height:38px;width:auto;" fetchpriority="high" decoding="sync">
                 <span style="font-family:'Outfit',sans-serif;font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg, #2563eb 0%, #00d2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline-block;">SoftSync Lab</span>
             </a>
             <ul class="nav-links">
                 <li><a href="./">Home</a></li>
-                <li><a href="./program.html">Program</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="./program.html" class="active">Program</a></li>
+                <li><a href="./#projects">Projects</a></li>
                 <li><a href="https://softsyncsolutions.in/contact.html" class="btn btn-sm" style="background:var(--accent); color:#fff; font-weight:700; border:none; box-shadow:0 0 16px rgba(13,148,136,0.3);">Apply</a></li>
             </ul>
             <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
@@ -253,23 +310,81 @@
         </div>
     </nav>
 
-    <section class="interns-hero">
+    <section class="program-hero">
         <div class="container">
-            <div class="interns-badge">&#9679; Business Automation Internship</div>
-            <h1>Projects by Our Interns</h1>
-            <p>Real web apps built by engineering students during the SoftSync Lab business automation internship.</p>
+            <div class="program-badge">&#9679; Business Automation Internship</div>
+            <h1>4 Weeks. One Real Web App.</h1>
+            <p>No coding experience needed. You'll learn HTML, CSS, JavaScript and Google Sheets — and ship a working app for a real small business.</p>
         </div>
     </section>
 
-    <section class="interns-grid" id="projects">
-        <div class="interns-grid-inner">
-            <p class="interns-note">
-                Each project below replaces a messy spreadsheet with a clean, working web app
-                for a real small business.
-            </p>
-            <div id="interns-list"><!-- student cards render here --></div>
+    <section class="program-body">
+        <div class="program-body-inner">
+
+            <div class="prog-card">
+                <h2><span class="n">1</span> The Program At A Glance</h2>
+                <table class="prog-table">
+                    <tr><th colspan="2"></th></tr>
+                    <tr><td>Name</td><td>Business Automation Internship</td></tr>
+                    <tr><td>Duration</td><td>4 weeks (Week 1–4)</td></tr>
+                    <tr><td>Outcome</td><td>A working web app + GitHub repo + project report + demo video</td></tr>
+                    <tr><td>Stack</td><td>HTML, CSS, JavaScript, Google Sheets as the "database"</td></tr>
+                    <tr><td>Hosting</td><td>Your project goes live on <strong>interns.softsyncsolutions.in/&lt;your-name&gt;</strong></td></tr>
+                    <tr><td>Certificate</td><td>Issued <strong>only</strong> when all 4 deliverables are submitted</td></tr>
+                </table>
+            </div>
+
+            <div class="prog-card">
+                <h2><span class="n">2</span> What You'll Deliver</h2>
+                <ul>
+                    <li><strong>GitHub repo</strong> — real, dated code (commit history proves you built it)</li>
+                    <li><strong>Live demo link</strong> — your project hosted and working online</li>
+                    <li><strong>Project report</strong> — 10–15 page document (template provided)</li>
+                    <li><strong>5-minute demo video</strong> — you explain what you built and why</li>
+                </ul>
+            </div>
+
+            <div class="prog-card">
+                <h2><span class="n">3</span> Pick Your Project</h2>
+                <ul>
+                    <li><strong>Small retail shop</strong> — track products, stock levels, and daily sales</li>
+                    <li><strong>Salon / clinic</strong> — appointment booking + client list</li>
+                    <li><strong>Coaching center</strong> — student attendance + fee records</li>
+                    <li><strong>Restaurant</strong> — menu, orders, and daily billing</li>
+                    <li><strong>Any local business</strong> — a customized "replace-the-spreadsheet" tool</li>
+                </ul>
+                <p style="margin-top:1rem;color:var(--text-dim);font-size:0.92rem;">Pick ONE business you actually know — a relative's shop, a friend's tuition center. It must solve a <strong>real</strong> problem for a <strong>real</strong> business. That's what makes your story authentic.</p>
+            </div>
+
+            <div class="prog-card">
+                <h2><span class="n">4</span> The Weekly Plan</h2>
+                <table class="prog-table">
+                    <tr><th>Week</th><th>Focus</th></tr>
+                    <tr><td>Week 0</td><td>Setup — GitHub account, VS Code, pick your scenario, get your plan approved</td></tr>
+                    <tr><td>Week 1</td><td>Learn the basics — HTML, CSS, JavaScript crash courses + intro video</td></tr>
+                    <tr><td>Week 2</td><td>Build the screens — home, add-form, and list pages (phone + laptop)</td></tr>
+                    <tr><td>Week 3</td><td>Connect the "database" — your form saves to Google Sheets, the list reads it</td></tr>
+                    <tr><td>Week 4</td><td>Polish, document, present — final demo video + project report</td></tr>
+                </table>
+            </div>
+
+            <div class="prog-card">
+                <h2><span class="n">5</span> Why Google Sheets?</h2>
+                <ul>
+                    <li>Free — no server setup, no payment needed</li>
+                    <li>Real businesses actually use it — this <strong>is</strong> business automation</li>
+                    <li>You can explain it confidently at your college viva</li>
+                    <li>Your mentor opens the same sheet to verify your work</li>
+                </ul>
+            </div>
+
         </div>
     </section>
+
+    <div class="prog-cta">
+        <a href="https://softsyncsolutions.in/contact.html" class="btn-apply">Apply for the Internship</a>
+        <p>Limited seats per batch. Certificate issued only on completing all 4 deliverables.</p>
+    </div>
 
     </main>
 
@@ -310,34 +425,6 @@
                 const isOpen = navLinksContainer.classList.toggle('open');
                 navToggle.setAttribute('aria-expanded', String(isOpen));
             });
-        }
-
-        // ================================================================
-        //  ADD A STUDENT PROJECT HERE
-        //  Copy the { ... } block below, paste it inside the [ ] list,
-        //  and change the three values. That's it.
-        // ================================================================
-        const INTERNS = [
-            {
-                name: "Example Student",
-                project: "Inventory App for a Retail Shop",
-                url: "https://example-project.vercel.app"
-            }
-        ];
-
-        // Render — no need to edit below this line.
-        const listEl = document.getElementById('interns-list');
-        if (INTERNS.length === 0) {
-            listEl.innerHTML = '<div class="interns-empty">No projects published yet — the first batch is working on it.</div>';
-        } else {
-            listEl.innerHTML = INTERNS.map(i => `
-                <div class="intern-card">
-                    <div class="info">
-                        <h3>${i.name}</h3>
-                        <div class="project">${i.project}</div>
-                    </div>
-                    <a href="${i.url}" target="_blank" rel="noopener noreferrer" class="intern-link">View Project</a>
-                </div>`).join('');
         }
     </script>
 </body>
