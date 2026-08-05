@@ -323,6 +323,12 @@
             overflow: visible;
         }
 
+        .a4-page.certificate-page {
+            height: 297mm;
+            max-height: 297mm;
+            overflow: hidden;
+        }
+
         /* ── Preview Wrapper (handles scaling) ── */
         .preview-wrapper {
             transform: scale(0.63);
@@ -434,6 +440,23 @@
                 overflow: hidden !important;
                 page-break-inside: avoid !important;
                 page-break-after: avoid !important;
+            }
+            .a4-page.certificate-page {
+                height: 273mm !important;
+                max-height: 273mm !important;
+                min-height: 273mm !important;
+                overflow: hidden !important;
+                padding-bottom: 0 !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+            }
+            .a4-page.offer-page {
+                height: auto !important;
+                max-height: none !important;
+                min-height: 0 !important;
+                overflow: visible !important;
+                padding-bottom: 0 !important;
+                page-break-inside: avoid !important;
             }
             
             /* Table-based page break structures */

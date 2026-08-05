@@ -1558,7 +1558,7 @@ window.renderLive = () => {
             </div>`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:24mm;">
+        <div class="a4-page dynamic-height offer-page" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:24mm;">
             ${wrapInTableLayout(ioHeaderHTML, contentHTML)}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
@@ -1584,8 +1584,8 @@ window.renderLive = () => {
         const studentName = client || 'Student Name';
 
         const contentHTML = `
-        <div style="background:linear-gradient(135deg,#b8860b 0%,#f5d78e 18%,#d4af37 38%,#fff3c4 50%,#d4af37 62%,#f5d78e 82%,#b8860b 100%);padding:6px;">
-            <div style="border:1.5px solid #d4af37;background:#fffef9;position:relative;overflow:hidden;min-height:252mm;">
+        <div style="background:linear-gradient(135deg,#b8860b 0%,#f5d78e 18%,#d4af37 38%,#fff3c4 50%,#d4af37 62%,#f5d78e 82%,#b8860b 100%);padding:6px;height:100%;box-sizing:border-box;">
+            <div style="border:1.5px solid #d4af37;background:#fffef9;position:relative;overflow:hidden;height:100%;box-sizing:border-box;">
                 <!-- WATERMARK -->
                 <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;">
                     <div style="font-size:52pt;font-weight:800;color:rgba(184,134,11,0.07);letter-spacing:6px;text-align:center;line-height:1.15;">SOFTSYNC<br>LAB</div>
@@ -1660,7 +1660,7 @@ window.renderLive = () => {
         </div>`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:0;">
+        <div class="a4-page certificate-page" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:0;">
             ${contentHTML}
         </div>`;
     }
