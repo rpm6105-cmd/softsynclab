@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Automation App — Starter Kit</title>
+
+<!--
+  ============================================================
+  SOFT SYNC LAB INTERNSHIP — STARTER KIT (one file app)
+  ------------------------------------------------------------
+  HOW TO USE THIS FILE:
+  1. Change the APP NAME below.
+  2. Paste your Apps Script URL in SCRIPT_URL (Step 7 of Code.gs).
+  3. Rename the example fields (product_name, price, stock, category)
+     to match YOUR business's tab and headers in the Sheet.
+  4. Open index.html in a browser to test.
+  ============================================================
+-->
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    min-height: 100vh;
+  }
+
+  /* Top bar */
+  .topbar {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .topbar .brand { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; }
+  .topbar .brand span { color: #d4af37; }
+  .topbar .tag { font-size: 0.75rem; opacity: 0.7; }
+
+  /* Navigation pills */
+  .nav {
+    display: flex;
+    gap: 8px;
+    padding: 14px 24px;
+    flex-wrap: wrap;
+  }
+  .nav button {
+    border: none;
+    background: #fff;
+    color: #0f172a;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.08);
+    transition: 0.2s;
+  }
+  .nav button:hover { background: #e2e8f0; }
+  .nav button.active { background: #0d9488; color: #fff; }
+
+  /* Page container */
+  .container { padding: 0 24px 40px; max-width: 860px; margin: 0 auto; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  h2 { margin-bottom: 18px; font-size: 1.5rem; }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(15,23,42,0.06);
+  }
+
+  /* Form */
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #334155;
+  }
+  .field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+  .field input:focus { outline: 2px solid #0d9488; border-color: transparent; }
+
+  .btn {
+    border: none;
+    background: #0d9488;
+    color: #fff;
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.2s;
+  }
+  .btn:hover { background: #0f766e; }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .msg {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: none;
+  }
+  .msg.ok { display: block; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .msg.err { display: block; background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+  th { background: #f8fafc; font-size: 0.8rem; text-transform: uppercase; color: #64748b; letter-spacing: 0.5px; }
+
+  .empty { text-align: center; color: #94a3b8; padding: 40px 0; }
+  .status { text-align: center; color: #64748b; padding: 30px 0; font-size: 0.9rem; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    padding: 20px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="brand">SoftSync <span>Lab</span> — <span id="app-name">My Business App</span></div>
+  <div class="tag">Business Automation Internship</div>
+</header>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav">
+  <button class="active" data-page="home">Home</button>
+  <button data-page="add">Add Entry</button>
+  <button data-page="list">View Entries</button>
+</nav>
+
+<div class="container">
+
+  <!-- ============ HOME PAGE ============ -->
+  <section id="page-home" class="page active">
+    <div class="card">
+      <h2>Welcome!</h2>
+      <p style="line-height:1.8; color:#475569;">
+        This app lets a business store and view its data online, replacing a messy
+        spreadsheet. Click <strong>Add Entry</strong> to add a row, then go to
+        <strong>View Entries</strong> to see it saved.
+      </p>
+      <p style="line-height:1.8; color:#475569; margin-top:12px;">
+        <strong>Your job (Week 3):</strong> make the form save to your Google Sheet and
+        the list read back from it. Then restyle everything to look like your business.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ADD PAGE ============ -->
+  <section id="page-add" class="page">
+    <div class="card">
+      <h2>Add Entry</h2>
+
+      <!--
+        EDIT YOUR FIELDS HERE:
+        Match each input name to a column header in your Sheet tab.
+        Example below uses: product_name, category, price, stock
+      -->
+      <form id="entry-form">
+        <div class="field">
+          <label for="f-product_name">Product Name</label>
+          <input id="f-product_name" name="product_name" required placeholder="e.g. Notebook">
+        </div>
+        <div class="field">
+          <label for="f-category">Category</label>
+          <input id="f-category" name="category" required placeholder="e.g. Stationery">
+        </div>
+        <div class="field">
+          <label for="f-price">Price (₹)</label>
+          <input id="f-price" name="price" type="number" step="0.01" required placeholder="e.g. 45">
+        </div>
+        <div class="field">
+          <label for="f-stock">Stock Qty</label>
+          <input id="f-stock" name="stock" type="number" required placeholder="e.g. 100">
+        </div>
+
+        <button class="btn" type="submit" id="save-btn">Save to Google Sheet</button>
+        <div class="msg" id="form-msg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ LIST PAGE ============ -->
+  <section id="page-list" class="page">
+    <div class="card">
+      <h2>View Entries</h2>
+      <button class="btn" style="margin-bottom:18px;" id="reload-btn">Refresh List</button>
+      <div id="list-status" class="status">Click Refresh to load data.</div>
+      <div class="table-wrap">
+        <table id="data-table" style="display:none;">
+          <thead>
+            <tr id="table-head"></tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">Made with SoftSync Lab Internship Starter Kit</footer>
+
+<script>
+/* ============================================================
+   1. SETTINGS — edit these two things
+   ============================================================ */
+
+// APP NAME shown in the top bar.
+document.getElementById('app-name').textContent = 'My Business App';
+
+// Paste your Apps Script Web App URL here (from Code.gs Step 6).
+const SCRIPT_URL = "PASTE_YOUR_URL_HERE";
+
+// The Google Sheet TAB this app reads/writes.
+const TABLE_NAME = "products";
+
+/* ============================================================
+   2. NAVIGATION — switching between pages
+   ============================================================ */
+document.querySelectorAll('.nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + btn.dataset.page).classList.add('active');
+  });
+});
+
+/* ============================================================
+   3. ADD — save a new row to the Google Sheet
+   ============================================================ */
+const form = document.getElementById('entry-form');
+const msg = document.getElementById('form-msg');
+const saveBtn = document.getElementById('save-btn');
+
+function showMsg(el, text, isError) {
+  el.textContent = text;
+  el.className = 'msg ' + (isError ? 'err' : 'ok');
+}
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  // Collect form fields into an object: { product_name: "...", category: "...", ... }
+  const data = {};
+  new FormData(form).forEach((value, key) => { data[key] = value; });
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = 'Saving…';
+  showMsg(msg, '');
+
+  try {
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ table: TABLE_NAME, data: data })
+    });
+    const result = await res.json();
+
+    if (result.success) {
+      showMsg(msg, 'Saved successfully! It is now in your Google Sheet.');
+      form.reset();
+    } else {
+      showMsg(msg, 'Error: ' + result.error, true);
+    }
+  } catch (err) {
+    showMsg(msg, 'Could not reach the app. Check SCRIPT_URL and deployment access (must be "Anyone").', true);
+  }
+
+  saveBtn.disabled = false;
+  saveBtn.textContent = 'Save to Google Sheet';
+});
+
+/* ============================================================
+   4. LIST — load rows from the Google Sheet
+   ============================================================ */
+const table = document.getElementById('data-table');
+const tHead = document.getElementById('table-head');
+const tBody = document.getElementById('table-body');
+const listStatus = document.getElementById('list-status');
+
+async function loadEntries() {
+  listStatus.textContent = 'Loading…';
+  table.style.display = 'none';
+
+  try {
+    const res = await fetch(SCRIPT_URL + '?table=' + TABLE_NAME + '&action=list');
+    const result = await res.json();
+
+    if (!result.success) {
+      listStatus.textContent = 'Error: ' + result.error;
+      return;
+    }
+
+    const rows = result.data || [];
+    if (rows.length === 0) {
+      listStatus.textContent = 'No entries yet. Go to Add Entry and save something first.';
+      return;
+    }
+
+    // Build the table from the first row's keys.
+    const headers = Object.keys(rows[0]);
+    tHead.innerHTML = headers.map(h => '<th>' + h + '</th>').join('');
+    tBody.innerHTML = rows.map(row =>
+      '<tr>' + headers.map(h => '<td>' + (row[h] ?? '') + '</td>').join('') + '</tr>'
+    ).join('');
+
+    listStatus.textContent = rows.length + ' entry(ies) found.';
+    table.style.display = 'table';
+  } catch (err) {
+    listStatus.textContent = 'Could not reach the app. Check SCRIPT_URL.';
+  }
+}
+
+document.getElementById('reload-btn').addEventListener('click', loadEntries);
+</script>
+
+</body>
+</html>
