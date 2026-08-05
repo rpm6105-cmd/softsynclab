@@ -1584,7 +1584,7 @@ window.renderLive = () => {
         const studentName = client || 'Student Name';
 
         const contentHTML = `
-        <div style="background:linear-gradient(135deg,#b8860b 0%,#f5d78e 18%,#d4af37 38%,#fff3c4 50%,#d4af37 62%,#f5d78e 82%,#b8860b 100%);padding:6px;height:100%;box-sizing:border-box;">
+        <div style="background:linear-gradient(135deg,#b8860b 0%,#f5d78e 18%,#d4af37 38%,#fff3c4 50%,#d4af37 62%,#f5d78e 82%,#b8860b 100%);padding:6px;margin:8mm;height:calc(100% - 16mm);box-sizing:border-box;">
             <div style="border:1.5px solid #d4af37;background:#fffef9;position:relative;overflow:hidden;height:100%;box-sizing:border-box;">
                 <!-- WATERMARK -->
                 <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:0;">

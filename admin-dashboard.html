@@ -383,6 +383,10 @@
                 size: A4 portrait; 
                 margin: 12mm 10mm;
             }
+            @page certificate {
+                size: A4 portrait;
+                margin: 0;
+            }
             body { 
                 background: white !important; 
                 margin: 0 !important; 
@@ -442,9 +446,11 @@
                 page-break-after: avoid !important;
             }
             .a4-page.certificate-page {
-                height: 273mm !important;
-                max-height: 273mm !important;
-                min-height: 273mm !important;
+                page: certificate;
+                width: 210mm !important;
+                height: 297mm !important;
+                max-height: 297mm !important;
+                min-height: 297mm !important;
                 overflow: hidden !important;
                 padding-bottom: 0 !important;
                 page-break-inside: avoid !important;
@@ -453,10 +459,10 @@
             .a4-page.offer-page {
                 height: auto !important;
                 max-height: none !important;
-                min-height: 0 !important;
+                min-height: 273mm !important;
                 overflow: visible !important;
                 padding-bottom: 0 !important;
-                page-break-inside: avoid !important;
+                page-break-inside: auto !important;
             }
             
             /* Table-based page break structures */
