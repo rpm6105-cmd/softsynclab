@@ -459,7 +459,7 @@
             .a4-page.offer-page {
                 height: auto !important;
                 max-height: none !important;
-                min-height: 273mm !important;
+                min-height: auto !important;
                 overflow: visible !important;
                 padding-bottom: 0 !important;
                 page-break-inside: auto !important;
@@ -763,6 +763,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="form-group">
                             <label>Stipend</label>
                             <input type="text" id="io-stipend" class="form-input" placeholder="e.g. ₹8,000/month or Unpaid" oninput="renderLive()">
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+                            <div class="form-group">
+                                <label>Notice Period (days)</label>
+                                <input type="number" id="io-notice" class="form-input" placeholder="e.g. 15" oninput="renderLive()">
+                            </div>
+                            <div class="form-group">
+                                <label>Acceptance Deadline</label>
+                                <input type="date" id="io-accept" class="form-input" oninput="renderLive()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Job Description (optional override)</label>
+                            <textarea id="io-jobdesc" class="form-input" style="height:70px;" oninput="renderLive()" placeholder="Leave blank to use the default Business Automation Intern description."></textarea>
                         </div>
                         <div class="form-group">
                             <label>Responsibilities (one per line)</label>

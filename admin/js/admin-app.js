@@ -1408,7 +1408,7 @@ window.renderLive = () => {
         </div>`;
     } else if (mode === 'internship_offer') {
         const ioNum  = document.getElementById('io-num').value || `SSL-INT-${year}-001`;
-        const ioPos  = document.getElementById('io-position').value;
+        const ioPos  = document.getElementById('io-position').value || 'Business Automation Intern';
         const ioCollege  = document.getElementById('io-college').value;
         const ioDept     = document.getElementById('io-dept').value;
         const ioUniv     = document.getElementById('io-university').value;
@@ -1419,8 +1419,10 @@ window.renderLive = () => {
         const ioManager  = document.getElementById('io-manager').value;
         const ioHours    = document.getElementById('io-hours').value;
         const ioStipend  = document.getElementById('io-stipend').value;
+        const ioNotice   = document.getElementById('io-notice').value || '';
+        const ioAccept   = document.getElementById('io-accept').value;
+        const ioJobDesc  = document.getElementById('io-jobdesc').value;
         const ioRespRaw  = document.getElementById('io-responsibilities').value || '';
-        const ioOutRaw   = document.getElementById('io-outcomes').value || '';
         const ioClausesRaw = document.getElementById('io-clauses').value || '';
 
         const fmtDate = (v) => {
@@ -1430,136 +1432,163 @@ window.renderLive = () => {
 
         const ioStartStr = fmtDate(ioStart);
         const ioEndStr   = fmtDate(ioEnd);
+        const ioAcceptStr = fmtDate(ioAccept);
+
+        const studentName = client || 'Student Full Name';
+        const firstName = studentName.trim().split(/\s+/)[0];
 
         const respLines = ioRespRaw.split('\n').filter(l => l.trim());
-        const respHTML = respLines.map(line => {
-            const t = line.replace(/^[\*\-•✔]\s*/, '').trim();
-            return `<tr>
-                <td style="padding:4px 0;font-size:9pt;color:#334155;"><span style="color:#16a34a;font-weight:bold;">✔</span> ${t}</td>
-            </tr>`;
-        }).join('');
-
-        const outLines = ioOutRaw.split('\n').filter(l => l.trim());
-        const outHTML = outLines.map(line => {
-            const t = line.replace(/^[\*\-•]\s*/, '').trim();
-            return `<tr>
-                <td style="padding:3px 0;font-size:9pt;color:#334155;"><span style="color:#1e40af;font-weight:bold;">•</span> ${t}</td>
-            </tr>`;
-        }).join('');
+        const defaultResps = [
+            'Design, build, and deploy automation workflows using modern AI and no-code platforms.',
+            'Create AI-generated marketing content including images, videos, voiceovers, and branded creatives.',
+            'Develop end-to-end content pipelines, from idea and script generation to final production.',
+            'Automate repetitive business processes, reducing manual effort and improving efficiency.',
+            'Build intelligent customer management and lead workflows, integrating marketing with sales communication.',
+            'Design and automate customer journeys from lead generation through order processing and delivery updates.',
+            'Develop AI-assisted websites, landing pages, and internal business tools with workflow automation.',
+            'Create and maintain brand identity, design assets, and marketing materials.',
+            'Research, evaluate, and implement emerging AI technologies to enhance productivity and growth.',
+            'Collaborate with marketing, operations, and management teams to identify automation opportunities.',
+            'Continuously optimize existing systems, workflows, and digital assets to improve performance.'
+        ];
+        const respArr = respLines.length ? respLines : defaultResps;
 
         const clauseLines = ioClausesRaw.split('\n').filter(l => l.trim());
-        const clausesHTML = clauseLines.map(line => {
-            const t = line.replace(/^\d+\.\s*/, '').trim();
-            const num = (clauseLines.indexOf(line) + 1);
-            return `<tr>
-                <td style="padding:3px 0;font-size:9pt;color:#334155;"><strong>${num}.</strong> ${t}</td>
-            </tr>`;
+        const defaultClauses = [
+            'Your appointment is subject to the successful completion of all pre-internship formalities.',
+            `You will be required to serve a notice period of ${ioNotice || '15'} days in case of resignation.`,
+            "You will be governed by the company's policies and procedures, which may be revised from time to time.",
+            'All work products and deliverables created during the internship shall remain the property of SoftSync Lab.'
+        ];
+        const clauseArr = clauseLines.length ? clauseLines : defaultClauses;
+
+        const respBullet = (t) => `<li style="padding-left:6mm;position:relative;margin-bottom:1.2mm;"><span style="position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:#1a1a1a;"></span>${t}</li>`;
+        const detailRow  = (label, value) => `<li style="padding-left:6mm;position:relative;margin-bottom:1.2mm;"><span style="position:absolute;left:0;top:0.55em;width:5px;height:5px;border-radius:50%;background:#1a1a1a;"></span><span style="font-weight:700;">${label}:</span> ${value}</li>`;
+
+        const respHTML = respArr.map(line => {
+            const t = line.replace(/^[\*\-•✔]\s*/, '').trim();
+            return respBullet(t);
         }).join('');
 
+        const clausesHTML = clauseArr.map(line => {
+            const t = line.replace(/^\d+\.\s*/, '').trim();
+            return respBullet(t);
+        }).join('');
+
+        const jdText = ioJobDesc || `As a ${ioPos || 'Business Automation Intern'}, your role is to apply automation tools and modern digital technology to improve business operations, marketing, branding, and customer engagement across SoftSync Lab.`;
+
         const ioHeaderHTML = `
-        <div class="print-header" style="position:relative;background:#ffffff;padding:14mm 16mm 10mm;border-bottom:2px solid #0f172a;">
+        <div class="print-header" style="position:relative;background:#ffffff;padding:10mm 16mm 8mm;border-bottom:2px solid #1a1a1a;">
             <table style="width:100%;border-collapse:collapse;">
                 <tr>
-                    <td style="vertical-align:top;text-align:left;width:55%;padding:0;border:none;">
-                        <div style="font-size:19pt;font-weight:bold;color:#0f172a;letter-spacing:-0.3px;line-height:1.1;margin:0;">${company.name}</div>
-                        <div style="font-size:8pt;color:#1e40af;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:4px;">Intelligent Business Automation for SMEs</div>
+                    <td style="vertical-align:middle;text-align:left;padding:0;border:none;">
+                        <table style="border-collapse:collapse;">
+                            <tr>
+                                <td style="vertical-align:middle;padding:0;border:none;">
+                                    <img src="${LOGO_ICON}" style="width:16mm;height:auto;">
+                                </td>
+                                <td style="vertical-align:middle;padding-left:4mm;border:none;">
+                                    <div style="font-size:21px;font-weight:700;letter-spacing:0.5px;color:#0f172a;line-height:1.1;">${company.name}</div>
+                                    <div style="font-size:9px;color:#444;letter-spacing:2.5px;text-transform:uppercase;margin-top:2px;">Automate &middot; Integrate &middot; Scale</div>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
-                    <td style="vertical-align:top;text-align:right;width:45%;padding:0;border:none;">
-                        <div style="font-size:15pt;font-weight:bold;color:#0f172a;text-transform:uppercase;letter-spacing:2px;margin:0 0 4px 0;">Offer Letter</div>
-                        <div style="font-size:9pt;color:#475569;line-height:1.35;">Offer ID: <span style="font-weight:bold;color:#0f172a;">${ioNum}</span></div>
-                        <div style="font-size:9pt;color:#475569;line-height:1.35;">Date: <span style="font-weight:bold;color:#0f172a;">${dateStr}</span></div>
+                    <td style="vertical-align:middle;text-align:right;padding:0;border:none;">
+                        <div style="font-size:10px;color:#444;line-height:1.6;">contact@softsyncsolutions.in</div>
+                        <div style="font-size:10px;color:#444;line-height:1.6;">+91 72599 56572</div>
+                        <div style="font-size:10px;color:#444;line-height:1.6;">Bengaluru, Karnataka, India</div>
                     </td>
                 </tr>
             </table>
         </div>`;
 
-        const contentHTML = `
-            <div style="padding:0 16mm;">
+        const secStyle = (label) => `<h2 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;margin-top:7mm;margin-bottom:2mm;padding-bottom:1.5mm;border-bottom:1px solid #cbd5e1;">${label}</h2>`;
 
-                <!-- GREETING -->
-                <div style="margin:6mm 0 6mm 0;">
-                    <div style="font-size:10pt;color:#334155;line-height:1.8;">
-                        Dear <strong style="color:#0f172a;">${client}</strong>,<br>
-                        We are pleased to offer you the position of <strong style="color:#0f172a;">${ioPos}</strong> at <strong style="color:#0f172a;">${company.name}</strong>.
+        const contentHTML = `
+            <div style="padding:0 16mm;font-family:'Times New Roman',Georgia,'Segoe UI',serif;color:#1a1a1a;font-size:14px;line-height:1.55;">
+
+                <div style="text-align:right;font-weight:600;">Date: ${dateStr}</div>
+
+                <div style="margin-top:6mm;line-height:1.7;">
+                    <div>Mr. / Ms. ${studentName}</div>
+                    <div>${addr || 'Bengaluru, Karnataka'}</div>
+                </div>
+
+                <div style="margin-top:7mm;font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;">Subject: Offer of Internship</div>
+
+                <div style="margin-top:5mm;font-weight:600;">Dear ${firstName},</div>
+
+                <p style="margin-top:3mm;">
+                    We are pleased to offer you the position of <strong>${ioPos || 'Business Automation Intern'}</strong> at ${company.name}, effective from <strong>${ioStartStr}</strong>. This offer is based on the terms and conditions discussed during your interview and outlined below:
+                </p>
+
+                ${secStyle('Position Details')}
+                <ul style="list-style:none;margin-top:1mm;">
+                    ${detailRow('Position', ioPos || 'Business Automation Intern')}
+                    ${detailRow('Department', ioDept || 'Information Technology')}
+                    ${detailRow('Reporting To', ioManager || 'Founder')}
+                    ${detailRow('Location', 'Bengaluru')}
+                    ${detailRow('Mode of Work', ioMode || 'Remote / On-site / Hybrid')}
+                    ${detailRow('Working Hours per Week', (ioHours || '—') + ' hours')}
+                </ul>
+
+                ${secStyle('Job Description')}
+                <p>${jdText}</p>
+
+                ${secStyle('Core Responsibilities')}
+                <ul style="list-style:none;margin-top:1mm;">${respHTML}</ul>
+
+                <div class="page-break"></div>
+
+                ${secStyle('Compensation &amp; Benefits')}
+                <ul style="list-style:none;margin-top:1mm;">
+                    ${respBullet(`<span style="font-weight:700;">Stipend:</span> ${ioStipend && !/^unpaid$/i.test(ioStipend) ? 'Rs. ' + ioStipend + ' per month' : (ioStipend || '—')}.`)}
+                    ${respBullet('Deductions will be done as per the applicable tax laws.')}
+                </ul>
+
+                ${secStyle('Other Terms &amp; Conditions')}
+                <ul style="list-style:none;margin-top:1mm;">${clausesHTML}</ul>
+
+                <p style="margin-top:10mm;line-height:1.9;">
+                    Please indicate your acceptance of this offer by signing and returning a copy of this letter by <strong>${ioAcceptStr}</strong>. We look forward to welcoming you to ${company.name} and are confident that your skills will contribute meaningfully to our growth.
+                </p>
+                <p style="margin-top:10mm;line-height:1.9;">For any further clarifications, please feel free to contact us.</p>
+
+                <div style="margin-top:12mm;display:flex;justify-content:space-between;gap:10mm;align-items:flex-end;">
+                    <div style="min-width:0;"></div>
+                    <div style="min-width:0;">
+                        <div style="font-weight:700;margin-top:14mm;">For ${company.name}</div>
+                        <div style="font-weight:700;margin-top:2mm;">${company.director}</div>
+                        <div style="font-size:12px;color:#444;">Founder</div>
                     </div>
                 </div>
 
-                <!-- INTERNSHIP DETAILS TABLE -->
-                <table style="width:100%;border-collapse:separate;border-spacing:0;margin-bottom:6mm;">
-                    <tr>
-                        <td colspan="2" style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:2px solid #0f172a;padding:0 0 6px 0;margin-bottom:4px;">Internship Details</td>
-                    </tr>
-                    <tr>
-                        <td style="width:50%;vertical-align:top;padding:8px 10px 0 0;">
-                            <table style="width:100%;border-collapse:collapse;">
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;width:40%;">Name</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${client}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">College</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioCollege || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Department</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioDept || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">University</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioUniv || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Duration</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioDur || '—'}</td></tr>
-                            </table>
-                        </td>
-                        <td style="width:50%;vertical-align:top;padding:8px 0 0 10px;">
-                            <table style="width:100%;border-collapse:collapse;">
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;width:40%;">Mode</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioMode || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Reporting Manager</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioManager || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Working Hours</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioHours || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Stipend</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioStipend || '—'}</td></tr>
-                                <tr><td style="padding:5px 0;font-size:8.5pt;color:#64748b;">Period</td><td style="padding:5px 0;font-size:9.5pt;font-weight:600;color:#0f172a;">${ioStartStr} — ${ioEndStr}</td></tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-
-                <!-- RESPONSIBILITIES -->
-                ${respHTML ? `
-                <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;">
-                    <tr><td style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Responsibilities</td></tr>
-                    ${respHTML}
-                </table>` : ''}
-
-                <!-- LEARNING OUTCOMES -->
-                ${outHTML ? `
-                <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;">
-                    <tr><td style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Learning Outcome</td></tr>
-                    <tr><td style="padding:6px 0 0 0;font-size:9pt;color:#334155;line-height:1.6;">During your internship you will gain hands-on experience in:</td></tr>
-                    ${outHTML}
-                </table>` : ''}
-
-                <!-- TERMS & CONDITIONS -->
-                ${clausesHTML ? `
-                <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;">
-                    <tr><td style="font-size:9pt;font-weight:bold;text-transform:uppercase;color:#1e40af;letter-spacing:0.8px;border-bottom:1px solid #e2e8f0;padding-bottom:4px;">Terms &amp; Conditions</td></tr>
-                    ${clausesHTML}
-                </table>` : ''}
-
-                <!-- ACCEPTANCE -->
-                <div class="no-break" style="margin-top:8mm;padding-top:8mm;border-top:1.5px solid #0f172a;">
-                    <div style="font-size:10pt;font-weight:700;color:#0f172a;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Accepted By</div>
-                    <table style="width:100%;border-collapse:collapse;margin-top:8mm;">
-                        <tr>
-                            <td style="width:50%;text-align:left;vertical-align:bottom;">
-                                <div style="height:12mm;"></div>
-                                <div style="border-top:1px solid #94a3b8;padding-top:3px;font-size:8pt;color:#64748b;text-transform:uppercase;font-weight:600;">Student Signature</div>
-                                <div style="font-size:8pt;color:#94a3b8;margin-top:2px;">${client}</div>
-                            </td>
-                            <td style="width:50%;text-align:right;vertical-align:bottom;">
-                                ${sigLeft.replace('text-align:left', 'text-align:left').replace('margin-top:2px', 'margin-top:2px')}
-                                <div style="border-top:1px solid #94a3b8;padding-top:3px;font-size:8pt;color:#64748b;text-transform:uppercase;font-weight:600;text-align:right;">Company Signature</div>
-                            </td>
-                        </tr>
-                    </table>
+                <div style="margin-top:12mm;border:1px solid #94a3b8;padding:6mm 8mm;">
+                    <h3 style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3mm;">Acknowledgment and Acceptance</h3>
+                    <p>I, <strong>${studentName}</strong>, acknowledge and accept the terms outlined in this offer letter and confirm my joining on <strong>${ioStartStr}</strong>.</p>
+                    <div style="margin-top:8mm;display:flex;gap:18mm;">
+                        <div style="flex:1;font-size:12px;color:#444;">
+                            <div style="border-bottom:1px solid #94a3b8;height:6mm;margin-bottom:1.5mm;"></div>
+                            Signature
+                        </div>
+                        <div style="flex:1;font-size:12px;color:#444;">
+                            <div style="border-bottom:1px solid #94a3b8;height:6mm;margin-bottom:1.5mm;"></div>
+                            Date: ${dateStr}
+                        </div>
+                    </div>
                 </div>
 
-                <!-- FOOTER BANNER -->
-                <div style="margin-top:40px;text-align:center;border-top:1px solid #e2e8f0;padding-top:8px;font-size:8pt;color:#94a3b8;letter-spacing:0.5px;">
-                    <span style="color:#1e40af;font-weight:600;">WWW.SOFTSYNCSOLUTIONS.IN</span> &nbsp;|&nbsp; TRUSTED PARTNER IN DIGITAL TRANSFORMATION
+                <div style="margin-top:10mm;padding-top:3mm;border-top:1px solid #cbd5e1;display:flex;justify-content:space-between;font-size:9px;color:#64748b;">
+                    <span>${company.name} &middot; Bengaluru, Karnataka, India</span>
+                    <span>contact@softsyncsolutions.in &middot; +91 72599 56572</span>
                 </div>
             </div>`;
 
         document.getElementById('document-preview').innerHTML = `
-        <div class="a4-page dynamic-height offer-page" style="position:relative;background:#ffffff;font-family:Arial,Helvetica,sans-serif;padding-bottom:24mm;">
-            ${wrapInTableLayout(ioHeaderHTML, contentHTML)}
+        <div class="a4-page dynamic-height offer-page" style="position:relative;background:#ffffff;font-family:'Times New Roman',Georgia,'Segoe UI',serif;padding-bottom:24mm;">
+            ${ioHeaderHTML}
+            ${contentHTML}
             <div class="print-footer" style="position:absolute;bottom:0;left:0;width:100%;">${footer}</div>
         </div>`;
     } else if (mode === 'certificate') {
@@ -1766,6 +1795,9 @@ window.saveDocument = async () => {
                     manager: document.getElementById('io-manager')?.value || '',
                     hours: document.getElementById('io-hours')?.value || '',
                     stipend: document.getElementById('io-stipend')?.value || '',
+                    notice: document.getElementById('io-notice')?.value || '',
+                    accept: document.getElementById('io-accept')?.value || '',
+                    jobdesc: document.getElementById('io-jobdesc')?.value || '',
                     responsibilities: document.getElementById('io-responsibilities')?.value || '',
                     outcomes: document.getElementById('io-outcomes')?.value || '',
                     clauses: document.getElementById('io-clauses')?.value || '',
@@ -1978,6 +2010,9 @@ window.loadDocumentFromHistory = (idx) => {
             'io-manager':    details.manager || '',
             'io-hours':      details.hours || '',
             'io-stipend':    details.stipend || '',
+            'io-notice':     details.notice || '',
+            'io-accept':     details.accept || '',
+            'io-jobdesc':    details.jobdesc || '',
             'io-responsibilities': details.responsibilities || '',
             'io-outcomes':   details.outcomes || '',
             'io-clauses':    details.clauses || '',
