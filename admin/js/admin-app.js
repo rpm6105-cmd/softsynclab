@@ -1555,11 +1555,12 @@ window.renderLive = () => {
                 </p>
                 <p style="margin-top:10mm;line-height:1.9;">For any further clarifications, please feel free to contact us.</p>
 
-                <div style="margin-top:12mm;display:flex;justify-content:space-between;gap:10mm;align-items:flex-end;">
+                <div style="margin-top:10mm;display:flex;justify-content:space-between;gap:10mm;align-items:flex-end;">
                     <div style="min-width:0;"></div>
                     <div style="min-width:0;">
-                        <div style="font-weight:700;margin-top:14mm;">For ${company.name}</div>
-                        <div style="font-weight:700;margin-top:2mm;">${company.director}</div>
+                        <div style="font-weight:700;">For ${company.name}</div>
+                        <div style="font-family:'Great Vibes',cursive;font-size:1.7rem;color:#0f172a;line-height:1.2;margin-top:1mm;">Rohith P.M.</div>
+                        <div style="font-weight:700;margin-top:1mm;">${company.director}</div>
                         <div style="font-size:12px;color:#444;">Founder</div>
                     </div>
                 </div>

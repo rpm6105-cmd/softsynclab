@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Offer Letter — SoftSync Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
     :root {
         --ink: #1a1a1a;
@@ -203,6 +206,14 @@
         font-family: 'Segoe UI', system-ui, sans-serif;
         font-size: 13px;
     }
+    .sig-name + .sig-name { margin-top: 1mm; }
+    .sig-cursive {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        color: #0f172a;
+        line-height: 1.2;
+        margin-top: 2mm;
+    }
     .sig-title { font-size: 12px; color: var(--muted); }
     .sig-line { margin-top: 2mm; font-size: 11px; color: #94a3b8; }
 
@@ -382,14 +393,15 @@
             For any further clarifications, please feel free to contact us.
         </p>
 
-        <div class="sig-block">
-            <div class="sig-col"></div>
-            <div class="sig-col">
-                <div class="sig-name editable" contenteditable="true">For SoftSync Lab</div>
-                <div class="editable sig-name" contenteditable="true">[Founder Name]</div>
-                <div class="sig-title">Founder</div>
+            <div class="sig-block">
+                <div class="sig-col"></div>
+                <div class="sig-col">
+                    <div class="sig-name editable" contenteditable="true">For SoftSync Lab</div>
+                    <div class="sig-cursive editable" contenteditable="true">Rohith P.M.</div>
+                    <div class="editable sig-name" contenteditable="true">[Founder Name]</div>
+                    <div class="sig-title">Founder</div>
+                </div>
             </div>
-        </div>
 
         <!-- ==================== ACKNOWLEDGMENT ==================== -->
         <div class="ack">
