@@ -9,7 +9,7 @@ const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
 let activeItems = [];
 const company = {
     name: 'SoftSync Lab',
-    address: 'T Dasarahalli, Bengaluru, 560057',
+    address: '3rd Floor, Building No 22, 23rd Cross, T Dasarahalli, Bengaluru 560057',
     email: 'rohith@softsyncsolutions.in',
     phone: '7259956572',
     director: 'Rohith P.M.',
@@ -186,7 +186,6 @@ window.resetForm = () => {
         'io-hours': '10:00 AM - 6:00 PM IST',
         'io-stipend': 'Unpaid',
         'io-responsibilities': `* Learn Full Stack Development\n* Build Live Projects\n* Attend Weekly Reviews\n* Complete Assigned Tasks\n* Maintain Confidentiality`,
-        'io-outcomes': `* Next.js\n* React\n* GitHub\n* APIs\n* AI Development\n* Software Deployment`,
         'io-clauses': `1. Internship does not guarantee employment.\n2. Maintain confidentiality of all company data.\n3. Complete all assigned modules on time.\n4. Company reserves the right to terminate the internship with notice.`
     };
     for (const [id, val] of Object.entries(ioFields)) {
@@ -1497,7 +1496,7 @@ window.renderLive = () => {
                     <td style="vertical-align:middle;text-align:right;padding:0;border:none;">
                         <div style="font-size:10px;color:#444;line-height:1.6;">contact@softsyncsolutions.in</div>
                         <div style="font-size:10px;color:#444;line-height:1.6;">+91 72599 56572</div>
-                        <div style="font-size:10px;color:#444;line-height:1.6;">Bengaluru, Karnataka, India</div>
+                        <div style="font-size:10px;color:#444;line-height:1.6;">3rd Floor, Building No 22, 23rd Cross,<br>T Dasarahalli, Bengaluru 560057</div>
                     </td>
                 </tr>
             </table>
@@ -1520,7 +1519,7 @@ window.renderLive = () => {
                 <div style="margin-top:5mm;font-weight:600;">Dear ${firstName},</div>
 
                 <p style="margin-top:3mm;">
-                    We are pleased to offer you the position of <strong>${ioPos || 'Business Automation Intern'}</strong> at ${company.name}, effective from <strong>${ioStartStr}</strong>. This offer is based on the terms and conditions discussed during your interview and outlined below:
+                    We are pleased to offer you the position of <strong>${ioPos || 'Business Automation Intern'}</strong> at ${company.name}, effective from <strong>${ioStartStr}</strong> to <strong>${ioEndStr}</strong>. This offer is based on the terms and conditions discussed during your interview and outlined below:
                 </p>
 
                 ${secStyle('Position Details')}
@@ -1581,7 +1580,7 @@ window.renderLive = () => {
                 </div>
 
                 <div style="margin-top:10mm;padding-top:3mm;border-top:1px solid #cbd5e1;display:flex;justify-content:space-between;font-size:9px;color:#64748b;">
-                    <span>${company.name} &middot; Bengaluru, Karnataka, India</span>
+                    <span>${company.name} &middot; 3rd Floor, Building No 22, 23rd Cross, T Dasarahalli, Bengaluru 560057</span>
                     <span>contact@softsyncsolutions.in &middot; +91 72599 56572</span>
                 </div>
             </div>`;
@@ -1800,7 +1799,6 @@ window.saveDocument = async () => {
                     accept: document.getElementById('io-accept')?.value || '',
                     jobdesc: document.getElementById('io-jobdesc')?.value || '',
                     responsibilities: document.getElementById('io-responsibilities')?.value || '',
-                    outcomes: document.getElementById('io-outcomes')?.value || '',
                     clauses: document.getElementById('io-clauses')?.value || '',
                     address: document.getElementById('doc-client-address')?.value || '',
                     phone: document.getElementById('doc-client-phone')?.value || ''
@@ -2015,7 +2013,6 @@ window.loadDocumentFromHistory = (idx) => {
             'io-accept':     details.accept || '',
             'io-jobdesc':    details.jobdesc || '',
             'io-responsibilities': details.responsibilities || '',
-            'io-outcomes':   details.outcomes || '',
             'io-clauses':    details.clauses || '',
             'cert-num':      details.num || '',
             'cert-position': details.position || d.scope || '',
