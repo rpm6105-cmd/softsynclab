@@ -25,7 +25,7 @@
 -- ---------------------------------------------------------------------------
 -- EXTENSIONS
 -- ---------------------------------------------------------------------------
-create extension if not exists pgcrypto;
+create extension if not exists pgcrypto with schema extensions;
 
 -- ---------------------------------------------------------------------------
 -- TABLES
@@ -217,7 +217,7 @@ create or replace function public.intern_login(p_pin text)
 returns jsonb
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, extensions
 as $$
 declare
     v_intern public.interns%rowtype;
@@ -501,7 +501,7 @@ create or replace function public.admin_create_intern(
 returns public.interns
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, extensions
 as $$
 declare
     v_intern public.interns;
@@ -523,7 +523,7 @@ create or replace function public.admin_reset_intern_pin(p_intern_id uuid, p_pin
 returns boolean
 language plpgsql
 security definer
-set search_path = public
+set search_path = public, extensions
 as $$
 begin
     if auth.role() <> 'authenticated' then

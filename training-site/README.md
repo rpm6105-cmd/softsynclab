@@ -5,15 +5,18 @@ interns. Separate Vercel project, same Supabase project as the main site.
 
 ## Current status
 
-- **Phase 0 & 1 done:** repo scaffold + database schema (this folder).
-- **Phase 2–5 pending:** intern app, admin app, reminders, deployment.
+- **Phase 0 & 1 done:** repo scaffold + database schema.
+- **Phase 2 done:** intern app (PIN login, modules, lessons, quiz, weekly report).
+- **Phase 3–5 pending:** admin app, reminders, production content.
 
 ## Files
 
 ```
 training-site/
-├── index.html        placeholder intern app (Phase 2 replaces this)
-├── js/config.js      Supabase URL + anon key
+├── index.html        intern app SPA (login, modules, lessons, quiz, reports)
+├── js/
+│   ├── app.js        app logic (Supabase RPC calls, marked.js rendering)
+│   └── config.js     Supabase URL + anon key
 ├── sql/
 │   ├── schema.sql    full schema: tables, RLS, session + data functions
 │   └── seed_demo.sql demo intern/module/lesson/quiz (PIN 1234)
@@ -78,10 +81,9 @@ Admin (callable by `authenticated` only):
 - `admin_reset_intern_pin(intern_id, pin)`
 - `admin_toggle_intern(intern_id, active)`
 
-## Next steps (Phase 2+)
+## Next steps (Phase 3+)
 
-- Intern app: PIN login, module list, lesson reader (Markdown), quiz UI,
-  weekly report form.
 - Admin app (`training.softsyncsolutions.in/admin`): create interns, author
   modules/lessons/quizzes, view scores + weekly reports, CSV export.
 - Weekly reminders (Supabase scheduled function / Vercel cron).
+- Production content and real intern PINs.
