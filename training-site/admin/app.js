@@ -64,8 +64,14 @@ async function loggedIn() {
 async function doLogin(email, password) {
     $('login-error').textContent = '';
     $('login-btn').disabled = true;
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) $('login-error').textContent = error.message;
+    $('login-btn').textContent = 'Signing in…';
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+        $('login-error').textContent = error.message;
+    } else {
+        applyAuth(data.session);
+    }
+    $('login-btn').textContent = 'Sign in';
     $('login-btn').disabled = false;
 }
 
