@@ -8,6 +8,8 @@ const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
 
 const $ = (id) => document.getElementById(id);
 
+const App = window.App = window.App || {};
+
 let modules = [];
 let selModuleId = null;
 let selModule = null;
@@ -542,7 +544,6 @@ App.exportScores = async function () {
 // ---------------------------------------------------------------------------
 // Wire up
 // ---------------------------------------------------------------------------
-window.App = window.App || {};
 $('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
     doLogin($('email').value.trim(), $('password').value);
