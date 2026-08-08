@@ -154,7 +154,7 @@
                 </div>
                 <div class="error-msg" id="login-error"></div>
                 <div class="error-msg" id="login-load-error"></div>
-                <button class="btn-primary" id="login-btn">Sign in</button>
+                <button class="btn-primary" id="login-btn" type="button">Sign in</button>
             </form>
             <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--text-faint)">build <span id="build-tag"></span></div>
         </div>
@@ -247,10 +247,14 @@
         </div>
     </div>
 
-    <script type="module" src="app.js?v=4"></script>
+    <script type="module" src="app.js?v=5"></script>
     <script>
-        var BUILD = 'v4';
-        document.getElementById('build-tag').textContent = BUILD;
+        var BUILD = 'v5';
+        function refreshTag() {
+            document.getElementById('build-tag').textContent =
+                BUILD + ' · ' + (window.__appLoaded || 'module-not-loaded');
+        }
+        setInterval(refreshTag, 1000);
         window.addEventListener('error', function (e) {
             var el = document.getElementById('login-load-error');
             if (!el) return;

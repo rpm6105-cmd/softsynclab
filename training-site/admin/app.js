@@ -9,6 +9,7 @@ const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
 const $ = (id) => document.getElementById(id);
 
 const App = window.App = window.App || {};
+window.__appLoaded = 'top';
 
 let modules = [];
 let selModuleId = null;
@@ -548,10 +549,12 @@ $('login-form').addEventListener('submit', (e) => {
     e.preventDefault();
     doLogin($('email').value.trim(), $('password').value);
 });
+$('login-btn').addEventListener('click', () => doLogin($('email').value.trim(), $('password').value));
 $('logout-btn').addEventListener('click', doLogout);
 
 (async function init() {
     const session = await loggedIn();
     applyAuth(session);
     supabase.auth.onAuthStateChange((_ev, s) => applyAuth(s));
+    window.__appLoaded = 'bottom';
 })();
