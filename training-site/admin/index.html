@@ -253,7 +253,10 @@
         document.getElementById('build-tag').textContent = BUILD;
         window.addEventListener('error', function (e) {
             var el = document.getElementById('login-load-error');
-            if (el) el.textContent = 'Page error: ' + (e.message || e.type);
+            if (!el) return;
+            if (e.target && (e.target.src || e.target.href)) return;
+            if (e.message === 'Script error.') return;
+            el.textContent = 'Page error: ' + (e.message || 'unknown');
         }, true);
         setTimeout(function () {
             var el = document.getElementById('login-load-error');
