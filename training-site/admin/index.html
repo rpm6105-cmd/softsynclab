@@ -153,8 +153,10 @@
                     <input type="password" id="password" autocomplete="current-password" required>
                 </div>
                 <div class="error-msg" id="login-error"></div>
+                <div class="error-msg" id="login-load-error"></div>
                 <button class="btn-primary" id="login-btn">Sign in</button>
             </form>
+            <div style="margin-top:16px;text-align:center;font-size:11px;color:var(--text-faint)">build <span id="build-tag"></span></div>
         </div>
     </div>
 
@@ -245,6 +247,20 @@
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="app.js?v=4"></script>
+    <script>
+        var BUILD = 'v4';
+        document.getElementById('build-tag').textContent = BUILD;
+        window.addEventListener('error', function (e) {
+            var el = document.getElementById('login-load-error');
+            if (el) el.textContent = 'Page error: ' + (e.message || e.type);
+        }, true);
+        setTimeout(function () {
+            var el = document.getElementById('login-load-error');
+            if (el && !window.App) {
+                el.textContent = 'App failed to load (stale cache). Please hard-refresh: Cmd/Ctrl+Shift+R, then retry.';
+            }
+        }, 5000);
+    </script>
 </body>
 </html>
