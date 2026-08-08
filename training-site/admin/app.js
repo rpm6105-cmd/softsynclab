@@ -1,10 +1,31 @@
 // SoftSync Lab — Training Admin App (training.softsyncsolutions.in/admin)
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-import { SUPABASE_CONFIG } from '../js/config.js';
+// Classic script: supabase-js is vendored locally (vendor/supabase.min.js),
+// config is inlined in index.html. No ES modules, no external CDN.
+var __memoryStore = (function () {
+    var m = {};
+    return {
+        getItem: function (k) { return k in m ? m[k] : null; },
+        setItem: function (k, v) { m[k] = String(v); },
+        removeItem: function (k) { delete m[k]; }
+    };
+})();
 
-const supabase = createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey, {
-    auth: { persistSession: true, storage: window.sessionStorage, autoRefreshToken: true }
-});
+function __safeStorage() {
+    try {
+        var s = window.sessionStorage;
+        s.setItem('__ssl_probe', '1');
+        s.removeItem('__ssl_probe');
+        return s;
+    } catch (e) {
+        return __memoryStore;
+    }
+}
+
+var supabase = window.supabase.createClient(
+    window.SUPABASE_CONFIG.url,
+    window.SUPABASE_CONFIG.anonKey,
+    { auth: { persistSession: true, storage: __safeStorage(), autoRefreshToken: true } }
+);
 
 const $ = (id) => document.getElementById(id);
 

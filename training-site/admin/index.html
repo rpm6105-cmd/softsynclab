@@ -247,12 +247,19 @@
         </div>
     </div>
 
-    <script type="module" src="app.js?v=5"></script>
+    <script src="vendor/supabase.min.js"></script>
     <script>
-        var BUILD = 'v5';
+        window.SUPABASE_CONFIG = {
+            url: 'https://figxzmvewjanaompeicn.supabase.co',
+            anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZpZ3h6bXZld2phbmFvbXBlaWNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYyNzI2OTUsImV4cCI6MjA5MTg0ODY5NX0.zAPqAxfwJi5xN0pQv4r1RvqC8NqbhNv7fYoNr3W5qAc'
+        };
+    </script>
+    <script src="app.js?v=6"></script>
+    <script>
+        var BUILD = 'v6';
         function refreshTag() {
             document.getElementById('build-tag').textContent =
-                BUILD + ' · ' + (window.__appLoaded || 'module-not-loaded');
+                BUILD + ' · ' + (window.__appLoaded || 'app-js-not-loaded');
         }
         setInterval(refreshTag, 1000);
         window.addEventListener('error', function (e) {
@@ -262,12 +269,6 @@
             if (e.message === 'Script error.') return;
             el.textContent = 'Page error: ' + (e.message || 'unknown');
         }, true);
-        setTimeout(function () {
-            var el = document.getElementById('login-load-error');
-            if (el && !window.App) {
-                el.textContent = 'App failed to load (stale cache). Please hard-refresh: Cmd/Ctrl+Shift+R, then retry.';
-            }
-        }, 5000);
     </script>
 </body>
 </html>
