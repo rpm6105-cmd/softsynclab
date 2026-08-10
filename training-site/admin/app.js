@@ -85,6 +85,15 @@ async function loggedIn() {
 // ---------------------------------------------------------------------------
 // Auth
 // ---------------------------------------------------------------------------
+async function completeLogin(body) {
+    try {
+        await supabase.auth.setSession({ access_token: body.access_token, refresh_token: body.refresh_token });
+    } catch (e) {
+        console.warn('setSession:', e.message);
+    }
+    applyAuth(body);
+}
+
 async function doLogin(email, password) {
     $('login-error').textContent = '';
     $('login-btn').disabled = true;
@@ -97,12 +106,7 @@ async function doLogin(email, password) {
         });
         const body = await res.json();
         if (!res.ok) throw new Error(body.msg || ('Login failed (HTTP ' + res.status + ')'));
-        try {
-            await supabase.auth.setSession({ access_token: body.access_token, refresh_token: body.refresh_token });
-        } catch (e) {
-            console.warn('setSession:', e.message);
-        }
-        applyAuth(body);
+        await completeLogin(body);
     } catch (e) {
         $('login-error').textContent = e.message || 'Could not sign in';
     } finally {
@@ -600,8 +604,13 @@ $('conn-test').addEventListener('click', async () => {
             },
             body: JSON.stringify({ email, password: pass })
         });
-        const body = await res.text();
-        out.textContent = 'HTTP ' + res.status + ' — ' + (body.slice(0, 260) || '(empty)');
+        const body = await res.json();
+        if (res.ok) {
+            await completeLogin(body);
+            out.textContent = 'HTTP 200 — credentials OK, you are logged in.';
+        } else {
+            out.textContent = 'HTTP ' + res.status + ' — ' + (body.msg || '(empty)');
+        }
     } catch (e) {
         out.textContent = 'NETWORK ERROR: ' + e.message;
     }
