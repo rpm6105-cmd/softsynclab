@@ -120,12 +120,29 @@ async function doLogout() {
     location.reload();
 }
 
+async function refreshStats() {
+    const [i, m, l, r] = await Promise.all([
+        supabase.from('interns').select('id', { count: 'exact', head: true }),
+        supabase.from('modules').select('id', { count: 'exact', head: true }),
+        supabase.from('lessons').select('id', { count: 'exact', head: true }),
+        supabase.from('weekly_reports').select('id', { count: 'exact', head: true })
+    ]);
+    if (i.count !== null) $('stat-interns').textContent = i.count;
+    if (m.count !== null) $('stat-modules').textContent = m.count;
+    if (l.count !== null) $('stat-lessons').textContent = l.count;
+    if (r.count !== null) $('stat-reports').textContent = r.count;
+}
+
 function applyAuth(session) {
     if (session) {
         $('login-view').classList.remove('active');
         $('app-view').classList.add('active');
-        $('who-email').textContent = session.user.email;
+        const email = session.user?.email || '';
+        $('who-email').textContent = email;
+        $('who-name').textContent = email ? email.split('@')[0].replace(/[._-]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Admin';
+        $('who-avatar').textContent = email ? email[0].toUpperCase() : 'A';
         loadInterns();
+        refreshStats();
         window.scrollTo(0, 0);
     } else {
         $('app-view').classList.remove('active');
@@ -144,6 +161,7 @@ async function loadInterns() {
         .select('id, name, email, program, active, created_at')
         .order('created_at', { ascending: false });
     if (error) { flash('flash-interns', error.message, false); $('interns-list').innerHTML = ''; return; }
+    $('stat-interns').textContent = data.length;
     if (!data.length) { $('interns-list').innerHTML = '<div class="empty">No interns yet.</div>'; return; }
     $('interns-list').innerHTML = `
         <table>
@@ -209,6 +227,9 @@ async function loadModules() {
         .order('order_index');
     if (error) { flash('flash-modules', error.message, false); $('modules-list').innerHTML = ''; return; }
     modules = data;
+    $('stat-modules').textContent = modules.length;
+    supabase.from('lessons').select('id', { count: 'exact', head: true })
+        .then(({ count }) => { if (count !== null) $('stat-lessons').textContent = count; });
     if (!modules.length) { $('modules-list').innerHTML = '<div class="empty">No modules yet.</div>'; $('module-editor').innerHTML = ''; return; }
     $('modules-list').innerHTML = modules.map(m => `
         <div class="mod-item ${m.id === selModuleId ? 'selected' : ''}" onclick="App.selectModule('${m.id}')">
@@ -223,11 +244,22 @@ async function loadModules() {
     loadModuleEditor();
 }
 
+const PAGE_META = {
+    interns: ['Interns', 'Create intern accounts, reset PINs, and control access.'],
+    modules: ['Modules & Content', 'Author modules, lessons, and quizzes.'],
+    reports: ['Weekly Reports', 'Review intern weekly reports and export records.'],
+    scores: ['Scores & Progress', 'Quiz attempts and module completion across interns.']
+};
+
 App.showTab = function (name) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+    document.querySelectorAll('.side-item').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
     document.querySelectorAll('#app-view section').forEach(p => p.classList.remove('active'));
     $('tab-' + name).classList.add('active');
-    window.scrollTo(0, 0);
+    if (PAGE_META[name]) {
+        $('page-title').textContent = PAGE_META[name][0];
+        $('page-sub').textContent = PAGE_META[name][1];
+    }
+    document.querySelector('.main').scrollTop = 0;
     if (name === 'interns') loadInterns();
     if (name === 'modules') loadModules();
     if (name === 'reports') loadReports();
@@ -473,6 +505,7 @@ async function loadReports() {
         .order('week_start', { ascending: false })
         .limit(200);
     if (error) { flash('flash-reports', error.message, false); $('reports-list').innerHTML = ''; return; }
+    $('stat-reports').textContent = data.length;
     if (!data.length) { $('reports-list').innerHTML = '<div class="empty">No reports submitted.</div>'; return; }
     $('reports-list').innerHTML = `
         <table>
