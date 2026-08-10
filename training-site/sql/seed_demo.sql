@@ -24,19 +24,19 @@ values
 (
     (select id from public.modules order by order_index limit 1),
     'What is Business Automation?',
-    '## What is Business Automation?\n\nBusiness automation uses software to handle repetitive tasks so your team can focus on higher-value work.\n\n### Common areas\n- Marketing content generation\n- Lead management\n- Order processing\n- Customer communication\n\n### Why it matters\nAutomation reduces manual effort, removes human error, and scales output without scaling headcount.',
+    E'## What is Business Automation?\n\nBusiness automation uses software to handle repetitive tasks so your team can focus on higher-value work.\n\n### Common areas\n- Marketing content generation\n- Lead management\n- Order processing\n- Customer communication\n\n### Why it matters\nAutomation reduces manual effort, removes human error, and scales output without scaling headcount.',
     1
 ),
 (
     (select id from public.modules order by order_index limit 1),
     'Automation Workflows',
-    '## Automation Workflows\n\nA workflow is a sequence of steps that run automatically when triggered.\n\n### Example trigger\nA new lead fills out a form -> workflow adds them to a CRM, sends a welcome email, and notifies sales.\n\n### Tools we use\n- No-code platforms\n- AI APIs\n- Integration tools (webhooks, Zapier-style connectors)',
+    E'## Automation Workflows\n\nA workflow is a sequence of steps that run automatically when triggered.\n\n### Example trigger\nA new lead fills out a form -> workflow adds them to a CRM, sends a welcome email, and notifies sales.\n\n### Tools we use\n- No-code platforms\n- AI APIs\n- Integration tools (webhooks, Zapier-style connectors)',
     2
 ),
 (
     (select id from public.modules order by order_index limit 1),
     'AI Content Pipelines',
-    '## AI Content Pipelines\n\nBuild end-to-end pipelines that turn an idea into finished content (images, video, voiceover, copy).\n\n### Pipeline stages\n1. Idea & brief\n2. Script / prompt generation\n3. Asset generation\n4. Review & publish',
+    E'## AI Content Pipelines\n\nBuild end-to-end pipelines that turn an idea into finished content (images, video, voiceover, copy).\n\n### Pipeline stages\n1. Idea & brief\n2. Script / prompt generation\n3. Asset generation\n4. Review & publish',
     3
 );
 
