@@ -30,10 +30,20 @@
 
         .view { display: none; }
         .view.active { display: block; }
-        .login-wrap.view.active { display: flex; }
+
+        /* Login: full-screen fixed overlay above the app (like admin.softsyncsolutions.in) */
+        #login-view { display: none; }
+        #login-view.active {
+            display: flex; position: fixed; inset: 0; z-index: 100;
+            background: var(--bg); overflow: auto;
+            align-items: center; justify-content: center; padding: 24px;
+        }
+
+        /* App: full-height shell, content scrolls inside the app */
+        #app-view { display: none; }
+        #app-view.active { display: block; height: 100vh; overflow-y: auto; }
 
         /* Login */
-        .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
         .login-card {
             background: #fff; border-radius: 16px; box-shadow: 0 20px 40px -15px rgba(15,23,42,.12);
             max-width: 400px; width: 100%; padding: 40px 36px;
@@ -260,7 +270,7 @@
     </script>
     <script>/*__APP_JS__*/</script>
     <script>
-        var BUILD = 'v8-inline';
+        var BUILD = 'v9-inline';
         function refreshTag() {
             var el = document.getElementById('build-tag');
             if (!el) return;
