@@ -625,34 +625,6 @@ $('login-form').addEventListener('submit', (e) => {
 $('login-btn').addEventListener('click', () => doLogin($('email').value.trim(), $('password').value));
 $('logout-btn').addEventListener('click', doLogout);
 
-$('conn-test').addEventListener('click', async () => {
-    const out = $('conn-result');
-    const email = $('email').value.trim();
-    const pass = $('password').value;
-    out.textContent = 'Testing…';
-    out.classList.remove('visible');
-    try {
-        const res = await fetch(window.SUPABASE_CONFIG.url + '/auth/v1/token?grant_type=password', {
-            method: 'POST',
-            headers: {
-                apikey: window.SUPABASE_CONFIG.anonKey,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password: pass })
-        });
-        const body = await res.json();
-        if (res.ok) {
-            await completeLogin(body);
-            out.textContent = 'HTTP 200 — credentials OK, you are logged in.';
-        } else {
-            out.textContent = 'HTTP ' + res.status + ' — ' + (body.msg || '(empty)');
-        }
-    } catch (e) {
-        out.textContent = 'NETWORK ERROR: ' + e.message;
-    }
-    out.classList.add('visible');
-});
-
 (async function init() {
     const session = await loggedIn();
     applyAuth(session);
