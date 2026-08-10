@@ -365,14 +365,26 @@ async function doLogin(email, password) {
     $('login-error').textContent = '';
     $('login-btn').disabled = true;
     $('login-btn').textContent = 'Signing in…';
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) {
-        $('login-error').textContent = error.message;
-    } else {
-        applyAuth(data.session);
+    try {
+        const res = await fetch(window.SUPABASE_CONFIG.url + '/auth/v1/token?grant_type=password', {
+            method: 'POST',
+            headers: { apikey: window.SUPABASE_CONFIG.anonKey, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const body = await res.json();
+        if (!res.ok) throw new Error(body.msg || ('Login failed (HTTP ' + res.status + ')'));
+        try {
+            await supabase.auth.setSession({ access_token: body.access_token, refresh_token: body.refresh_token });
+        } catch (e) {
+            console.warn('setSession:', e.message);
+        }
+        applyAuth(body);
+    } catch (e) {
+        $('login-error').textContent = e.message || 'Could not sign in';
+    } finally {
+        $('login-btn').textContent = 'Sign in';
+        $('login-btn').disabled = false;
     }
-    $('login-btn').textContent = 'Sign in';
-    $('login-btn').disabled = false;
 }
 
 async function doLogout() {
