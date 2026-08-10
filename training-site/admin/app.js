@@ -126,10 +126,12 @@ function applyAuth(session) {
         $('app-view').classList.add('active');
         $('who-email').textContent = session.user.email;
         loadInterns();
+        window.scrollTo(0, 0);
     } else {
         $('app-view').classList.remove('active');
         $('login-view').classList.add('active');
         $('email').focus();
+        window.scrollTo(0, 0);
     }
 }
 
@@ -225,6 +227,7 @@ App.showTab = function (name) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
     document.querySelectorAll('#app-view section').forEach(p => p.classList.remove('active'));
     $('tab-' + name).classList.add('active');
+    window.scrollTo(0, 0);
     if (name === 'interns') loadInterns();
     if (name === 'modules') loadModules();
     if (name === 'reports') loadReports();
