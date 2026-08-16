@@ -85,7 +85,7 @@
         .page-faq-item { border-bottom: 1px solid rgba(15,23,42,0.08); padding: 1.25rem 0; cursor: pointer; }
         .page-faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: 600; color: var(--text); }
         .page-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
-        .page-faq-item.active .page-faq-answer { max-height: 200px; margin-top: 0.8rem; }
+        .page-faq-item.active .page-faq-answer { max-height: 300px; margin-top: 0.8rem; }
         .page-faq-icon { color: #0f766e; font-size: 1.4rem; transition: transform 0.3s; }
         .page-faq-item.active .page-faq-icon { transform: rotate(45deg); }
     </style>
@@ -156,13 +156,19 @@
                 <div class="detail-grid">
                     <div>
                         <h2 style="font-size: 1.6rem; margin-bottom: 1rem; font-family: 'Outfit', sans-serif;">Overview</h2>
-                        <p style="color:var(--text-dim); line-height: 1.7; font-size: 0.95rem;">Stop using five separate software subscriptions that don't speak to each other. We build central ERP backbones that tie together every operational module of your business into a single database.</p>
+                        <p style="color:var(--text-dim); line-height: 1.7; font-size: 0.95rem;">Most growing SMEs run on 4-6 disconnected tools — spreadsheets for inventory, Tally for accounts, WhatsApp for approvals, and email for everything else. A custom ERP connects these into a single database with role-based access, real-time dashboards, and automated workflows that eliminate double entry and conflicting reports.</p>
                         
                         <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.75rem; font-family: 'Outfit', sans-serif;">Target Audience</h3>
-                        <p style="color:var(--text-dim); font-size: 0.9rem;">SMEs managing complex operations, supply chains, projects, or high team coordination needs.</p>
+                        <p style="color:var(--text-dim); font-size: 0.9rem;">SMEs managing complex operations, supply chains, projects, or high team coordination needs who are paying for multiple disconnected SaaS tools.</p>
                         
                         <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.75rem; font-family: 'Outfit', sans-serif;">Key Industries</h3>
                         <p style="color:var(--text-dim); font-size: 0.9rem;">Solar EPC, Construction, Manufacturing, Logistics, and Wholesale Retail.</p>
+
+                        <div style="margin-top: 2rem; padding: 1.25rem; background: rgba(13,148,136,0.04); border: 1px solid rgba(13,148,136,0.12); border-radius: 14px;">
+                            <p style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem;">See it in action</p>
+                            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.6;">We built a complete Solar HRMS, payroll, and AMC management platform for Go Solar Solutions — replacing spreadsheets and disconnected tools.</p>
+                            <a href="../projects/go-solar-hrms.html" style="font-size: 0.85rem; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">Read the case study &rarr;</a>
+                        </div>
                     </div>
                     <div style="background: rgba(15,23,42,0.015); border: 1px solid rgba(15,23,42,0.06); padding: 2rem; border-radius: 20px;">
                         <h3 style="font-size: 1.2rem; font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--text);">Quick Inquiries</h3>
@@ -199,6 +205,22 @@
                 <div class="page-faq-item">
                     <div class="page-faq-question">Can we build a custom ERP modularly? <span class="page-faq-icon">+</span></div>
                     <div class="page-faq-answer">Yes, this is our recommended approach. We build and launch one core module (e.g. CRM) and then integrate additional modules (e.g. Inventory) step-by-step.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">How long does a custom ERP take to build? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">A single-module MVP typically takes 4-6 weeks. A full multi-module ERP (CRM + Inventory + HR + Payroll) usually takes 8-16 weeks depending on integration complexity.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">Can you migrate data from our existing Tally or Zoho setup? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Yes. We handle full data migration from Tally, Zoho, Excel files, or legacy databases — including cleaning, formatting, and validating records before importing into the new system.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">How is a custom ERP different from SAP Business One or Zoho ERP? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Off-the-shelf ERPs force your workflows into predefined modules. A custom ERP is built around your exact business rules, terminology, and processes — with no per-user fees and complete code ownership.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">What tech stack do you use for ERP systems? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">We typically use React for the frontend, Node.js or Python for backend logic, and PostgreSQL for the database — all industry-standard, scalable, and maintainable technologies.</div>
                 </div>
                 </div>
             </div>
@@ -280,7 +302,7 @@
                 document.querySelectorAll('.page-faq-item').forEach(i => i.classList.remove('active'));
                 if (!isActive) {
                     item.classList.add('active');
-                    item.querySelector('.page-faq-answer').style.maxHeight = '200px';
+                    item.querySelector('.page-faq-answer').style.maxHeight = '300px';
                 } else {
                     item.querySelector('.page-faq-answer').style.maxHeight = '0px';
                 }

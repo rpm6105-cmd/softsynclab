@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Internal Tools & Workflow Automation for SMEs | SoftSync Lab</title>
-    <meta name="description" content="SoftSync Lab builds custom internal tools, HR systems, payroll automation, and workflow platforms for operations-heavy SMEs globally. Built around your workflow — nothing off the shelf.">
+    <title>Custom HRMS, CRM & ERP Software for SMEs | SoftSync Lab</title>
+    <meta name="description" content="SoftSync Lab builds custom HRMS, CRM, ERP, payroll, and workflow automation systems for operations-heavy SMEs. Replaces spreadsheets — you own the code, zero per-user fees.">
     <meta name="theme-color" content="#f8fafc">
-    <meta property="og:title" content="Custom Internal Tools & Workflow Automation for SMEs | SoftSync Lab">
-    <meta property="og:description" content="SoftSync Lab builds custom internal tools, HR systems, payroll automation, and workflow platforms for operations-heavy SMEs globally. Built around your workflow — nothing off the shelf.">
+    <meta property="og:title" content="Custom HRMS, CRM & ERP Software for SMEs | SoftSync Lab">
+    <meta property="og:description" content="SoftSync Lab builds custom HRMS, CRM, ERP, payroll, and workflow automation systems for operations-heavy SMEs. Replaces spreadsheets — you own the code, zero per-user fees.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://softsyncsolutions.in/">
     <meta property="og:image" content="https://softsyncsolutions.in/assets/images/dashboard-preview.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Custom Internal Tools &amp; Workflow Automation for SMEs | SoftSync Lab">
-    <meta name="twitter:description" content="SoftSync Lab builds custom internal tools, HR systems, payroll automation, and workflow platforms for operations-heavy SMEs globally.">
+    <meta name="twitter:title" content="Custom HRMS, CRM &amp; ERP Software for SMEs | SoftSync Lab">
+    <meta name="twitter:description" content="SoftSync Lab builds custom HRMS, CRM, ERP, payroll, and workflow automation systems for operations-heavy SMEs. Replaces spreadsheets — you own the code.">
     <link rel="canonical" href="https://softsyncsolutions.in/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,8 +163,27 @@
         .cell-bar { display: none; }
       }
       .demos-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2.5rem; margin-top:3.5rem; }
+      
+      /* Pain Point Cards */
+      .pain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-top:3rem; }
+      .pain-card { background:#ffffff; border:1px solid rgba(239,68,68,0.12); border-radius:20px; padding:1.75rem; transition:0.3s; box-shadow:0 2px 12px rgba(15,23,42,0.04); }
+      .pain-card:hover { border-color:rgba(239,68,68,0.25); transform:translateY(-4px); box-shadow:0 8px 32px rgba(15,23,42,0.08); }
+      .pain-icon { font-size:1.6rem; display:block; margin-bottom:0.75rem; }
+      .pain-card h4 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.5rem; }
+      .pain-card p { font-size:0.875rem; color:var(--text-dim); line-height:1.7; }
+
+      /* Who We Build For Cards */
+      .who-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+      .who-card { background:#ffffff; border:1px solid rgba(15,23,42,0.08); border-radius:20px; padding:2rem; text-align:center; transition:0.3s; box-shadow:0 2px 12px rgba(15,23,42,0.04); }
+      .who-card:hover { border-color:rgba(13,148,136,0.28); transform:translateY(-4px); box-shadow:0 8px 32px rgba(15,23,42,0.08); }
+      .who-card-icon { font-size:2rem; margin-bottom:1rem; }
+      .who-card h4 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:0.5rem; }
+      .who-card p { font-size:0.85rem; color:var(--text-dim); line-height:1.7; }
+      .who-card .who-examples { font-size:0.78rem; color:var(--accent); font-weight:600; margin-top:0.75rem; }
       @media (max-width:768px) {
         .demos-grid { grid-template-columns:1fr; }
+        .pain-grid { grid-template-columns:1fr; }
+        .who-grid { grid-template-columns:1fr; }
       }
     </style>
     <script type="application/ld+json">
@@ -183,7 +202,7 @@
             "caption": "SoftSync Lab Logo"
           },
           "image": "https://softsyncsolutions.in/assets/images/company-logo-icon.png",
-          "description": "SoftSync Lab builds custom internal tools, HR systems, payroll automation, and workflow platforms for operations-heavy SMEs globally.",
+          "description": "SoftSync Lab builds custom HRMS, CRM, ERP, payroll, and workflow automation systems for operations-heavy SMEs.",
           "sameAs": [
             "https://www.linkedin.com/company/softsynclab/",
             "https://www.instagram.com/softsynclab?igsh=MWN2M3d4cGc1OGNnNQ=="
@@ -201,7 +220,7 @@
           "url": "https://softsyncsolutions.in/",
           "logo": "https://softsyncsolutions.in/assets/images/company-logo-icon.png",
           "image": "https://softsyncsolutions.in/assets/images/company-logo-icon.png",
-          "description": "Custom internal tools, HR systems, Zoho/Tally integrations, and workflow automation for operations-heavy SMEs worldwide.",
+          "description": "Custom HRMS, CRM, ERP, Zoho/Tally integrations, and workflow automation for operations-heavy SMEs.",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Bengaluru",
@@ -271,6 +290,46 @@
                 "@type": "Answer",
                 "text": "You do, 100%. SoftSync Lab delivers all source code files and database setups so you own the IP asset and data completely."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you work with our existing tools like Zoho, Tally, or custom databases?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We build API bridges and data syncs to integrate your existing Tally, Zoho, QuickBooks, or legacy databases into your new system."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What happens after the 3-month free support period?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "After the free support window, we offer affordable monthly retainer plans for ongoing maintenance, feature additions, and priority bug fixes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you build mobile apps or only web-based systems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We primarily build responsive web applications that work on desktop, tablet, and mobile browsers — no app store install required. Native mobile apps are available for specific use cases."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is custom software different from using Excel or Google Sheets?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Custom software provides role-based access, audit trails, automated notifications, data validation, and real-time dashboards — things spreadsheets can't do reliably at scale."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can you migrate our existing data from spreadsheets or old systems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We handle data migration from Excel files, legacy databases, or other software into your new system, including data cleaning, formatting, and validation."
+              }
             }
           ]
         }
@@ -317,14 +376,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span></span> Custom SME Software Engineering
                 </div>
                 <h1 class="fade-in delay-1">Custom business software <span class="gradient-text">built for operations-heavy SME workflows.</span></h1>
-                <p class="fade-in delay-2">We build custom HRMS, CRM, ERP, and automation systems tailored to your exact business rules. Replaces spreadsheets, eliminates manual tasks, and secures complete code ownership.</p>
+                <p class="fade-in delay-2">We build custom HRMS, CRM, ERP, and automation systems tailored to your exact business rules — replacing spreadsheets, eliminating manual tasks, and giving you complete code ownership. No per-user fees. No vendor lock-in.</p>
                 <div class="hero-btns fade-in delay-3">
                     <a href="contact.html" class="btn btn-vibrant">Book Free Consultation</a>
                     <a href="#demos" class="btn btn-outline">View Demos</a>
                 </div>
                 <div class="hero-proofline fade-in delay-3" style="display:flex;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;">
                     <div class="hero-proofline-item" style="display:flex;align-items:center;gap:0.5rem;font-size:0.82rem;color:rgba(15,23,42,0.6);font-weight:500;">
-                        Over 200+ clients supported across live operations dashboards.
+                        9+ live production modules delivered for operations-heavy SMEs.
                     </div>
                 </div>
                 <div class="hero-proofpoints fade-in delay-3" style="display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap;">
@@ -418,13 +477,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
+    <!-- Problem Section — Why Custom Software Exists -->
+    <section id="problem" class="section bg-alt">
+        <div class="container">
+            <div class="section-header text-center reveal">
+                <span class="section-label">The Problem</span>
+                <h2>Most SMEs run on spreadsheets, WhatsApp, and memory</h2>
+                <p style="color:var(--text-dim);max-width:620px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">
+                    As your team grows, the tools that once worked start creating bottlenecks — missed handoffs, duplicated data entry, and zero visibility into what is actually happening.
+                </p>
+            </div>
+            <div class="pain-grid reveal">
+                <div class="pain-card">
+                    <span class="pain-icon">&#128221;</span>
+                    <h4>Spreadsheet Chaos</h4>
+                    <p>Your payroll, inventory, and project data lives in scattered Excel files. Nobody knows which version is current, and formula errors go unnoticed for weeks.</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">&#128101;</span>
+                    <h4>Manual Handoffs</h4>
+                    <p>Work moves between teams via WhatsApp messages, phone calls, and printed papers. Critical tasks fall through the cracks with no audit trail.</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">&#128683;</span>
+                    <h4>Disconnected Tools</h4>
+                    <p>Your HR tool doesn't talk to payroll. Your inventory system doesn't update accounts. Every department works in a silo, and nobody has the full picture.</p>
+                </div>
+                <div class="pain-card">
+                    <span class="pain-icon">&#128176;</span>
+                    <h4>SaaS Lock-In</h4>
+                    <p>You pay per user, per month, for tools that don't fit your workflow. Customization requests go to a support queue. You're renting software that shapes your business instead of the other way around.</p>
+                </div>
+            </div>
+            <div class="text-center reveal" style="margin-top:3rem;">
+                <p style="color:var(--text-dim);font-size:0.95rem;max-width:600px;margin:0 auto 1.5rem;line-height:1.7;">
+                    If any of this sounds familiar, you're not outgrowing your team — you're outgrowing your tools. We build the software that fits.
+                </p>
+                <a href="#services" class="btn btn-vibrant">See How We Solve This &darr;</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="section">
         <div class="container">
             <div class="section-header text-center reveal">
                 <span class="section-label">What We Build</span>
                 <h2>Custom <span class="accent">Automation Solutions</span> for SMEs</h2>
-                <p style="color:var(--text-dim);max-width:560px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">We help businesses automate operations and replace manual work with custom-built systems. Reduced manual work by up to 60% for previous clients.</p>
+                <p style="color:var(--text-dim);max-width:560px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">We help businesses automate operations and replace manual work with custom-built systems. Each system is designed around your actual workflows — no generic templates, no per-user licensing.</p>
             </div>
             
             <div class="services-grid reveal">
@@ -432,7 +532,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="service-card">
                     <div class="service-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(79,70,229,0.08));border:1px solid rgba(16,185,129,0.22);color:var(--accent);display:flex;align-items:center;justify-content:center;">👥</div>
                     <h3><a href="services/hrms.html">Custom HRMS Systems &rarr;</a></h3>
-                    <p>Track biometric shifts, GPS coordinates, field attendance logs, and leave requests. 80% faster payroll prep.</p>
+                    <p>Track biometric shifts, GPS coordinates, field attendance logs, and leave requests — all in one system built around your HR rules.</p>
                 </div>
                 <!-- Card 2: Custom CRM -->
                 <div class="service-card">
@@ -478,6 +578,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
 
+            <div class="text-center reveal" style="margin-top:2.5rem;">
+                <a href="about.html" style="font-size:0.9rem;font-weight:600;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">Learn more about our approach &amp; tech stack &rarr;</a>
+            </div>
+
             <!-- Stats Bar -->
             <div class="stats-bar reveal">
                 <div class="stat-item">
@@ -513,7 +617,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
             <div class="industries-grid reveal">
                 <!-- Industry 1: Solar & Renewables -->
-                <div class="industry-card">
+                <a href="projects/go-solar-hrms.html" class="industry-card" style="text-decoration:none;color:inherit;">
                     <span class="industry-icon">☀️</span>
                     <h3>Solar &amp; Renewables</h3>
                     <p>EPC tracking, site survey coordinates, labor shift rosters, inventory dispatches, and statutory AMC contract tracking.</p>
@@ -521,9 +625,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="industry-detail-item"><strong>Fit:</strong> Solar EPC &amp; AMC teams</span>
                         <span class="industry-detail-item"><strong>Feature:</strong> Site reports &amp; GPS logs</span>
                     </div>
-                </div>
+                </a>
                 <!-- Industry 2: Construction -->
-                <div class="industry-card">
+                <a href="services/erp.html" class="industry-card" style="text-decoration:none;color:inherit;">
                     <span class="industry-icon">🏗️</span>
                     <h3>Construction &amp; Real Estate</h3>
                     <p>Subcontractor milestone verification, daily labor logs, materials requisition approvals, and site progress audits.</p>
@@ -531,9 +635,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="industry-detail-item"><strong>Fit:</strong> Developers &amp; Builders</span>
                         <span class="industry-detail-item"><strong>Feature:</strong> Material POs &amp; Labor sync</span>
                     </div>
-                </div>
+                </a>
                 <!-- Industry 3: Manufacturing -->
-                <div class="industry-card">
+                <a href="services/inventory.html" class="industry-card" style="text-decoration:none;color:inherit;">
                     <span class="industry-icon">⚙️</span>
                     <h3>Manufacturing</h3>
                     <p>Bill of Materials (BOM) logic, manufacturing batch records, raw inventory logs, and digital QC checklists.</p>
@@ -541,9 +645,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="industry-detail-item"><strong>Fit:</strong> Factories &amp; Assemblers</span>
                         <span class="industry-detail-item"><strong>Feature:</strong> BOM sync &amp; QC monitors</span>
                     </div>
-                </div>
+                </a>
                 <!-- Industry 4: Logistics -->
-                <div class="industry-card">
+                <a href="services/workflow-automation.html" class="industry-card" style="text-decoration:none;color:inherit;">
                     <span class="industry-icon">🚛</span>
                     <h3>Logistics &amp; Transport</h3>
                     <p>Fleet dispatch tracking, vehicle maintenance schedules, driver trip sheet records, and delivery status monitors.</p>
@@ -551,6 +655,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <span class="industry-detail-item"><strong>Fit:</strong> Trucking &amp; Distribution</span>
                         <span class="industry-detail-item"><strong>Feature:</strong> Trip records &amp; Fuel audits</span>
                     </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who SoftSync Is For Section -->
+    <section id="who" class="section">
+        <div class="container">
+            <div class="section-header text-center reveal">
+                <span class="section-label">Built for SMEs With Complex Workflows</span>
+                <h2>Software for teams that have <span class="accent">outgrown off-the-shelf tools</span></h2>
+                <p style="color:var(--text-dim);max-width:620px;margin:1rem auto 0;font-size:0.95rem;line-height:1.7;">
+                    We build custom systems for businesses where operations are too complex for generic SaaS, but too important for spreadsheets.
+                </p>
+            </div>
+            <div class="who-grid reveal">
+                <div class="who-card">
+                    <span class="who-card-icon">&#128188;</span>
+                    <h4>Growing Operations Teams</h4>
+                    <p>Your team is 20–200 people and you've outgrown manual processes. You need systems that scale with your headcount without per-user fees.</p>
+                    <p class="who-examples">HR teams, Operations managers, Admin leads</p>
+                </div>
+                <div class="who-card">
+                    <span class="who-card-icon">&#127981;</span>
+                    <h4>Field-Heavy Industries</h4>
+                    <p>Your workforce is distributed across sites, offices, or regions. You need real-time visibility into attendance, task status, and field operations.</p>
+                    <p class="who-examples">Solar, Construction, Logistics, Manufacturing</p>
+                </div>
+                <div class="who-card">
+                    <span class="who-card-icon">&#128196;</span>
+                    <h4>Spreadsheet-Dependent Businesses</h4>
+                    <p>Payroll in Excel, inventory in Google Sheets, projects in WhatsApp. You know it's not sustainable, but you don't know where to start.</p>
+                    <p class="who-examples">SMEs with 5+ departments, Multi-location ops</p>
                 </div>
             </div>
         </div>
@@ -959,7 +1096,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 .faq-item:hover .faq-question { color: var(--accent); }
                 .faq-icon { color: var(--accent); font-size: 1.4rem; font-weight: 300; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
                 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
-                .faq-item.active .faq-answer { max-height: 200px; margin-top: 0.8rem; }
+                .faq-item.active .faq-answer { max-height: 300px; margin-top: 0.8rem; }
                 .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent); }
             </style>
             
@@ -992,6 +1129,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="faq-question">Who owns the source code and database? <span class="faq-icon">+</span></div>
                     <div class="faq-answer">You do, 100%. SoftSync Lab delivers all source code files and database setups so you own the IP asset and data completely.</div>
                 </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can you work with our existing tools like Zoho, Tally, or custom databases? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Yes. A large part of custom software is connecting tools that don't talk to each other. We build API bridges and data syncs to integrate your existing Tally, Zoho, QuickBooks, or legacy databases into your new system.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What happens after the 3-month free support period? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">After the free support window, we offer affordable monthly retainer plans for ongoing maintenance, feature additions, and priority bug fixes. Most clients find the post-launch cost is a fraction of what they'd pay for SaaS licensing.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you build mobile apps or only web-based systems? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">We primarily build responsive web applications that work seamlessly on desktop, tablet, and mobile browsers — no app store install required. For specific use cases, we can also build native mobile apps.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How is custom software different from using Excel or Google Sheets? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Spreadsheets work for solo tasks but break down for team coordination. Custom software provides role-based access, audit trails, automated notifications, data validation, and real-time dashboards — things spreadsheets can't do reliably at scale.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can you migrate our existing data from spreadsheets or old systems? <span class="faq-icon">+</span></div>
+                    <div class="faq-answer">Yes. We handle data migration from Excel files, legacy databases, or other software into your new system. This includes data cleaning, formatting, and validation to ensure nothing is lost in the transition.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-CTA Banner -->
+    <section class="section" style="padding:4rem 0;">
+        <div class="container">
+            <div class="cta-banner reveal">
+                <h2>Ready to stop fighting your tools?</h2>
+                <p>Tell us what's slowing your team down. We'll map the right system and get back to you within 24 hours.</p>
+                <div class="cta-btns">
+                    <a href="#contact" class="btn btn-vibrant">Book Free Consultation</a>
+                    <a href="projects/go-solar-hrms.html" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);">Read Our Case Study</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1022,7 +1193,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
                         <div class="contact-highlight-card">
                             <p class="label">Primary Outcome</p>
-                            <p class="val">Reduced manual work by 60% and zero missed deadlines for our clients.</p>
+                            <p class="val">Eliminating manual handoffs, spreadsheet bottlenecks, and disconnected tools for growing operations teams.</p>
                         </div>
                     </div>
 

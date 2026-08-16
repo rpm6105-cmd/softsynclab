@@ -1763,6 +1763,7 @@ textarea:focus-visible {
     .industries-grid { grid-template-columns: 1fr; }
 }
 .industry-card {
+    display: block;
     background: #ffffff;
     border: 1px solid rgba(15, 23, 42, 0.07);
     border-radius: 22px;

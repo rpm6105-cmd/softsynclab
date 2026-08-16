@@ -85,7 +85,7 @@
         .page-faq-item { border-bottom: 1px solid rgba(15,23,42,0.08); padding: 1.25rem 0; cursor: pointer; }
         .page-faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: 600; color: var(--text); }
         .page-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
-        .page-faq-item.active .page-faq-answer { max-height: 200px; margin-top: 0.8rem; }
+        .page-faq-item.active .page-faq-answer { max-height: 300px; margin-top: 0.8rem; }
         .page-faq-icon { color: #0f766e; font-size: 1.4rem; transition: transform 0.3s; }
         .page-faq-item.active .page-faq-icon { transform: rotate(45deg); }
     </style>
@@ -156,13 +156,19 @@
                 <div class="detail-grid">
                     <div>
                         <h2 style="font-size: 1.6rem; margin-bottom: 1rem; font-family: 'Outfit', sans-serif;">Overview</h2>
-                        <p style="color:var(--text-dim); line-height: 1.7; font-size: 0.95rem;">Generic, off-the-shelf software forces you to change how your company operates. We build software around your business rules, ensuring a perfect fit for your workflow.</p>
+                        <p style="color:var(--text-dim); line-height: 1.7; font-size: 0.95rem;">Generic software forces your team to adapt to rigid modules that don't match how you actually work. Custom software flips this — we map your business rules, workflows, and terminology first, then build the system around them. The result is software your team will actually use, because it was designed for them.</p>
                         
                         <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.75rem; font-family: 'Outfit', sans-serif;">Target Audience</h3>
-                        <p style="color:var(--text-dim); font-size: 0.9rem;">Growing SMEs who have outgrown Excel and seek a tailored, scalable internal software system.</p>
+                        <p style="color:var(--text-dim); font-size: 0.9rem;">Growing SMEs who have outgrown Excel, spreadsheets, and disconnected SaaS tools — and need a tailored, scalable internal software system they own outright.</p>
                         
                         <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.75rem; font-family: 'Outfit', sans-serif;">Key Industries</h3>
                         <p style="color:var(--text-dim); font-size: 0.9rem;">Construction, Manufacturing, Solar, Healthcare, Logistics, and Retail.</p>
+
+                        <div style="margin-top: 2rem; padding: 1.25rem; background: rgba(13,148,136,0.04); border: 1px solid rgba(13,148,136,0.12); border-radius: 14px;">
+                            <p style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem;">See it in action</p>
+                            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.6;">We built a complete Solar HRMS, payroll, and AMC management platform for Go Solar Solutions — covering employee management, compliance, and equipment tracking.</p>
+                            <a href="../projects/go-solar-hrms.html" style="font-size: 0.85rem; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">Read the case study &rarr;</a>
+                        </div>
                     </div>
                     <div style="background: rgba(15,23,42,0.015); border: 1px solid rgba(15,23,42,0.06); padding: 2rem; border-radius: 20px;">
                         <h3 style="font-size: 1.2rem; font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--text);">Quick Inquiries</h3>
@@ -199,6 +205,26 @@
                 <div class="page-faq-item">
                     <div class="page-faq-question">Do you provide support after launch? <span class="page-faq-icon">+</span></div>
                     <div class="page-faq-answer">Yes. Every custom build includes 3 months of free post-launch support. We also offer SLA-driven maintenance packages to handle updates and features as you grow.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">How long does a typical custom software build take? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Most systems take 2 to 8 weeks from strategy mapping to deployment, depending on the number of modules, integration complexity, and workflow rules involved.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">What tech stack do you use? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">We use React for fast, responsive frontends, Node.js or Python for backend logic, and PostgreSQL for databases — all industry-standard, scalable, and maintainable technologies.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">Can you integrate with our existing tools like Tally or Zoho? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Yes. We build API bridges and data syncs to integrate your existing Tally, Zoho, QuickBooks, or legacy databases into your new custom system.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">How is custom software different from SaaS subscriptions? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">SaaS tools charge per user, per month, and force your workflows into predefined modules. Custom software is built once, owned forever, with zero licensing fees — and it fits your exact business rules.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">Can you migrate our existing data from spreadsheets? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Yes. We handle full data migration from Excel files, legacy databases, or other software — including cleaning, formatting, and validating records before importing into the new system.</div>
                 </div>
                 </div>
             </div>
@@ -280,7 +306,7 @@
                 document.querySelectorAll('.page-faq-item').forEach(i => i.classList.remove('active'));
                 if (!isActive) {
                     item.classList.add('active');
-                    item.querySelector('.page-faq-answer').style.maxHeight = '200px';
+                    item.querySelector('.page-faq-answer').style.maxHeight = '300px';
                 } else {
                     item.querySelector('.page-faq-answer').style.maxHeight = '0px';
                 }

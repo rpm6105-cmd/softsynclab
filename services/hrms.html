@@ -85,7 +85,7 @@
         .page-faq-item { border-bottom: 1px solid rgba(15,23,42,0.08); padding: 1.25rem 0; cursor: pointer; }
         .page-faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; font-weight: 600; color: var(--text); }
         .page-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
-        .page-faq-item.active .page-faq-answer { max-height: 200px; margin-top: 0.8rem; }
+        .page-faq-item.active .page-faq-answer { max-height: 300px; margin-top: 0.8rem; }
         .page-faq-icon { color: #0f766e; font-size: 1.4rem; transition: transform 0.3s; }
         .page-faq-item.active .page-faq-icon { transform: rotate(45deg); }
     </style>
@@ -156,13 +156,19 @@
                 <div class="detail-grid">
                     <div>
                         <h2 style="font-size: 1.6rem; margin-bottom: 1rem; font-family: 'Outfit', sans-serif;">Overview</h2>
-                        <p style="color:var(--text-dim); line-height: 1.7; font-size: 0.95rem;">Generic, off-the-shelf HR tools don't match how your SME actually handles field visits, shifts, and team metrics. Our Custom HRMS solutions are built 100% around your organization's specific workflow.</p>
+                        <p style="color:var(--text-dim); line-height: 1.7; font-size: 0.95rem;">Most SMEs manage attendance through biometric devices, spreadsheets, and WhatsApp messages — creating gaps in visibility, delayed payroll, and compliance risks. A custom HRMS eliminates these manual handoffs by centralizing attendance, shifts, leave, and employee records into one system built around how your team actually works.</p>
                         
                         <h3 style="font-size: 1.2rem; margin-top: 2rem; margin-bottom: 0.75rem; font-family: 'Outfit', sans-serif;">Target Audience</h3>
-                        <p style="color:var(--text-dim); font-size: 0.9rem;">SMEs with operations-heavy workforces, field technicians, construction crews, and multi-shift operations.</p>
+                        <p style="color:var(--text-dim); font-size: 0.9rem;">SMEs with operations-heavy workforces, field technicians, construction crews, and multi-shift operations who have outgrown spreadsheets and generic HR tools.</p>
                         
                         <h3 style="font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.75rem; font-family: 'Outfit', sans-serif;">Key Industries</h3>
                         <p style="color:var(--text-dim); font-size: 0.9rem;">Solar Installation, Construction, Logistics, Healthcare, and Retail.</p>
+
+                        <div style="margin-top: 2rem; padding: 1.25rem; background: rgba(13,148,136,0.04); border: 1px solid rgba(13,148,136,0.12); border-radius: 14px;">
+                            <p style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 0.4rem;">See it in action</p>
+                            <p style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.6;">We built a complete HRMS and operations platform for Go Solar Solutions — covering attendance, payroll, compliance, and AMC management.</p>
+                            <a href="../projects/go-solar-hrms.html" style="font-size: 0.85rem; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem;">Read the case study &rarr;</a>
+                        </div>
                     </div>
                     <div style="background: rgba(15,23,42,0.015); border: 1px solid rgba(15,23,42,0.06); padding: 2rem; border-radius: 20px;">
                         <h3 style="font-size: 1.2rem; font-family: 'Outfit', sans-serif; margin-bottom: 1rem; color: var(--text);">Quick Inquiries</h3>
@@ -199,6 +205,22 @@
                 <div class="page-faq-item">
                     <div class="page-faq-question">How does field GPS verification work? <span class="page-faq-icon">+</span></div>
                     <div class="page-faq-answer">We build mobile-responsive check-in templates that request location data so your field staff can verify site attendance securely.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">How long does it take to build a custom HRMS? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Most HRMS systems take 3 to 6 weeks from discovery to deployment, depending on the number of modules (attendance, shifts, leave, payroll integration) and complexity of your rules.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">Can the HRMS connect to our existing payroll system? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">Yes. We build API bridges to sync attendance hours, overtime, and leave data directly with your payroll software — whether it's Tally, Zoho, or a custom system.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">Who owns the HRMS source code and employee data? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">You do, 100%. All source code and database access are delivered to you. Employee data stays on your infrastructure — we never hold or monetize your data.</div>
+                </div>
+                <div class="page-faq-item">
+                    <div class="page-faq-question">What happens after the 3-month free support period? <span class="page-faq-icon">+</span></div>
+                    <div class="page-faq-answer">We offer affordable monthly retainer plans for ongoing maintenance, feature additions, and priority support. Most clients find the post-launch cost is a fraction of SaaS licensing fees.</div>
                 </div>
                 </div>
             </div>
@@ -280,7 +302,7 @@
                 document.querySelectorAll('.page-faq-item').forEach(i => i.classList.remove('active'));
                 if (!isActive) {
                     item.classList.add('active');
-                    item.querySelector('.page-faq-answer').style.maxHeight = '200px';
+                    item.querySelector('.page-faq-answer').style.maxHeight = '300px';
                 } else {
                     item.querySelector('.page-faq-answer').style.maxHeight = '0px';
                 }
